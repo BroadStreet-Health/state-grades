@@ -1,0 +1,46 @@
+@import 'theme-variable';
+
+.btn-outline-secondary {
+  color: darken($secondary, 20%);
+}
+
+.btn-outline-light {
+  color: color-yiq($light);
+}
+
+.dropdown-menu {
+  animation-fill-mode: forwards;
+  display: block;
+  opacity: 0;
+  transform: scale(.9, .5) translateY(-20px);
+  transform-origin: top;
+  transition: all 200ms ease;
+  visibility: hidden;
+}
+
+.show {
+  .dropdown-menu {
+    opacity: 1;
+    transform: scale(1, 1) translateY(0);
+    visibility: visible;
+  }
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  min-height: 100vh;
+}
+
+body {
+  font-family: 'Nunito Sans', sans-serif;
+  line-height: 1;
+  margin: 0;
+}
+
+button {
+  &:focus {
+    outline: none;
+  }
+}
