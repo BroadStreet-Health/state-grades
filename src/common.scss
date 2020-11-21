@@ -34,7 +34,7 @@ body,
 }
 
 body {
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: Roboto, sans-serif;
   line-height: 1;
   margin: 0;
 }
@@ -44,3 +44,65 @@ button {
     outline: none;
   }
 }
+
+.fs-60 {
+  font-size: 60px;
+}
+
+.fs-45 {
+  font-size: 45px;
+}
+
+.fs-34 {
+  font-size: 34px;
+}
+
+.fs-24 {
+  font-size: 24px;
+}
+
+.pt-15 {
+  padding-top: 9rem;
+}
+
+.pb-10 {
+  padding-bottom: 6rem;
+}
+
+.lh-40 {
+  line-height: 40px;
+}
+
+.lh-37 {
+  line-height: 37px;
+}
+
+tbody {
+  background-color: #fff;
+}
+
+td,
+th {
+  border: dashed 1px #f0f0f0 !important;
+  height: 25px;
+  overflow: hidden;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.table-container {
+  height: 730px;
+  overflow: auto;
+}
+
+.tooltip {
+  background: #b2b2b2 0% 0% no-repeat padding-box;
+  border: 2px solid #535353;
+  border-radius: 15px;
+  color: #535353;
+}
+
+.tooltip-badge {
+  color: #fff;
+}
+

@@ -1,0 +1,32 @@
+.badge {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    line-height: 37px;
+    margin: 0 auto;
+}
+
+.grade-A {
+    background: #949ACD 0% 0% no-repeat padding-box;
+    border: 4px solid #101B7E;
+}
+
+.grade-B {
+    background: #78C4D4 0% 0% no-repeat padding-box;
+    border: 4px solid #008FAA;
+}
+
+.grade-C {
+    background: #FDD888 0% 0% no-repeat padding-box;
+    border: 4px solid #FFB833;
+}
+
+.grade-D {
+    background: #FBAC9C 0% 0% no-repeat padding-box;
+    border: 4px solid #FF674D;
+}
+
+.grade-F {
+    background: #D0A2B6 0% 0% no-repeat padding-box;
+    border: 4px solid #9B315D;
+}

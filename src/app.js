@@ -5,17 +5,10 @@ import {Spinner} from 'react-bootstrap';
 import {Route, Redirect, Switch, useLocation} from 'react-router-dom';
 
 const Home = lazy(() => import('./components/home/home'));
-const Counter = lazy(() => import('./components/counter/counter'));
 
 function App() {
   const location = useLocation();
   const pages = [
-    {
-      pageLink: '/counter',
-      view: Counter,
-      isExact: true,
-      displayName: 'Counter',
-    },
     {
       pageLink: '/',
       view: Home,

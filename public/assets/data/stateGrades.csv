@@ -1,0 +1,57 @@
+state,Abbreviation,FIPS,Status,State-Level Score,statelevelSubgrade,County-Level Score,countylevelSubgrade,Demographics Score,demographicsSubgrade,Special Populations Score,specialPopulationsSubgrade,Exposure and Clinical Indications Score,exposureAndClinicalIndicationsSubgrade,Outcomes and Preparedness Score,outcomesAndPreparednessSubgrade,Data Quality Score,dataQualitySubgrade,Total Score,stateGrade,Scores Excluding Territories,stateRank,Public Health Funding Per Capita,COVID-19 site,Contact Info,Twitter
+Alabama,AL,04000US01,State,65,D,33.33,F,3.08,F,41,F,0,F,62,D,67.5,D,46.66,F,46.66,49,54.25,https://alpublichealth.maps.arcgis.com/apps/opsdashboard/index.html#/6d2771faa9da4a2786a509d82c8cf0f7,,@alpublichealth
+Alaska,AK,04000US02,State,92.5,A,93.33,A,5.38,F,0,F,80,B,68,D,96.67,A,79.57,B,79.57,14,98.25,https://coronavirus-response-alaska-dhss.hub.arcgis.com,data.coronavirus@alaska.gov,@Alaska_DHSS
+America Samoa,AS,04000US60,Territory,0,F,0,F,0,F,0,F,0,F,0,F,0,F,0,F,,,,,, @samoagovt
+Arizona,AZ,04000US04,State,95,A,80,B,71.62,C,36,F,0,F,32,F,70.83,C,80.35,B,80.35,13,15.25,https://azdhs.gov/preparedness/epidemiology-disease-control/infectious-disease-epidemiology/covid-19/dashboards/index.php,,@azdhs
+Arkansas,AR,04000US05,State,91.25,A,60,D,41,F,0,F,10,F,62,D,45,F,67.53,D,67.53,34,48.23,https://www.healthy.arkansas.gov/programs-services/topics/novel-coronavirus,ADH.CoronaVirus@arkansas.gov,@adhpio
+California,CA,04000US06,State,95,A,63.33,D,75.85,C,0,F,0,F,62,D,90,A,78.96,C,78.96,16,71.89,https://www.cdph.ca.gov/Programs/CID/DCDC/Pages/Immunization/ncov2019.aspx,CDPHPressOPA@cdph.ca.gov,@CAPublicHealth
+Colorado,CO,04000US08,State,83.75,B,78.33,C,78.15,C,0,F,10,F,34,F,90,A,77.96,C,77.96,17,51.25,https://covid19.colorado.gov/data/case-data,,@cdphe
+Connecticut,CT,04000US09,State,76.25,C,63.33,D,76.23,C,54,F,0,F,30,F,93.33,A,70.78,C,70.78,29,32.47,https://portal.ct.gov/Coronavirus/COVID-19-Data-Tracker,,@ctdph
+Delaware,DE,04000US10,State,95,A,91.67,A,85.46,B,36,F,0,F,68,D,93.33,A,89.7,A,89.7,2,34.31,https://coronavirus.delaware.gov,covid19faq@delaware.gov,@Delaware_DHSS
+District of Columbia,DC,04000US11,Territory,90,A,45,F,78.54,C,36,F,0,F,66,D,93.33,A,72.7,C,,,,https://coronavirus.dc.gov/page/coronavirus-data,,@_DCHealth
+Florida,FL,04000US12,State,90,A,76.67,C,11.15,F,0,F,80,B,34,F,67.5,D,69.7,C,69.7,31,18.62,https://floridahealthcovid19.gov/,COVID-19@flhealth.gov,@HealthyFla
+Georgia,GA,04000US13,State,96.88,A,83.33,B,69.85,C,0,F,10,F,6,F,96.67,A,82.9,B,82.9,11,27.35,https://dph.georgia.gov/covid-19-daily-status-report,,@GaDPH
+Guam,GU,04000US66,Territory,61.25,D,15,F,42.92,F,0,F,0,F,0,F,22.5,F,36.83,F,,,,,doh@dc.gov,@guamdphss
+Hawaii,HI,04000US15,State,95,A,93.33,A,22.15,F,0,F,0,F,30,F,51.67,F,75.55,C,75.55,24,127.36,https://health.hawaii.gov/coronavirusdisease2019/what-you-should-know/current-situation-in-hawaii/,info211@auw.org,@HIgov_Health
+Idaho,ID,04000US16,State,92.5,A,31.67,F,78.54,C,18,F,0,F,96,A,90,A,70.69,C,70.69,30,85.26,https://coronavirus.idaho.gov,,@IDHW
+Illinois,IL,04000US17,State,90,A,80,B,96.15,A,18,F,10,F,96,A,70.83,C,84.66,B,84.66,8,30.21,http://www.dph.illinois.gov/covid19/covid19-statistics,DPH.SICK@ILLINOIS.GOV,@IDPH
+Indiana,IN,04000US18,State,92.5,A,93.33,A,96.92,A,54,F,0,F,64,D,74.17,C,88.76,B,88.76,4,15.08,https://www.coronavirus.in.gov,,@statehealthin
+Iowa,IA,04000US19,State,95,A,95,A,5,F,0,F,10,F,98,A,45,F,76.65,C,76.65,21,82.78,https://coronavirus.iowa.gov,,@IAPublicHealth
+Kansas,KS,04000US20,State,47.5,F,46.67,F,88.08,B,36,F,10,F,96,A,25.83,F,52.29,F,52.29,48,13.01,https://www.coronavirus.kdheks.gov/160/COVID-19-in-Kansas,,@kdhe
+Kentucky,KY,04000US21,State,93.75,A,30,F,78.54,C,0,F,0,F,32,F,96.67,A,67.98,D,67.98,33,35.46,https://kygeonet.maps.arcgis.com/apps/opsdashboard/index.html#/543ac64bc40445918cf8bc34dc40e334,KYcovid19@ky.gov,@CHFSKy
+Louisiana,LA,04000US22,State,92.5,A,91.67,A,38.08,F,0,F,90,A,66,D,67.5,D,80.4,B,80.4,12,24.81,https://ldh.la.gov/coronavirus/,,@LADeptHealth
+Maine,ME,04000US23,State,92.5,A,91.67,A,57.38,F,0,F,0,F,96,A,96.67,A,86.43,B,86.43,7,27.37,https://www.maine.gov/dhhs/mecdc/infectious-disease/epi/airborne/coronavirus/data.shtml,info@211maine.org,@mainedhhs
+Maryland,MD,04000US24,State,95,A,60,D,77.96,C,54,F,10,F,60,D,70.83,C,76.86,C,76.86,20,43.13,https://coronavirus.maryland.gov,,@MDHealthDept
+Massachusetts,MA,04000US25,State,96.25,A,93.33,A,76.77,C,90,A,10,F,68,D,67.5,D,87.63,B,87.63,6,83.44,https://www.mass.gov/info-details/covid-19-response-reporting#covid-19-daily-dashboard-,,@massdph
+Michigan,MI,04000US26,State,95,A,78.33,C,63.54,D,0,F,0,F,0,F,93.33,A,79.09,C,79.09,15,15.17,"https://www.michigan.gov/coronavirus/0,9753,7-406-98163_98173---,00.html",COVID19@michigan.gov,@MichiganHHS
+Minnesota,MN,04000US27,State,92.5,A,75.83,C,76.31,C,63,D,80,B,96,A,85.42,B,84.44,B,84.44,9,39.64,https://www.health.state.mn.us/diseases/coronavirus/situation.html,,@mnhealth
+Mississippi,MS,04000US28,State,78.75,C,48.33,F,78.92,C,54,F,20,F,96,A,67.5,D,68.55,D,68.55,32,15.56,"https://msdh.ms.gov/msdhsite/_static/14,0,420.html",web@HealthyMS.com,@msdh
+Missouri,MO,04000US29,State,95,A,50,F,54.31,F,0,F,0,F,15,F,62.92,D,67.1,D,67.1,36,7.13,https://showmestrong.mo.gov/data/public-health/,https://www.mo.gov/contact-us/,@HealthyLivingMo
+Montana,MT,04000US30,State,75,C,60,D,45.08,F,0,F,0,F,62,D,45,F,61.46,D,61.46,42,21.73,https://montana.maps.arcgis.com/apps/MapSeries/index.html?appid=7c34f3412536439491adcc2103421d4b,covid19info@mt.gov,@dphhsmt
+Nebraska,NE,04000US31,State,75,C,46.67,F,78.54,C,0,F,0,F,96,A,74.17,C,66.43,D,66.43,38,38.49,https://experience.arcgis.com/experience/ece0db09da4d4ca68252c3967aa1e9dd,,@NEDHHS
+Nevada,NV,04000US32,State,78.75,C,93.33,A,94.23,A,90,A,10,F,62,D,70.83,C,82.93,B,82.93,10,10.76,https://nvhealthresponse.nv.gov,,@dhhsnevada
+New Hampshire,NH,04000US33,State,62.5,D,46.67,F,62.38,D,82,B,80,B,90,A,70.83,C,60.31,D,60.31,43,21.4,https://www.nh.gov/covid19/dashboard/summary.htm,,@NHPubHealth
+New Jersey,NJ,04000US34,State,77.5,C,45,F,76.62,C,36,F,10,F,96,A,22.5,F,61.97,D,61.97,41,29.21,https://www.nj.gov/health/cd/topics/covid2019_dashboard.shtml,Covid.Dashboard@doh.nj.gov,@NJDeptofHealth
+New Mexico,NM,04000US35,State,91.25,A,90,A,42.92,F,0,F,0,F,60,D,45,F,76.58,C,76.58,22,139.6,https://cvprovider.nmhealth.org/public-dashboard.html,,@NMDOH
+New York,NY,04000US36,State,77.5,C,78.33,C,42.15,F,0,F,10,F,0,F,74.17,C,67.5,D,67.5,35,83.21,https://covid19tracker.health.ny.gov/views/NYS-COVID19-Tracker/NYSDOHCOVID-19Tracker-Map?%3Aembed=yes&%3Atoolbar=no&%3Atabs=n,https://coronavirus.health.ny.gov/form/ask-us-a-question,@healthnygov
+North Carolina,NC,04000US37,State,93.75,A,46.67,F,77.77,C,36,F,0,F,68,D,96.67,A,75.04,C,75.04,26,14.93,https://covid19.ncdhhs.gov/dashboard,,@ncdhhs
+North Dakota,ND,04000US38,State,78.75,C,61.67,D,36,F,36,F,80,B,94,A,48.33,F,65.37,D,65.37,39,58.6,https://www.health.nd.gov/diseases-conditions/coronavirus/north-dakota-coronavirus-cases,,@NDDOH
+Northern Mariana Islands,MP,04000US69,Territory,45.63,F,30,F,35.62,F,0,F,80,B,30,F,40.42,F,38.22,F,,,,,,@cnmichcc
+Ohio,OH,04000US39,State,63.13,D,61.67,D,41.38,F,18,F,0,F,92,A,45,F,58.41,F,58.41,45,14.01,https://coronavirus.ohio.gov/wps/portal/gov/covid-19/home,,@OHdeptofhealth
+Oklahoma,OK,04000US40,State,60,D,60,D,60.08,D,0,F,0,F,38,F,67.5,D,58.46,F,58.46,44,43.61,https://looker-dashboards.ok.gov/embed/dashboards/44,,@HealthyOklahoma
+Oregon,OR,04000US41,State,95.63,A,95,A,78.92,C,27,F,80,B,79,C,59.58,D,87.99,B,87.99,5,35.25,https://govstatus.egov.com/OR-OHA-COVID-19,COVID.19@dhsoha.state.or.us,@OHAOregon
+Pennsylvania,PA,04000US42,State,91.25,A,90,A,75.46,C,54,F,0,F,36,F,22.5,F,77.9,C,77.9,18,15.06,https://www.health.pa.gov/topics/disease/coronavirus/Pages/Cases.aspx,https://expressforms.pa.gov/apps/pa/health/contact-us,@PAHealthDept
+Puerto Rico,PR,04000US72,Territory,31.88,F,15,F,12.62,F,0,F,0,F,47,F,11.25,F,22.37,F,,,,,,@DeptSaludPR
+Rhode Island,RI,04000US44,State,92.5,A,66.67,D,73.46,C,54,F,0,F,62,D,70.83,C,77.27,C,77.27,19,57.26,https://ri-department-of-health-covid-19-data-rihealth.hub.arcgis.com,RIDOH.COVID19Questions@health.ri.gov,@rihealth
+South Carolina,SC,04000US45,State,93.75,A,45,F,24.62,F,54,F,10,F,66,D,67.5,D,64.89,D,64.89,40,27.03,https://www.scdhec.gov/infectious-diseases/viruses/coronavirus-disease-2019-covid-19/sc-testing-data-projections-covid-19,info@dhec.sc.gov,@scdhec
+South Dakota,SD,04000US46,State,61.25,D,45,F,42.92,F,0,F,0,F,66,D,74.17,C,54.3,F,54.3,47,35.48,https://doh.sd.gov/news/Coronavirus.aspx,DOH.info@state.sd.us,@SDDOH
+Tennessee,TN,04000US47,State,63.75,D,78.33,C,78.92,C,54,F,0,F,94,A,67.5,D,71.25,C,71.25,28,51.24,https://www.tn.gov/health/cedep/ncov.html,tn.health@tn.gov,@TNDeptofHealth
+Texas,TX,04000US48,State,77.5,C,75,C,61.42,D,54,F,0,F,60,D,70.83,C,72.11,C,72.11,27,17.16,https://txdshs.maps.arcgis.com/apps/opsdashboard/index.html#/ed483ecd702b4298ab01e8b9cafc8b83,coronavirus@dshs.texas.gov,@TexasDSHS
+Utah,UT,04000US49,State,80,B,18.33,F,70.85,C,90,A,20,F,64,D,70.83,C,58.09,F,58.09,46,33.02,https://coronavirus.utah.gov/case-counts/,thudachko@utah.gov,@utahdepofhealth
+Vermont,VT,04000US50,State,90,A,76.67,C,77.19,C,0,F,0,F,60,D,45,F,76.54,C,76.54,23,49.2,https://www.healthvermont.gov/response/coronavirus-covid-19/current-activity-vermont#dashboard,,@healthvermont
+Virgin Islands,VI,04000US78,Territory,81.25,B,96.67,A,24.08,F,0,F,90,A,32,F,82.08,B,75.34,C,,,,,,@usvidoh
+Virginia,VA,04000US51,State,58.75,F,75.83,C,74.31,C,54,F,0,F,66,D,67.5,D,66.5,D,66.5,37,39.6,https://www.vdh.virginia.gov/coronavirus/,Questions@vdh.virginia.gov,@vdhgov
+Washington,WA,04000US53,State,95,A,95,A,78.54,C,0,F,0,F,66,D,100,A,90.01,A,90.01,1,45.62,https://www.doh.wa.gov/Emergencies/Coronavirus,,@WADeptHealth
+West Virginia,WV,04000US54,State,95,A,61.67,D,51.54,F,54,F,0,F,94,A,67.5,D,75.19,C,75.19,25,58.74,https://dhhr.wv.gov/COVID-19/Pages/default.aspx,,@WV_DHHR
+Wisconsin,WI,04000US55,State,93.75,A,90,A,78.15,C,82,B,0,F,94,A,93.33,A,89.51,A,89.51,3,17.38,https://www.dhs.wisconsin.gov/covid-19/data.htm,HSwebmaster@dhs.wisconsin.gov, @DHSWI
+Wyoming,WY,04000US56,State,48.13,F,45.83,F,10.77,F,0,F,50,F,15,F,70.83,C,42.73,F,42.73,50,50.44,https://health.wyo.gov/publichealth/infectious-disease-epidemiology-unit/disease/novel-coronavirus/,wdh.covid19@wyo.gov,@health_wyoming
