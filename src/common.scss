@@ -69,12 +69,24 @@ button {
   padding-bottom: 6rem;
 }
 
+.m-auto {
+  margin: auto;
+}
+
 .lh-40 {
   line-height: 40px;
 }
 
 .lh-37 {
   line-height: 37px;
+}
+
+.mw-900 {
+  max-width: 900px;
+}
+
+.mw-1480 {
+  max-width: 1480px;
 }
 
 tbody {
@@ -90,11 +102,6 @@ th {
   white-space: nowrap;
 }
 
-.table-container {
-  height: 730px;
-  overflow: auto;
-}
-
 .tooltip {
   background: #b2b2b2 0% 0% no-repeat padding-box;
   border: 2px solid #535353;
@@ -105,4 +112,43 @@ th {
 .tooltip-badge {
   color: #fff;
 }
+
+.pink-container {
+  background: #ffadad80 0% 0% no-repeat padding-box;
+  height: 108px;
+  width: 192px;
+}
+
+[role='grid'] + [role='grid'] {
+  margin-top: 1em;
+}
+
+[role='grid'] {
+  background-color: #fff;
+  border: 1px dashed #f0f0f0;
+  display: grid;
+  font-size: 1em;
+  height: 1500px;
+  overflow-y: auto;
+  width: 100%;
+}
+
+[role='grid'] > div {
+  border-left: 1px dashed #f0f0f0;
+}
+
+[role='columnheader'] {
+  background-color: #f0f0f0;
+  border-bottom: 1px solid  #f0f0f0;
+  padding: 5px;
+  position: sticky;
+  top: 0;
+}
+
+[role='gridcell'] {
+  padding: 2px 5px;
+}
+
+
+
 

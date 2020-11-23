@@ -1,3 +1,7 @@
+import StateDataAvailabilityTable from './../state-data-availability-table/state-data-availability-table';
+
+import StateDataAvailabilityChart from '../state-data-availability-chart/state-data-availability-chart';
+
 import React from 'react';
 
 const StateDataAvailability = () => {
@@ -7,9 +11,8 @@ const StateDataAvailability = () => {
         How available is your state’s data?{' '}
         <span className="font-weight-bold">Click a state to learn more.</span>
       </h3>
-      <div className="py-5">
-        <img src="https://dummyimage.com/600x400/000/fff" />
-      </div>
+      <StateDataAvailabilityChart />
+      <StateDataAvailabilityTable />
     </div>
   );
 };

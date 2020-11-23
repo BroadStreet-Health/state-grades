@@ -25,14 +25,14 @@ const Footer = () => {
   return (
     <div className="text-center">
       {authors ? (
-        <div>
+        <div className="m-auto mw-900">
           <h2 className={'fs-45 font-weight-bold'}>Authors</h2>
           <FooterLinks data={authors}></FooterLinks>
         </div>
       ) : null}
       <br />
       {stateDashboard ? (
-        <div className="pt-5 pb-10">
+        <div className="pt-5 pb-10 m-auto mw-1480">
           <h2 className={'fs-45 font-weight-bold'}>
             State Dashboard References
           </h2>

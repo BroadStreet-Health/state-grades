@@ -2,11 +2,13 @@ import styles from './grade-badge.module.css';
 
 import React from 'react';
 
-const GradeBadge = ({value}) => {
+const GradeBadge = ({value, styleName}) => {
   const style = 'grade-' + value;
+  const className =
+    styles[style] + ' ' + styles.badge + (styleName ? ' ' + styleName : '');
   return (
     <div>
-      <div className={styles[style] + ' ' + styles.badge}>{value}</div>
+      <div className={className}>{value}</div>
     </div>
   );
 };

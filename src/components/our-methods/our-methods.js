@@ -54,14 +54,14 @@ const OurMethods = () => {
         <h3 className="fs-34 font-weight-bold pt-5">County-Level</h3>
         <h5 className="fs-24">
           County-level COVID-19 data on cases, testing, and deaths offer
-          insights into how SARS CoV-2 spreads within local communities, leading
+          insights into how SARS-CoV-2 spreads within local communities, leading
           to more efficient response measures and resource allocation Local
           governments can leverage these data to respond more effectively and
           inform and empower their communities.
         </h5>
         <h3 className="fs-34 font-weight-bold pt-5">Demographics</h3>
         <h5 className="fs-24">
-          Understanding which populations are adversely impacted by COVID 19
+          Understanding which populations are adversely impacted by COVID-19
           highlights critical disparities in reporting and risk factors between
           demographic groups Collecting demographic information may also help to
           identify gaps in data definitions and categorizations in relation to
@@ -103,7 +103,9 @@ const OurMethods = () => {
           States must provide accurate, relevant. and consistent data on public
           COVID-19 dashboards to set high standards for reporting methods and
           reliable comparisons.{' '}
-          <span className="text-primary"> Learn more about -good data </span>
+          <span className="text-primary">
+            Learn more about &quot;good data&quot;
+          </span>
         </h5>
       </div>
     </div>
