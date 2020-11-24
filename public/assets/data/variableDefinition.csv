@@ -1,0 +1,72 @@
+Category,Variable,Definition
+State-Level,State-level Incident Positive Cases,State-level incident (new) positive cases (confirmed only)
+State-Level,State-level Incident Positive Cases: 7-day moving average,Are incedent positive cases averaged over 7 days (in graphical or table format); comment out if the moving average is not 7 days
+State-Level,State-level Incident Positive Cases: Per Capita Rate,Are incident positive cases presented as a per capita rate?
+State-Level,State-level Probable Cases,Are probable or non-confirmed cases reported at the state-level?
+State-Level,State-level Cumulative Cases,Are cumulative cases reported at the state-level?
+State-Level,State-level Incident Total Tests,"state-level incident (new) total tests, or incident negative tests"
+State-Level,State-level Incident Total Tests: 7-day moving average,Are incident tests averaged over 7 days (in graphical or table format?); comment out if the moving average is not 7 days
+State-Level,State-level Incident Total Tests: Per Capita Rate,Are incident tests presented as a per capita rate?
+State-Level,State-level Cumulative Tests,Are cumulative tests reported at the state level?
+State-Level,State-level Incident Deaths,state-level incident (new) deaths (confirmed positive test only)
+State-Level,State-level Incident Deaths: 7-day moving average,Are incedent deaths averaged over 7 days (in graphical or table format); comment out if the moving average is not 7 days
+State-Level,State-level Incident Deaths: Per Capita Rate,Are incident deaths presented as a per capita rate?
+State-Level,State-level Probable Incident Deaths,Are probable or non-confirmed deaths reported at the state-level?
+State-Level,State-level Cumulative Deaths,Are cumulative deaths reported at the state level?
+County-Level,County-level Incident Positive Cases,County-level incident (new) positive cases (confirmed only)
+County-Level,County-level Incident Positive Cases: 7-day moving average,Are incedent positive cases averaged over 7 days (in graphical or table format); comment out if the moving average is not 7 days
+County-Level,County-level Incident Positive Cases: Per Capita Rate,Are incident positive cases presented as a per capita rate?
+County-Level,County-level Cumulative Cases,Are cumulative cases reported at the county-level?
+County-Level,County-level Incident Total Tests,"County-level incident (new) total tests, or incident negative tests"
+County-Level,County-level Incident Total Tests: 7-day moving average,Are incident tests averaged over 7 days (in graphical or table format?); comment out if the moving average is not 7 days
+County-Level,County-level Incident Total Tests: Per Capita Rate,Are incident tests presented as a per capita rate?
+County-Level,County-level Cumulative Tests,Are cumulative tests reported at the county level?
+County-Level,County-level Incident Deaths,County-level incident (new) deaths (confirmed positive test only)
+County-Level,County-level Incident Deaths: 7-day moving average,Are incedent deaths averaged over 7 days (in graphical or table format); comment out if the moving average is not 7 days
+County-Level,County-level Incident Deaths: Per Capita Rate,Are incident deaths presented as a per capita rate?
+County-Level,County-level Cumulative Deaths,Are cumulative deaths reported at the county level?
+Demographics,Race Categories Consistent with Census Categories,"Do these categories include, at a minimum, the census categories (i.e., White, Black or African American, American Indian or Alaska Native (AIAN), Asian, Native Hawaiian or Other Pacific Islander)?"
+Demographics,Cumulative Cases by Race,Are cumulative cases reported at the race-level?
+Demographics,Cumulative Tests by Race,Are cumulative tests reported at the race level?
+Demographics,Cumulative Deaths by Race,Are cumulative deaths reported at the race level?
+Demographics,Ethnicity Categories Consistent with Census Categories,"Do these categories include, at a minimum, the census categories (i.e., Hispanic/Latino/Spanish origin, Non-Hispanic)?"
+Demographics,Cumulative Cases by Ethnicity,Are cumulative cases reported at the ethnicity-level?
+Demographics,Cumulative Tests by Ethnicity,Are cumulative tests reported at the ethnicity level?
+Demographics,Cumulative Deaths by Ethnicity,Are cumulative deaths reported at the ethnicity level?
+Demographics,Definition of Sex Categories,Is a definition/explanation given for sex categories?
+Demographics,Sex Consistent with Census Categories,"Do these categories include, at a minimum, the census categories (i.e., male, female)?"
+Demographics,Sex is Reported,Does the state report sex as opposed to gender? If the state reports gender they get a 0 for this specific variable.
+Demographics,Cumulative Cases by Sex,Are cumulative cases reported at the sex-level?
+Demographics,Cumulative Tests by Sex,Are cumulative tests reported at the sex level?
+Demographics,Cumulative Deaths by Sex,Are cumulative deaths reported at the sex level?
+Demographics,Age Categories are Reported,Are age categories reported at all?
+Demographics,Age Increments of 10,Are age categories in increments of 10 years or fewer?
+Demographics,Age Increments of 5,"Are age categories in increments of 5 years or fewer? (Census categories for age are in increments of 5 years up to 85 and over - i.e., Under 5, 5-9, 10-14,…, 80-84, 85 and over)"
+Demographics,Cumulative Cases by Age,Are cumulative cases reported at the age-level?
+Demographics,Cumulative Tests by Age,Are cumulative tests reported at the age level?
+Demographics,Cumulative Deaths by Age,Are cumulative deaths reported at the age level?
+Special Populations,Definition of Health Care Facilities,Is a definition given for health care facilities?
+Special Populations,Includes Auxiliary Health Staff,"This includes custodians, technicians, dietary, and other workers who do not engage in direct care."
+Special Populations,Cumulative Cases in Health Care Workers,Are cumulative cases reported for healthcare workers?
+Special Populations,Cumulative Deaths in Health Care Workers,Are cumulative deaths reported for healthcare workers?
+Special Populations,Cumulative Cases in Congregate Care Patients,Are cumulative cases reported for congregate care patients?
+Special Populations,Cumulative Deaths in Congregate Care Patients,Are cumulative deaths reported for congregate care patients?
+Special Populations,List of Long Term Care Facilities/Nursing Homes affected,Is there a list of congregate care facilities affected?
+Exposure and Clinical Indications,Cases by Exposure,"Are cases reported to have a known or unknown source? (i.e., part of an outbreak, had a known community contact, had an unknown community contact, travel, nursing home)"
+Exposure and Clinical Indications,Signs and Symptoms,Are signs and symptoms of COVID reported as percentages of cases?
+Exposure and Clinical Indications,Underlying Health Conditions,Does the state have information of patients' past medical history (ie respiratory disorder)?
+Outcomes and Preparedness,In ICU with Lab Confirmed Positive Test,Does the state report current number of people in ICU with confirmed COVID?
+Outcomes and Preparedness,Currently Hospitalized with Lab Confirmed positive test,Does the state report current number of people in the hospital with confirmed COVID?
+Outcomes and Preparedness,Currently on Ventilator,Does the state report the current number of people on a ventilator?
+Outcomes and Preparedness,Incident Recovered,Are incident cumulative positive cases that are recovered reported?
+Outcomes and Preparedness,Cumulative Recovered,Are cumulative confirmed positive cases that are recovered reported?
+Outcomes and Preparedness,Hospital Capacity,Is the state's hospital bed capacity reported (includes normal and surge capacity for beds)
+Outcomes and Preparedness,ICU Capacity,Is the state's ICU bed capacity reported (includes normal and surge capacity for beds)
+Outcomes and Preparedness,PPE data,Are a state's PPE reserves available?
+Data Quality,Data Updated Within 24 Hours,Does the state report data every 24 hours?
+Data Quality,Historic data,Are the states' past data easily accessable?
+Data Quality,Downloadable Data Set or API in non-proprietary format,"Can data be downloaded with the use of an open source software (i.e., is it available in .txt or .csv format)?"
+Data Quality,Average reporting time,Does the state report how long an average test takes from specimen collection to reporting a confirmed positive or negative test?
+Data Quality,Cases by date of specimen,Does the state report incident cases on the day of specimen collection (day of testing) or the day of the test result? If not clear enter 3 and comment out
+Data Quality,Number tests and number people tested distinguished,Are number of positive tests and number of positive individuals distinguished? 
+Data Quality,Positivity rate,Does the state report a testing positivity rate either at the state or county level?

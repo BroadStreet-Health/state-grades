@@ -4,9 +4,12 @@ import {Popover, Badge, OverlayTrigger} from 'react-bootstrap';
 const Tooltip = (props) => {
   const placement = props.placement ? props.placement : 'bottom';
   const styleName = props.styleName ? props.styleName : 'py-1';
+  const containerStyleName = props.containerStyleName
+    ? props.containerStyleName
+    : 'tooltip';
 
   const popover = (
-    <Popover id="popover-contained" className="tooltip">
+    <Popover id="popover-contained" className={containerStyleName}>
       <Popover.Content className="font-weight-bold text-center">
         <span
           dangerouslySetInnerHTML={{

@@ -2,7 +2,11 @@ import GradeBadge from './../grade-badge/grade-badge';
 import Tooltip from './../tooltip/tooltip';
 import {
   getStateGrades,
+  getVariableDefinitions,
+  getDataCollectionRound,
   selectStateGrades,
+  selectVariableDefinitions,
+  selectDataCollectionRound,
 } from './state-data-availability-slice';
 
 import React, {useEffect} from 'react';
@@ -11,11 +15,14 @@ import {useDispatch, useSelector} from 'react-redux';
 
 const StateDataAvailabilityTable = () => {
   const stateGrades = useSelector(selectStateGrades);
+  const variableDefinitions = useSelector(selectVariableDefinitions);
+  const dataCollectionRound = useSelector(selectDataCollectionRound);
   const dispatch = useDispatch();
+
   const columnData = [
     {
       name: 'State',
-      tooltipText: 'Out of 50 U.S. States <br /> (1 = best, 50 = worst)',
+      tooltipText: null,
     },
     {
       name: 'Rank',
@@ -65,13 +72,27 @@ const StateDataAvailabilityTable = () => {
       () => val.state,
       () => val.stateRank,
       () => <GradeBadge value={val.stateGrade} />,
-      () => <GradeBadge value={val.stateGrade} />,
-      () => <GradeBadge value={val.stateGrade} />,
-      () => <GradeBadge value={val.stateGrade} />,
-      () => <GradeBadge value={val.stateGrade} />,
-      () => <GradeBadge value={val.stateGrade} />,
-      () => <GradeBadge value={val.stateGrade} />,
-      () => <GradeBadge value={val.stateGrade} />,
+      () => (
+        <GradeBadge
+          value={val.statelevelSubgrade}
+          text={`
+            <div>
+              <span>
+                Data available across <strong>8 / 14</strong> variables.
+              </span>
+              <br />
+              <span>
+                Accounting for <strong>40% </strong>of total grade.
+              </span>
+            </div>`}
+        />
+      ),
+      () => <GradeBadge value={val.countylevelSubgrade} />,
+      () => <GradeBadge value={val.demographicsSubgrade} />,
+      () => <GradeBadge value={val.specialPopulationsSubgrade} />,
+      () => <GradeBadge value={val.exposureAndClinicalIndicationsSubgrade} />,
+      () => <GradeBadge value={val.outcomesAndPreparednessSubgrade} />,
+      () => <GradeBadge value={val.dataQualitySubgrade} />,
     ];
   });
 
@@ -79,6 +100,16 @@ const StateDataAvailabilityTable = () => {
     dispatch(getStateGrades());
   }, [dispatch]);
 
+  useEffect(() => {
+    dispatch(getVariableDefinitions());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getDataCollectionRound());
+  }, [dispatch]);
+
+  console.log('variableDefinitions', variableDefinitions);
+  console.log('dataCollectionRound', dataCollectionRound);
   return (
     <div className=" text-center bg-light py-5">
       <h2 className={'fs-45 font-weight-bold'}>State Data Availability</h2>
@@ -107,6 +138,7 @@ function Grid(props) {
   const {columns, rows} = props;
   return (
     <div
+      className="table-grid"
       role="grid"
       style={{
         gridTemplateColumns: `repeat(${columns.length}, auto)`,
@@ -115,7 +147,7 @@ function Grid(props) {
       {columns.map((column, i) => (
         <div role="columnheader" key={i}>
           {column.name}
-          <Tooltip text={column.tooltipText} />
+          {column.tooltipText ? <Tooltip text={column.tooltipText} /> : null}
         </div>
       ))}
       {rows.reduce(
@@ -123,8 +155,8 @@ function Grid(props) {
           ...res,
           ...row.map((cell, i) => (
             <div
-              key={`${line}-{i}`}
-              className={line % 2 === 0 ? 'even' : 'odd'}
+              key={`${line}-${i}`}
+              className="fs-34 font-weight-bold"
               role="gridcell"
             >
               {cell()}
