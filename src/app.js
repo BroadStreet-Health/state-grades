@@ -4,7 +4,7 @@ import React, {Suspense, lazy} from 'react';
 import {Spinner} from 'react-bootstrap';
 import {Route, Redirect, Switch, useLocation} from 'react-router-dom';
 
-const Home = lazy(() => import('./components/home/home'));
+const Home = lazy(() => import('./pages/home/home'));
 
 function App() {
   const location = useLocation();

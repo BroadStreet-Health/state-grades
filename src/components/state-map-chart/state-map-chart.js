@@ -1,19 +1,21 @@
-import GradeBadge from './../grade-badge/grade-badge';
-import Tooltip from './../tooltip/tooltip';
+import GradeBadge from '../grade-badge/grade-badge';
+import Tooltip from '../tooltip/tooltip';
 
 import React from 'react';
 import {useState} from 'react';
 import {Row, Col} from 'react-bootstrap';
 
 const StateDataAvailabilityChart = () => {
-  const [showDetails, setShowDetails] = useState();
+  const [showDetails, setShowDetails] = useState(true);
   return (
     <Row noGutters>
       <Col lg={showDetails ? 8 : 12}>
-        <img
-          src="./assets/images/state-grades.svg"
-          onClick={() => setShowDetails(!showDetails)}
-        />
+        <div className="p-lg-5 mx-xl-5">
+          <img
+            src="./assets/images/state-grades.svg"
+            onClick={() => setShowDetails(!showDetails)}
+          />
+        </div>
       </Col>
       {showDetails ? (
         <Col lg={4} className="text-left">

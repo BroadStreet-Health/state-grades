@@ -2,7 +2,7 @@ import React from 'react';
 
 const OurMethods = () => {
   return (
-    <div className=" text-center bg-light py-5 px-2">
+    <div className=" text-center bg-light pt-4">
       <h2 className={'fs-45 font-weight-bold'}>Our Methods</h2>
       <div className="text-left">
         <h5 className="fs-24">
@@ -38,10 +38,14 @@ const OurMethods = () => {
           states after scores were calculated.
         </h5>
         <div className="py-5">
-          <img src="https://dummyimage.com/600x400/000/fff" />
+          <img
+            className="w-100"
+            src="./assets/images/visual-formula.svg"
+            alt="Visual Formula"
+          />
         </div>
         <div className="py-5">
-          <img src="https://dummyimage.com/600x400/000/fff" />
+          <img className="w-100" src="https://dummyimage.com/600x400/000/fff" />
         </div>
         <h3 className="fs-34 font-weight-bold pt-5">State-Level</h3>
         <h5 className="fs-24">

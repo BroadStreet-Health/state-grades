@@ -3,7 +3,9 @@ import {Popover, Badge, OverlayTrigger} from 'react-bootstrap';
 
 const Tooltip = (props) => {
   const placement = props.placement ? props.placement : 'bottom';
-  const styleName = props.styleName ? props.styleName : 'py-1';
+  const styleName = props.styleName
+    ? props.styleName
+    : 'py-1 d-flex justify-content-center';
   const containerStyleName = props.containerStyleName
     ? props.containerStyleName
     : 'tooltip';

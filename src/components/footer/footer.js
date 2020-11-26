@@ -23,7 +23,7 @@ const Footer = () => {
   }, [dispatch]);
 
   return (
-    <div className="text-center">
+    <div className="text-center px-md-5">
       {authors ? (
         <div className="m-auto mw-900">
           <h2 className={'fs-45 font-weight-bold'}>Authors</h2>
@@ -32,7 +32,7 @@ const Footer = () => {
       ) : null}
       <br />
       {stateDashboard ? (
-        <div className="pt-5 pb-10 m-auto mw-1480">
+        <div className="pt-5 m-auto mw-1480">
           <h2 className={'fs-45 font-weight-bold'}>
             State Dashboard References
           </h2>

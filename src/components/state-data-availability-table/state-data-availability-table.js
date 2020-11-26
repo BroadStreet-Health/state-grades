@@ -9,7 +9,6 @@ import {
 } from './state-data-availability-slice';
 
 import React, {useEffect} from 'react';
-import {Container} from 'react-bootstrap';
 import {useDispatch, useSelector} from 'react-redux';
 
 const StateDataAvailabilityTable = () => {
@@ -115,7 +114,7 @@ const StateDataAvailabilityTable = () => {
   console.log('variableDefinitions', variableDefinitions);
   console.log('dataCollectionRound', dataCollectionRound);
   return (
-    <div className=" text-center bg-light py-5">
+    <div className="justify-content-center text-center pt-4">
       <h2 className={'fs-45 font-weight-bold'}>State Data Availability</h2>
       <h5 className="fs-24">
         U.S. states are evaluated on 71 variables across seven categories to
@@ -127,9 +126,9 @@ const StateDataAvailabilityTable = () => {
           dashboards.
         </span>
       </h5>
-      <Container fluid className="my-5 table-container">
+      <div className="my-5 table-container">
         <Grid columns={columnData} rows={tableData} />
-      </Container>
+      </div>
       <h5 className="fs-24">
         How are state grades and subgrades calculated?{' '}
         <span className="text-primary">Learn more about our methods.</span>
@@ -141,34 +140,36 @@ const StateDataAvailabilityTable = () => {
 function Grid(props) {
   const {columns, rows} = props;
   return (
-    <div
-      className="table-grid"
-      role="grid"
-      style={{
-        gridTemplateColumns: `repeat(${columns.length}, auto)`,
-      }}
-    >
-      {columns.map((column, i) => (
-        <div role="columnheader" key={i}>
-          {column.name}
-          {column.tooltipText ? <Tooltip text={column.tooltipText} /> : null}
-        </div>
-      ))}
-      {rows.reduce(
-        (res, row, line) => [
-          ...res,
-          ...row.map((cell, i) => (
-            <div
-              key={`${line}-${i}`}
-              className="fs-34 font-weight-bold"
-              role="gridcell"
-            >
-              {cell()}
-            </div>
-          )),
-        ],
-        []
-      )}
+    <div className="table-container-border">
+      <div
+        className="table-grid"
+        role="grid"
+        style={{
+          gridTemplateColumns: `repeat(${columns.length}, auto)`,
+        }}
+      >
+        {columns.map((column, i) => (
+          <div role="columnheader" className="fs-24 font-weight-bold" key={i}>
+            {column.name}
+            {column.tooltipText ? <Tooltip text={column.tooltipText} /> : null}
+          </div>
+        ))}
+        {rows.reduce(
+          (res, row, line) => [
+            ...res,
+            ...row.map((cell, i) => (
+              <div
+                key={`${line}-${i}`}
+                className="fs-34 font-weight-bold"
+                role="gridcell"
+              >
+                {cell()}
+              </div>
+            )),
+          ],
+          []
+        )}
+      </div>
     </div>
   );
 }

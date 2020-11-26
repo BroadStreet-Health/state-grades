@@ -7,7 +7,7 @@ const FundingImpactAvailability = () => {
   const fundingImpact = useSelector(selectFundingImpact);
   console.log('fundingImpact', fundingImpact);
   return (
-    <div className=" text-center py-5">
+    <div className="text-center py-4">
       <h2 className={'fs-45 font-weight-bold'}>
         Does public health funding impact COVID-19 data availability?
       </h2>

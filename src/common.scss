@@ -130,13 +130,16 @@ button {
 }
 
 [role='grid'] {
-  background-color: #fff;
+  background-color: #f0f0f0;
   border: 1px solid #f0f0f0;
   display: grid;
   font-size: 1em;
   height: 800px;
   overflow-y: auto;
   width: 100%;
+  // border-bottom-left-radius: 30px;
+  // border-bottom-right-radius: 40px;
+  // position: relative;
 }
 
 [role='grid'] > div {
@@ -146,12 +149,22 @@ button {
 [role='columnheader'] {
   background-color: #f0f0f0;
   border: 1px solid #f0f0f0;
+  color: #535353;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-width: 90px;
   padding: 5px;
   position: sticky;
   top: 0;
+
+  &:first-child {
+    padding-bottom: 30px;
+  }
 }
 
 [role='gridcell'] {
+  background-color: #fff;
   line-height: 60px;
   padding: 5px;
   vertical-align: middle;
@@ -179,4 +192,36 @@ button {
   &:nth-child(10n + 2) {
     padding-left: 30px;
   }
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar {
+  background-color: transparent;
+  width: 15px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #b2b2b2;
+  border-radius: 10px;
+}
+
+.badge-pill {
+  align-items: center;
+  display: flex;
+  font: normal normal bold 14px/19px Roboto Mono;
+  font-size: 12px;
+  height: 18px;
+  justify-content: center;
+  padding: 0;
+  width: 18px;
+}
+
+.table-container-border {
+  border: 1px solid #b2b2b2;
+  border-radius: 20px;
+  overflow: hidden;
 }
