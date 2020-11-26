@@ -161,10 +161,6 @@ button {
   &:nth-child(10n + 4) {
     border-left: 5px dashed #f0f0f0;
   }
-
-  &:nth-child(10n + 2) {
-    padding-left: 30px;
-  }
 }
 
 [role='gridcell'] > div {
@@ -179,5 +175,9 @@ button {
     min-width: 350px;
     padding-right: 30px;
     text-align: right;
+  }
+
+  &:nth-child(10n + 2) {
+    padding-left: 30px;
   }
 }

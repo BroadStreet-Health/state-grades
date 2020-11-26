@@ -1,7 +1,6 @@
 import GradeBadge from './../grade-badge/grade-badge';
 import Tooltip from './../tooltip/tooltip';
 import {
-  getStateGrades,
   getVariableDefinitions,
   getDataCollectionRound,
   selectStateGrades,
@@ -66,6 +65,15 @@ const StateDataAvailabilityTable = () => {
         'Availability, accessibility, and accuracy of published data.',
     },
   ];
+  const tooltipStateLevel = (category) =>
+    variableDefinitions
+      .filter((val) => val.category == category)
+      .map(
+        (val, i) => `<div key={${i}}>
+        <span>${val.variable}</span>
+        <br />
+      </div>`
+      );
 
   const tableData = stateGrades.map((val, i) => {
     return [
@@ -75,8 +83,7 @@ const StateDataAvailabilityTable = () => {
       () => (
         <GradeBadge
           value={val.statelevelSubgrade}
-          text={`
-            <div>
+          text={`<div>
               <span>
                 Data available across <strong>8 / 14</strong> variables.
               </span>
@@ -84,6 +91,7 @@ const StateDataAvailabilityTable = () => {
               <span>
                 Accounting for <strong>40% </strong>of total grade.
               </span>
+            ${tooltipStateLevel('State-Level')} 
             </div>`}
         />
       ),
@@ -95,10 +103,6 @@ const StateDataAvailabilityTable = () => {
       () => <GradeBadge value={val.dataQualitySubgrade} />,
     ];
   });
-
-  useEffect(() => {
-    dispatch(getStateGrades());
-  }, [dispatch]);
 
   useEffect(() => {
     dispatch(getVariableDefinitions());

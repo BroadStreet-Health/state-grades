@@ -1,6 +1,11 @@
+import {selectFundingImpact} from './funding-impact-availability-slice';
+
 import React from 'react';
+import {useSelector} from 'react-redux';
 
 const FundingImpactAvailability = () => {
+  const fundingImpact = useSelector(selectFundingImpact);
+  console.log('fundingImpact', fundingImpact);
   return (
     <div className=" text-center py-5">
       <h2 className={'fs-45 font-weight-bold'}>

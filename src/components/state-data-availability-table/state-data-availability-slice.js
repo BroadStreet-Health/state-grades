@@ -27,16 +27,6 @@ export const {
   setDataCollectionRound,
 } = stateGradeSlice.actions;
 
-export const getStateGrades = () => (dispatch) => {
-  d3.csv('./assets/data/stateGrades.csv').then((stateGrades) => {
-    dispatch(
-      setStateGrades({
-        stateGrades,
-      })
-    );
-  });
-};
-
 export const getVariableDefinitions = () => (dispatch) => {
   d3.csv('./assets/data/variableDefinition.csv').then((variableDefinitions) => {
     dispatch(

@@ -1,4 +1,4 @@
-Category,Variable,Definition
+category,variable,definition
 State-Level,State-level Incident Positive Cases,State-level incident (new) positive cases (confirmed only)
 State-Level,State-level Incident Positive Cases: 7-day moving average,Are incedent positive cases averaged over 7 days (in graphical or table format); comment out if the moving average is not 7 days
 State-Level,State-level Incident Positive Cases: Per Capita Rate,Are incident positive cases presented as a per capita rate?
