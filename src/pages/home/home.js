@@ -1,5 +1,6 @@
+import StateDataAvailabilityChart from './../../components/state-map-chart/state-map-chart';
+
 import {getStateGradesAndFundingImpact} from '../../app/store';
-import BannerMap from '../../components/banner-map/banner-map';
 import Footer from '../../components/footer/footer';
 import FundingImpactAvailability from '../../components/funding-impact-availability/funding-impact-availability';
 import OurMethods from '../../components/our-methods/our-methods';
@@ -25,7 +26,7 @@ export default function Home() {
         </Row>
         <Row className="px-md-4 py-5">
           <Col>
-            <BannerMap />
+            <StateDataAvailabilityChart />
           </Col>
         </Row>
         <Row className="bg-light px-md-4 py-5">

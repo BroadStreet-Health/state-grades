@@ -1,0 +1,11 @@
+.cls1,
+.cls3 {
+  opacity: 0.9;
+}
+
+.cls3 {
+  isolation: isolate;
+}
+.cls4 {
+  fill: #403f4c;
+}

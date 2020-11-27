@@ -278,6 +278,18 @@ button {
   width: auto;
 }
 
+.map-tooltip {
+  border-radius: 8px;
+  color: #fff;
+  font: 12px sans-serif;
+  height: auto;
+  padding: 5px;
+  position: absolute;
+  text-align: left;
+  visibility: hidden;
+  width: auto;
+}
+
 .scatter-plot-container {
   padding: 0 170px;
 }

@@ -1,3 +1,7 @@
+import usMapDataReducer, {
+  setUSMapData,
+} from './../components/us-map-chart/us-map-chart.slice';
+
 import footerReducer from '../components/footer/footer-slice';
 import fundingImpactReducer, {
   setFundingImpact,
@@ -14,6 +18,7 @@ export default configureStore({
     footer: footerReducer,
     stateGrade: stateGradeReducer,
     fundingImpact: fundingImpactReducer,
+    usMapData: usMapDataReducer,
   },
 });
 
@@ -50,6 +55,21 @@ export const getStateGradesAndFundingImpact = () => (dispatch) => {
     dispatch(
       setFundingImpact({
         fundingImpacts,
+      })
+    );
+    const usMapData = data.map((val) => {
+      return {
+        State: val.state,
+        Abbreviation: val.abbreviation,
+        Status: val.Status,
+        'State Grade': val.stateGrade,
+        'State Rank': val.stateRank,
+        'Total Score': val.totalScore,
+      };
+    });
+    dispatch(
+      setUSMapData({
+        data: usMapData,
       })
     );
   });
