@@ -1,5 +1,7 @@
 import {selectFundingImpact} from './funding-impact-availability-slice';
 
+import ScatterPlot from '../scatter-plot/scatter-plot.js';
+
 import React from 'react';
 import {useSelector} from 'react-redux';
 
@@ -14,15 +16,12 @@ const FundingImpactAvailability = () => {
       <h5 className="fs-24">
         Many states still provide useful COVID-19 data despite low public health
         funding per capita.
-        <br />
-        <br />
-        <br />
-        <span className="font-weight-bold">
-          Hover to reveal state details and click to compare.
-        </span>
       </h5>
-      <div className="py-5">
-        <img src="https://dummyimage.com/600x400/000/fff" />
+      <div className="fs-24 my-5 font-weight-bold">
+        Hover to reveal state details and click to compare.
+      </div>
+      <div className="scatter-plot-container">
+        <ScatterPlot chartData={fundingImpact} />
       </div>
     </div>
   );

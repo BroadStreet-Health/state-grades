@@ -225,3 +225,47 @@ button {
   border-radius: 20px;
   overflow: hidden;
 }
+
+.scatter-plot {
+  .tick {
+    line {
+      stroke: #f0f0f0;
+      stroke-dasharray: 5 7;
+      stroke-width: 2px;
+    }
+
+    &:first-of-type {
+      line {
+        stroke-width: 0;
+      }
+    }
+  }
+
+  .domain {
+    stroke: #f0f0f0;
+    stroke-width: 3px;
+  }
+}
+
+.scatter-tooltip {
+  background: #f0f0f0;
+  border: 1px solid #b2b2b2;
+  border-radius: 8px;
+  font: 12px sans-serif;
+  height: auto;
+  opacity: 0;
+  padding: 5px;
+  position: absolute;
+  text-align: left;
+  width: auto;
+}
+
+.scatter-plot-container {
+  padding: 0 170px;
+}
+
+@media (max-width: 1400px) {
+  .scatter-plot-container {
+    padding: 0 1rem;
+  }
+}
