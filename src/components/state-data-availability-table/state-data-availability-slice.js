@@ -7,6 +7,7 @@ export const stateGradeSlice = createSlice({
     stateGrades: [],
     variableDefinitions: [],
     dataCollectionRound: [],
+    weightRollups: [],
   },
   reducers: {
     setStateGrades: (state, action) => {
@@ -18,6 +19,9 @@ export const stateGradeSlice = createSlice({
     setDataCollectionRound: (state, action) => {
       state.dataCollectionRound = action.payload.dataCollectionRound;
     },
+    setWeightRollups: (state, action) => {
+      state.weightRollups = action.payload.weightRollups;
+    },
   },
 });
 
@@ -25,13 +29,14 @@ export const {
   setStateGrades,
   setVariableDefinitions,
   setDataCollectionRound,
+  setWeightRollups,
 } = stateGradeSlice.actions;
 
 export const getVariableDefinitions = () => (dispatch) => {
   d3.csv('./assets/data/variableDefinition.csv').then((variableDefinitions) => {
     dispatch(
       setVariableDefinitions({
-        variableDefinitions,
+        variableDefinitions: groupBy(variableDefinitions, 'Category'),
       })
     );
   });
@@ -49,10 +54,30 @@ export const getDataCollectionRound = () => (dispatch) => {
   );
 };
 
+export const getWeightRollups = () => (dispatch) => {
+  d3.csv('./assets/data/weightRollups.csv').then((weightRollups) => {
+    dispatch(
+      setWeightRollups({
+        weightRollups,
+      })
+    );
+  });
+};
+
+const groupBy = (array, key) => {
+  return array.reduce((result, currentValue) => {
+    (result[currentValue[key]] = result[currentValue[key]] || []).push(
+      currentValue
+    );
+    return result;
+  });
+};
+
 export const selectStateGrades = (state) => state.stateGrade.stateGrades;
 export const selectVariableDefinitions = (state) =>
   state.stateGrade.variableDefinitions;
 export const selectDataCollectionRound = (state) =>
   state.stateGrade.dataCollectionRound;
+export const selectWeightRollups = (state) => state.stateGrade.weightRollups;
 
 export default stateGradeSlice.reducer;

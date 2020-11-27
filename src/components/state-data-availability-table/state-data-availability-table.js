@@ -3,9 +3,11 @@ import Tooltip from './../tooltip/tooltip';
 import {
   getVariableDefinitions,
   getDataCollectionRound,
+  getWeightRollups,
   selectStateGrades,
   selectVariableDefinitions,
   selectDataCollectionRound,
+  selectWeightRollups,
 } from './state-data-availability-slice';
 
 import React, {useEffect} from 'react';
@@ -15,6 +17,7 @@ const StateDataAvailabilityTable = () => {
   const stateGrades = useSelector(selectStateGrades);
   const variableDefinitions = useSelector(selectVariableDefinitions);
   const dataCollectionRound = useSelector(selectDataCollectionRound);
+  const weightRollups = useSelector(selectWeightRollups);
   const dispatch = useDispatch();
 
   const columnData = [
@@ -64,15 +67,38 @@ const StateDataAvailabilityTable = () => {
         'Availability, accessibility, and accuracy of published data.',
     },
   ];
-  const tooltipStateLevel = (category) =>
-    variableDefinitions
-      .filter((val) => val.category == category)
-      .map(
-        (val, i) => `<div key={${i}}>
-        <span>${val.variable}</span>
-        <br />
-      </div>`
-      );
+
+  const variableDefTooltip = (category) => {
+    return (
+      variableDefinitions &&
+      variableDefinitions[category]
+        .map(
+          (val, i) =>
+            `<div class="fs-13">
+            <span class="${i == 0 ? `font-weight-bold` : ``}">${
+              i == 0 ? `&check;` : `&nbsp;&nbsp;&nbsp;`
+            } ${val.Variable}</span>
+            <br />
+          </div>`
+        )
+        .join('')
+    );
+  };
+
+  const tooltipText = (category) => {
+    return `<div>
+      <span class="fs-16">
+        Data available across <strong>8 / 14</strong> variables.
+      </span>
+      <br />
+      <span class="fs-16">
+        Accounting for <strong>40% </strong>of total grade.
+      </span>
+      <div class="py-2">
+        ${variableDefTooltip(category)}
+      </div>
+    </div>`;
+  };
 
   const tableData = stateGrades.map((val, i) => {
     return [
@@ -82,24 +108,45 @@ const StateDataAvailabilityTable = () => {
       () => (
         <GradeBadge
           value={val.statelevelSubgrade}
-          text={`<div>
-              <span>
-                Data available across <strong>8 / 14</strong> variables.
-              </span>
-              <br />
-              <span>
-                Accounting for <strong>40% </strong>of total grade.
-              </span>
-            ${tooltipStateLevel('State-Level')} 
-            </div>`}
+          text={tooltipText('State-Level')}
         />
       ),
-      () => <GradeBadge value={val.countylevelSubgrade} />,
-      () => <GradeBadge value={val.demographicsSubgrade} />,
-      () => <GradeBadge value={val.specialPopulationsSubgrade} />,
-      () => <GradeBadge value={val.exposureAndClinicalIndicationsSubgrade} />,
-      () => <GradeBadge value={val.outcomesAndPreparednessSubgrade} />,
-      () => <GradeBadge value={val.dataQualitySubgrade} />,
+      () => (
+        <GradeBadge
+          value={val.countylevelSubgrade}
+          text={tooltipText('County-Level')}
+        />
+      ),
+      () => (
+        <GradeBadge
+          value={val.demographicsSubgrade}
+          text={tooltipText('Demographics')}
+        />
+      ),
+      () => (
+        <GradeBadge
+          value={val.specialPopulationsSubgrade}
+          text={tooltipText('Special Populations')}
+        />
+      ),
+      () => (
+        <GradeBadge
+          value={val.exposureAndClinicalIndicationsSubgrade}
+          text={tooltipText('Exposure and Clinical Indications')}
+        />
+      ),
+      () => (
+        <GradeBadge
+          value={val.outcomesAndPreparednessSubgrade}
+          text={tooltipText('Outcomes and Preparedness')}
+        />
+      ),
+      () => (
+        <GradeBadge
+          value={val.dataQualitySubgrade}
+          text={tooltipText('Data Quality')}
+        />
+      ),
     ];
   });
 
@@ -111,8 +158,14 @@ const StateDataAvailabilityTable = () => {
     dispatch(getDataCollectionRound());
   }, [dispatch]);
 
+  useEffect(() => {
+    dispatch(getWeightRollups());
+  }, [dispatch]);
+
   console.log('variableDefinitions', variableDefinitions);
   console.log('dataCollectionRound', dataCollectionRound);
+  console.log('weightRollups', weightRollups);
+  weightRollups;
   return (
     <div className="justify-content-center text-center pt-4">
       <h2 className={'fs-45 font-weight-bold'}>State Data Availability</h2>

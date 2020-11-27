@@ -10,7 +10,7 @@ const GradeBadge = ({value, styleName, text}) => {
 
   const popover = (
     <Popover id="popover-contained" className="grade-badge-tooltip">
-      <Popover.Content className="text-center">
+      <Popover.Content className="text-left">
         <span
           dangerouslySetInnerHTML={{
             __html: text,

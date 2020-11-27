@@ -3,7 +3,7 @@ import React from 'react';
 const FooterLinks = ({data}) => {
   const footerData = data.map((val, i) => {
     return (
-      <span key={val.name} className="fs-24 font-weight-bold">
+      <span key={val.name} className="fs-24 font-weight-bold footer-link">
         {i > 0 ? ' | ' : null}
         <a href={val.link} className="text-primary">
           {val.name}
