@@ -26,17 +26,19 @@ export const getStateGradesAndFundingImpact = () => (dispatch) => {
   d3.csv('./assets/data/stateGrades.csv').then((data) => {
     const stateGrades = data.map((val) => {
       return {
-        state: val.state,
-        stateRank: val.stateRank,
-        stateGrade: val.stateGrade,
-        statelevelSubgrade: val.statelevelSubgrade,
-        countylevelSubgrade: val.countylevelSubgrade,
-        demographicsSubgrade: val.demographicsSubgrade,
-        specialPopulationsSubgrade: val.specialPopulationsSubgrade,
+        state: val['State'],
+        abbreviation: val['Abbreviation'],
+        stateRank: val['State Rank'],
+        stateGrade: val['State Grade'],
+        statelevelSubgrade: val['State-Level Subgrade'],
+        countylevelSubgrade: val['County-Level Subgrade'],
+        demographicsSubgrade: val['Demographics Subgrade'],
+        specialPopulationsSubgrade: val['Special Populations Subgrade'],
         exposureAndClinicalIndicationsSubgrade:
-          val.exposureAndClinicalIndicationsSubgrade,
-        outcomesAndPreparednessSubgrade: val.outcomesAndPreparednessSubgrade,
-        dataQualitySubgrade: val.dataQualitySubgrade,
+          val['Exposure and Clinical Indications Subgrade'],
+        outcomesAndPreparednessSubgrade:
+          val['Outcomes and Preparedness Subgrade'],
+        dataQualitySubgrade: val['Data Quality Subgrade'],
       };
     });
     dispatch(
@@ -46,10 +48,10 @@ export const getStateGradesAndFundingImpact = () => (dispatch) => {
     );
     const fundingImpacts = data.map((val) => {
       return {
-        state: val.state,
-        abbreviation: val.abbreviation,
-        totalScore: val.totalScore,
-        publicHealthFundingPerCapita: val.publicHealthFundingPerCapita,
+        state: val['State'],
+        abbreviation: val['Abbreviation'],
+        totalScore: val['Total Score'],
+        publicHealthFundingPerCapita: val['Public Health Funding Per Capita'],
       };
     });
     dispatch(
@@ -59,12 +61,14 @@ export const getStateGradesAndFundingImpact = () => (dispatch) => {
     );
     const usMapData = data.map((val) => {
       return {
-        State: val.state,
-        Abbreviation: val.abbreviation,
-        Status: val.Status,
-        'State Grade': val.stateGrade,
-        'State Rank': val.stateRank,
-        'Total Score': val.totalScore,
+        state: val['State'],
+        abbreviation: val['Abbreviation'],
+        status: val['Status'],
+        stateGrade: val['State Grade'],
+        stateRank: val['State Rank'],
+        totalScore: val['Total Score'],
+        covid19Site: val['COVID-19 site'],
+        contactInfo: val['Contact Info'],
       };
     });
     dispatch(

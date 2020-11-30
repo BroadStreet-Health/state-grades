@@ -30,20 +30,26 @@ const StateDataAvailabilityChart = () => {
             <Row className="fs-34 font-weight-bold pt-5 pl-3">
               <GradeBadge
                 styleName="text-center"
-                value={showDetails['State Grade']}
+                value={showDetails.stateGrade}
               />{' '}
               <h3 className="px-3 fs-34 font-weight-bold">
-                {showDetails?.State} ({showDetails?.Abbreviation})
+                {showDetails?.state} ({showDetails?.abbreviation})
               </h3>
             </Row>
             <Row className="pt-5" noGutters>
               <Col>
                 <div className="fs-24"> Rank </div>
-                <div className="fs-34 font-weight-bold"> #14 </div>
+                <div className="fs-34 font-weight-bold">
+                  {' '}
+                  #{showDetails?.stateRank}{' '}
+                </div>
               </Col>
               <Col>
                 <div className="fs-24"> Score </div>
-                <div className="fs-34 font-weight-bold"> 80 / 100 </div>
+                <div className="fs-34 font-weight-bold">
+                  {' '}
+                  {showDetails?.totalScore} / 100{' '}
+                </div>
               </Col>
             </Row>
             <Row className="pt-5" noGutters>
@@ -53,7 +59,7 @@ const StateDataAvailabilityChart = () => {
                   <h3 className="fs-34 font-weight-bold">Data Quality</h3>
                   <Tooltip
                     placement="right"
-                    styleName="px-2 fs-14 lh-37"
+                    styleName="px-2 fs-14 mt-13px"
                     text="Availability, accessibility, and accuracy of published data."
                   />
                 </div>
@@ -61,7 +67,7 @@ const StateDataAvailabilityChart = () => {
                   <h3 className="fs-34 font-weight-bold">County-Level</h3>
                   <Tooltip
                     placement="right"
-                    styleName="px-2 fs-14 lh-37"
+                    styleName="px-2 fs-14 mt-13px"
                     text="County-level case, testing, and death data."
                   />
                 </div>
@@ -76,7 +82,7 @@ const StateDataAvailabilityChart = () => {
                   </h3>
                   <Tooltip
                     placement="right"
-                    styleName="px-2 fs-14 lh-37"
+                    styleName="px-2 fs-14 mt-13px"
                     text="Data on healthcare workers and on congregate care facilities."
                   />
                 </div>
@@ -84,7 +90,7 @@ const StateDataAvailabilityChart = () => {
                   <h3 className="fs-34 font-weight-bold">Demographics</h3>
                   <Tooltip
                     placement="right"
-                    styleName="px-2 fs-14 lh-37"
+                    styleName="px-2 fs-14 mt-13px"
                     text="Case, testing, and death data by race, ethnicity, sex, and age."
                   />
                 </div>
@@ -94,10 +100,20 @@ const StateDataAvailabilityChart = () => {
               <Col className="fs-24">
                 <div> Contact State DOH </div>
                 <div>
-                  <a className="font-weight-bold text-primary">Website</a>
+                  <a
+                    className="font-weight-bold text-primary"
+                    href={showDetails?.covid19Site}
+                  >
+                    Website
+                  </a>
                 </div>
                 <div>
-                  <a className="font-weight-bold text-primary">Email</a>
+                  <a
+                    className="font-weight-bold text-primary"
+                    href={'mailto:' + showDetails?.contactInfo}
+                  >
+                    Email
+                  </a>
                 </div>
               </Col>
               <Col>

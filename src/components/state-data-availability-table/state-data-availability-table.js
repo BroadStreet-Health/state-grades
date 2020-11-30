@@ -68,15 +68,24 @@ const StateDataAvailabilityTable = () => {
     },
   ];
 
-  const variableDefTooltip = (category) => {
+  const variableDefTooltip = (category, abbreviation) => {
+    const abbre = dataCollectionRound.find((d) => {
+      return d['Abbreviation'] == abbreviation;
+    });
     return (
       variableDefinitions &&
       variableDefinitions[category]
         .map(
           (val, i) =>
             `<div class="fs-13">
-            <span class="${i == 0 ? `font-weight-bold` : ``}">${
-              i == 0 ? `&check;` : `&nbsp;&nbsp;&nbsp;`
+            <span class="${
+              abbre[val.Variable] == 1 || abbre[val.Variable] == 0.5
+                ? `font-weight-bold`
+                : ``
+            }">${
+              abbre[val.Variable] == 1 || abbre[val.Variable] == 0.5
+                ? `&check;`
+                : `&nbsp;&nbsp;&nbsp;`
             } ${val.Variable}</span>
             <br />
           </div>`
@@ -85,17 +94,31 @@ const StateDataAvailabilityTable = () => {
     );
   };
 
-  const tooltipText = (category) => {
+  const tooltipText = (category, abbreviation) => {
+    const abbre = weightRollups.find((d) => {
+      return d['Category Name'] == category;
+    });
+    const dataCollection = dataCollectionRound.find((d) => {
+      return d['Abbreviation'] == abbreviation;
+    });
     return `<div>
       <span class="fs-16">
-        Data available across <strong>8 / 14</strong> variables.
+        Data available across <strong>${variableDefinitions[category].reduce(
+          (a, b) =>
+            dataCollection[b.Variable] == 1 || dataCollection[b.Variable] == 0.5
+              ? a + 1
+              : a,
+          0
+        )} / ${abbre['Number of Variables']}</strong> variables.
       </span>
       <br />
       <span class="fs-16">
-        Accounting for <strong>40% </strong>of total grade.
+        Accounting for <strong>${
+          abbre['Category Weight']
+        }% </strong>of total grade.
       </span>
       <div class="py-2">
-        ${variableDefTooltip(category)}
+        ${variableDefTooltip(category, abbreviation)}
       </div>
     </div>`;
   };
@@ -108,43 +131,46 @@ const StateDataAvailabilityTable = () => {
       () => (
         <GradeBadge
           value={val.statelevelSubgrade}
-          text={tooltipText('State-Level')}
+          text={tooltipText('State-Level', val.abbreviation)}
         />
       ),
       () => (
         <GradeBadge
           value={val.countylevelSubgrade}
-          text={tooltipText('County-Level')}
+          text={tooltipText('County-Level', val.abbreviation)}
         />
       ),
       () => (
         <GradeBadge
           value={val.demographicsSubgrade}
-          text={tooltipText('Demographics')}
+          text={tooltipText('Demographics', val.abbreviation)}
         />
       ),
       () => (
         <GradeBadge
           value={val.specialPopulationsSubgrade}
-          text={tooltipText('Special Populations')}
+          text={tooltipText('Special Populations', val.abbreviation)}
         />
       ),
       () => (
         <GradeBadge
           value={val.exposureAndClinicalIndicationsSubgrade}
-          text={tooltipText('Exposure and Clinical Indications')}
+          text={tooltipText(
+            'Exposure and Clinical Indications',
+            val.abbreviation
+          )}
         />
       ),
       () => (
         <GradeBadge
           value={val.outcomesAndPreparednessSubgrade}
-          text={tooltipText('Outcomes and Preparedness')}
+          text={tooltipText('Outcomes and Preparedness', val.abbreviation)}
         />
       ),
       () => (
         <GradeBadge
           value={val.dataQualitySubgrade}
-          text={tooltipText('Data Quality')}
+          text={tooltipText('Data Quality', val.abbreviation)}
         />
       ),
     ];
@@ -162,10 +188,6 @@ const StateDataAvailabilityTable = () => {
     dispatch(getWeightRollups());
   }, [dispatch]);
 
-  console.log('variableDefinitions', variableDefinitions);
-  console.log('dataCollectionRound', dataCollectionRound);
-  console.log('weightRollups', weightRollups);
-  weightRollups;
   return (
     <div className="justify-content-center text-center pt-4">
       <h2 className={'fs-45 font-weight-bold'}>State Data Availability</h2>

@@ -22,7 +22,7 @@ export const {setAuthorsLinks, setStateDashboardLinks} = footerSlice.actions;
 export const getAuthorsLinks = () => (dispatch) => {
   d3.csv('./assets/data/authors.csv').then((data) => {
     const authors = data.map((val) => {
-      return {name: val.author, link: val.linkedin};
+      return {name: val['Author'], link: val['LinkedIn']};
     });
     dispatch(
       setAuthorsLinks({
@@ -35,7 +35,7 @@ export const getAuthorsLinks = () => (dispatch) => {
 export const getStateDashboardLinks = () => (dispatch) => {
   d3.csv('./assets/data/stateDashboard.csv').then((data) => {
     const stateDashboard = data.map((val) => {
-      return {name: val.state, link: val.primarylink};
+      return {name: val['State'], link: val['COVID-19 site (primary)']};
     });
     dispatch(
       setStateDashboardLinks({

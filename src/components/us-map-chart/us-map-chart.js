@@ -33,9 +33,9 @@ const UsMapChart = ({showDetails, setShowDetails}) => {
     (data || []).forEach((e, i) => {
       svg
         .select('#Layer_1-2')
-        .select('#' + e.Abbreviation)
+        .select('#' + e.abbreviation)
         .on('click', () =>
-          setShowDetails(e.State !== showDetails?.State ? e : null)
+          setShowDetails(e.state !== showDetails?.state ? e : null)
         )
         .on('mouseover', function (event) {
           tipMouseover(this, event, e);
@@ -50,28 +50,28 @@ const UsMapChart = ({showDetails, setShowDetails}) => {
         })
         .selectAll('path')
         .attr('fill', () => {
-          return e.State === showDetails?.State
-            ? selectedColor(e['State Grade'])
-            : color(e['State Grade']);
+          return e.state === showDetails?.state
+            ? selectedColor(e.stateGrade)
+            : color(e.stateGrade);
         });
     });
     const tipMouseover = (ele, event, data) => {
       tooltip
-        .style('background-color', selectedColor(data['State Grade']))
+        .style('background-color', selectedColor(data.stateGrade))
         .style('visibility', 'visible');
       const html =
         '<b>' +
-        data.State +
+        data.state +
         " <span style='font-weight:normal'>(</span>" +
-        data.Abbreviation +
+        data.abbreviation +
         "<span style='font-weight:normal'>)</span> " +
         '<br/> Grade: ' +
-        data['State Grade'] +
+        data.stateGrade +
         "<span style='font-weight:normal'> (" +
-        Math.round(data['Total Score']) +
+        Math.round(data.totalScore) +
         '/100) </span><br/>' +
         'Rank: ' +
-        data['State Rank'] +
+        data.stateRank +
         "<span style='font-weight:normal'> (Out of 50)</span></b><br/>" +
         '<small>Click to learn more</small>';
       tooltip
