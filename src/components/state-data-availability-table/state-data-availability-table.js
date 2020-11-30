@@ -11,6 +11,7 @@ import {
 } from './state-data-availability-slice';
 
 import React, {useEffect} from 'react';
+import {OverlayTrigger, Popover} from 'react-bootstrap';
 import {useDispatch, useSelector} from 'react-redux';
 
 const StateDataAvailabilityTable = () => {
@@ -188,6 +189,17 @@ const StateDataAvailabilityTable = () => {
     dispatch(getWeightRollups());
   }, [dispatch]);
 
+  const popover = (
+    <Popover className="tooltip mw-460">
+      <Popover.Content className="font-weight-bold text-center">
+        <span>
+          Total grades are calculated using a weighted average based on each
+          state’s seven subgrades, one for each defined category.
+        </span>
+      </Popover.Content>
+    </Popover>
+  );
+
   return (
     <div className="justify-content-center text-center pt-4">
       <h2 className={'fs-45 font-weight-bold'}>State Data Availability</h2>
@@ -196,9 +208,14 @@ const StateDataAvailabilityTable = () => {
         determine the availability of their COVID-19 data.
         <br />
         <span className="font-weight-bold">
-          Click on a <span className="text-primary">subgrade</span> to explore
-          which data are available — and which are missing — from state
-          dashboards.
+          Click on a{' '}
+          <OverlayTrigger placement="bottom" overlay={popover}>
+            <span className="text-primary" role="button">
+              subgrade
+            </span>
+          </OverlayTrigger>{' '}
+          to explore which data are available — and which are missing — from
+          state dashboards.
         </span>
       </h5>
       <div className="my-5 table-container">
@@ -206,7 +223,9 @@ const StateDataAvailabilityTable = () => {
       </div>
       <h5 className="fs-24">
         How are state grades and subgrades calculated?{' '}
-        <span className="text-primary">Learn more about our methods.</span>
+        <span className="text-primary">
+          <a>Learn more about our methods.</a>
+        </span>
       </h5>
     </div>
   );

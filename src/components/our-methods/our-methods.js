@@ -184,7 +184,12 @@ const OurMethods = () => {
           census data standards. These data can inform policy responses on which
           populations need immediate care, where to provide testing clinics. and
           the overall scope of a shutdown.{' '}
-          <span className="text-primary"> Learn more about demographics.</span>
+          <span className="text-primary">
+            <a href="https://covid19dataproject.org/demographic-data-project">
+              {' '}
+              Learn more about demographics.
+            </a>
+          </span>
         </h5>
         <h3 className="fs-34 font-weight-bold pt-5">Special Populations</h3>
         <h5 className="fs-24">
@@ -220,7 +225,9 @@ const OurMethods = () => {
           COVID-19 dashboards to set high standards for reporting methods and
           reliable comparisons.{' '}
           <span className="text-primary">
-            Learn more about &quot;good data&quot;
+            <a href="https://covid19dataproject.org/data-policy-project">
+              Learn more about &quot;good data&quot;
+            </a>
           </span>
         </h5>
       </div>

@@ -48,7 +48,7 @@ const StateDataAvailabilityChart = () => {
                 <div className="fs-24"> Score </div>
                 <div className="fs-34 font-weight-bold">
                   {' '}
-                  {showDetails?.totalScore} / 100{' '}
+                  {Math.round(showDetails?.totalScore)} / 100{' '}
                 </div>
               </Col>
             </Row>
@@ -107,14 +107,16 @@ const StateDataAvailabilityChart = () => {
                     Website
                   </a>
                 </div>
-                <div>
-                  <a
-                    className="font-weight-bold text-primary"
-                    href={'mailto:' + showDetails?.contactInfo}
-                  >
-                    Email
-                  </a>
-                </div>
+                {showDetails?.contactInfo ? (
+                  <div>
+                    <a
+                      className="font-weight-bold text-primary"
+                      href={'mailto:' + showDetails?.contactInfo}
+                    >
+                      Email
+                    </a>
+                  </div>
+                ) : null}
               </Col>
               <Col>
                 <div className="pink-container p-3 text-center">

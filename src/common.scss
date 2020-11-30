@@ -69,6 +69,10 @@ button {
   font-size: 13px;
 }
 
+.fs-10 {
+  font-size: 10px !important;
+}
+
 .pt-15 {
   padding-top: 9rem;
 }
@@ -97,6 +101,10 @@ button {
   max-width: 1480px;
 }
 
+.mw-460 {
+  max-width: 460px;
+}
+
 .tooltip {
   background: #b2b2b2 0% 0% no-repeat padding-box;
   border: 2px solid #535353;
@@ -111,6 +119,11 @@ button {
 
 .tooltip-badge {
   color: #fff;
+}
+
+.close-tooltip {
+  position: absolute;
+  right: 8px;
 }
 
 .grade-badge-tooltip {
@@ -297,5 +310,15 @@ button {
 @media (max-width: 1400px) {
   .scatter-plot-container {
     padding: 0 1rem;
+  }
+}
+
+.text-primary {
+  a {
+    &:hover {
+      color: #ff674d !important;
+      cursor: pointer;
+      text-decoration: none !important;
+    }
   }
 }
