@@ -26,10 +26,7 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
       50
     );
 
-    const height = Math.max(
-      parent.current.clientWidth * 0.32 - margin.top - margin.bottom,
-      50
-    );
+    const height = Math.max(600 - margin.top - margin.bottom, 50);
     const pieChartWidth = (width * 40) / 100;
     const stackedBarChartWidth = (width * 60) / 100;
 
@@ -205,20 +202,20 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
         endAngle: (d.startAngle + d.endAngle) / 2,
       };
       const textBBox = targetElement.node().getBBox();
+      const parentG = pieLinesG.node().getBoundingClientRect();
+      console.log(textBBox.x, parentG.x + parentG.width / 2);
       const pos = outerArc.centroid(centerObj);
       const lastPointerPosition = [];
-      let textXPosition = textBBox.x;
-      if (textXPosition < 0) {
-        textXPosition = textBBox.x * -1;
-      }
+      // let textXPosition = textBBox.x;
+      // if (textXPosition < 0) {
+      //   textXPosition = textBBox.x * -1;
+      // }
+      // 'translate(' + (width - stackedBarChartWidth) + ',' + margin.top + ')';
       lastPointerPosition[0] =
-        width -
-        stackedBarChartWidth -
-        (margin.left - 12) -
-        textXPosition -
-        textBBox.width / 2;
+        pieChartWidth - pieChartWidth / 2 + textBBox.x + margin.left - 5;
       lastPointerPosition[1] =
-        textBBox.y - height / 2 + textBBox.height / 2 + 5;
+        -(height / 2) + margin.top + textBBox.y + textBBox.height / 2;
+
       const x = d.startAngle + (d.endAngle - d.startAngle) / 2 - Math.PI / 2;
       if (d.startAngle < centerAngle || d.endAngle < centerAngle) {
         const diff =
@@ -472,7 +469,9 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
 
   useEffect(() => {
     init();
-    const handleResize = () => {};
+    const handleResize = () => {
+      init();
+    };
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
