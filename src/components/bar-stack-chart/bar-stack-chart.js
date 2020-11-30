@@ -11,7 +11,6 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
 
   const init = useCallback(() => {
     const margin = {top: 10, right: 20, bottom: 20, left: 150};
-    const duration = 500;
     const stackBarSpace = 6;
     const color = scaleOrdinal();
     const innerRadius = 0.54;
@@ -28,7 +27,7 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
     );
 
     const height = Math.max(
-      parent.current.clientWidth * 0.365 - margin.top - margin.bottom,
+      parent.current.clientWidth * 0.32 - margin.top - margin.bottom,
       50
     );
     const pieChartWidth = (width * 40) / 100;
@@ -153,9 +152,11 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
       .attr('x', margin.left + stackedBarChartWidth / 2)
       .attr('y', height)
       .style('text-anchor', 'middle')
-      .style('font-size', '13px')
+      .style('font-size', '18px')
       .style('font-weight', 'bold')
+      .style('font-style', 'italic')
       .style('dominant-baseline', 'middle')
+      .style('fill', '#535353')
       .text(
         'Counts Represent the number of states in each respective subgrade category'
       );
@@ -197,8 +198,14 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
       const targetElement = yAxisG.select(
         'text#' + d.data.label.replaceAll(' ', '').replaceAll('-', '')
       );
+      const centerObj = {
+        innerRadius,
+        outerRadius,
+        startAngle: d.endAngle,
+        endAngle: (d.startAngle + d.endAngle) / 2,
+      };
       const textBBox = targetElement.node().getBBox();
-      const pos = outerArc.centroid(d);
+      const pos = outerArc.centroid(centerObj);
       const lastPointerPosition = [];
       let textXPosition = textBBox.x;
       if (textXPosition < 0) {
@@ -207,7 +214,7 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
       lastPointerPosition[0] =
         width -
         stackedBarChartWidth -
-        margin.left -
+        (margin.left - 12) -
         textXPosition -
         textBBox.width / 2;
       lastPointerPosition[1] =
@@ -219,7 +226,7 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
           Math.ceil(d.endAngle - centerAngle);
         if (diff > 0) {
           const slicesPointers = [];
-          for (let i = 0; i < diff; i++) {
+          for (let i = 1; i < diff; i++) {
             const pointer = [];
             const newAngle = (d.startAngle + d.endAngle) / 2 + (diff / 3) * i;
             pointer[0] =
@@ -232,7 +239,10 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
               (midAngle(d) < Math.PI + Math.PI / 1.3 ? 1 : -1);
             slicesPointers.push(pointer);
           }
-          const pointersArray = [pathArc.centroid(d), outerArc.centroid(d)];
+          const pointersArray = [
+            pathArc.centroid(centerObj),
+            outerArc.centroid(centerObj),
+          ];
           slicesPointers.forEach((d) => {
             pointersArray.push(d);
           });
@@ -242,7 +252,7 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
           pos[0] = Math.max(
             radius * 0.95 * (d.endAngle / (Math.PI / 1.3) < Math.PI ? 1 : -1),
             Math.cos(x) * radius +
-              (midAngle(d) < Math.PI + Math.PI / 1.3 ? 1 : -1)
+              (midAngle(centerObj) < Math.PI + Math.PI / 1.3 ? 1 : -1)
           );
           pos[1] = Math.min(
             Math.sin(d.endAngle - Math.PI / 2) *
@@ -254,8 +264,8 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
           );
         }
         return [
-          pathArc.centroid(d),
-          outerArc.centroid(d),
+          pathArc.centroid(centerObj),
+          outerArc.centroid(centerObj),
           pos,
           lastPointerPosition,
         ];
@@ -275,8 +285,6 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
         .style('stroke-width', '1px')
         .style('fill', 'none')
         .style('stroke-dasharray', '3, 3')
-        .transition()
-        .duration(1000)
         .attr('points', function (d) {
           return getLinePath(d);
         });
@@ -347,8 +355,6 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
         .append('rect')
         .merge(bars)
         .attr('height', yScale.bandwidth())
-        .transition()
-        .duration(duration)
         .attr('y', (d) => yScale(d.data.category))
         .attr('x', (d) => xScale(d[0]))
         .attr('height', yScale.bandwidth())
@@ -376,24 +382,20 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
         .enter()
         .append('text')
         .merge(texts)
-        .transition()
-        .duration(duration)
         .attr('y', function (d) {
-          return yScale(d.data.category) + yScale.bandwidth() / 2 + 3.5;
+          return yScale(d.data.category) + yScale.bandwidth() / 2;
         })
         .attr('x', (d) => {
           const width = xScale(d[1]) - xScale(d[0]);
           return (
-            xScale(d[0]) +
-            (width ? (width - stackBarSpace) / 2 : width / 2) -
-            2.5
+            xScale(d[0]) + (width ? (width - stackBarSpace) / 2 : width / 2)
           );
         })
         .text((d, i) => (d[1] - d[0] ? d[1] - d[0] : ''))
-        .style('font-size', '12px')
-        .style('font-weight', '700')
-        .attr('fill', '#000')
-        .attr('opacity', '0.8');
+        .style('font-size', '15px')
+        .style('font-weight', '900')
+        .style('dominant-baseline', 'central')
+        .attr('fill', '#000');
     };
 
     const enterAndUpdatePieChartPathAndText = () => {
