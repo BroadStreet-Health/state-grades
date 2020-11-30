@@ -24,7 +24,7 @@ const Tooltip = (props) => {
 
   return (
     <div className={styleName}>
-      <OverlayTrigger trigger="click" placement={placement} overlay={popover}>
+      <OverlayTrigger placement={placement} overlay={popover}>
         <Badge pill variant="info" className="text-white" role="button">
           i
         </Badge>

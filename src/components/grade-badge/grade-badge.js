@@ -22,7 +22,7 @@ const GradeBadge = ({value, styleName, text}) => {
   return (
     <div>
       {text ? (
-        <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
+        <OverlayTrigger placement="bottom" overlay={popover}>
           <div className={className} role="button">
             {value}
           </div>
