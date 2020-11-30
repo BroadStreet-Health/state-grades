@@ -3,8 +3,9 @@ import {axisBottom, axisLeft} from 'd3-axis';
 import {easeLinear} from 'd3-ease';
 import {scaleOrdinal, scaleLinear} from 'd3-scale';
 import {schemeCategory10} from 'd3-scale-chromatic';
-import {select} from 'd3-selection';
+
 import {transition} from 'd3-transition';
+import {select} from 'd3-selection';
 import React, {useEffect, useCallback, useRef} from 'react';
 
 const ScatterPlot = ({chartData}) => {
