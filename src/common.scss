@@ -251,10 +251,14 @@ button {
       stroke-dasharray: 5 7;
       stroke-width: 2px;
     }
+  }
 
-    &:first-of-type {
-      line {
-        stroke-width: 0;
+  .x.axis {
+    .tick {
+      &:first-of-type {
+        line {
+          stroke-width: 0;
+        }
       }
     }
   }

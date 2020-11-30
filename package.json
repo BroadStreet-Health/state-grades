@@ -31,9 +31,7 @@
       "prettier --write \"**/*.+(json|yml|yaml|md)\""
     ],
     "src/**/*.+(scss)": [
-      "npm run scss-lint:fix",
-      "git add .",
-      "npm run scss-lint"
+      "npm run scss-lint:fix"
     ]
   },
   "dependencies": {
