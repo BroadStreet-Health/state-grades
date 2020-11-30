@@ -15,11 +15,11 @@ const ScatterPlot = ({chartData}) => {
     const margin = {top: 20, right: 20, bottom: 80, left: 200};
     const leftTickSpace = 40;
     const width = Math.max(
-      Math.min(parent.current.clientWidth, 1308) - margin.left - margin.right,
+      Math.min(parent.current.clientWidth, 1508) - margin.left - margin.right,
       50
     );
     const height = Math.max(
-      Math.min(parent.current.clientWidth, 1308) * 0.65 -
+      Math.min(parent.current.clientWidth, 1508) * 0.65 -
         margin.top -
         margin.bottom,
       50
