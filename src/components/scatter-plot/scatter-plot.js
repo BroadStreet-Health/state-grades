@@ -3,8 +3,9 @@ import {axisBottom, axisLeft} from 'd3-axis';
 import {easeLinear} from 'd3-ease';
 import {scaleOrdinal, scaleLinear} from 'd3-scale';
 import {schemeCategory10} from 'd3-scale-chromatic';
-import {select} from 'd3-selection';
 import {transition} from 'd3-transition';
+import {select} from 'd3-selection';
+
 import React, {useEffect, useCallback, useRef} from 'react';
 
 const ScatterPlot = ({chartData}) => {
@@ -15,11 +16,11 @@ const ScatterPlot = ({chartData}) => {
     const margin = {top: 20, right: 20, bottom: 80, left: 200};
     const leftTickSpace = 40;
     const width = Math.max(
-      Math.min(parent.current.clientWidth, 1308) - margin.left - margin.right,
+      Math.min(parent.current.clientWidth, 1508) - margin.left - margin.right,
       50
     );
     const height = Math.max(
-      Math.min(parent.current.clientWidth, 1308) * 0.65 -
+      Math.min(parent.current.clientWidth, 1508) * 0.65 -
         margin.top -
         margin.bottom,
       50
