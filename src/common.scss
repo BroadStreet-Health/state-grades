@@ -85,6 +85,10 @@ button {
   margin: auto;
 }
 
+.mt-13px {
+  margin-top: 13px;
+}
+
 .lh-40 {
   line-height: 40px;
 }
@@ -264,10 +268,16 @@ button {
       stroke-dasharray: 5 7;
       stroke-width: 2px;
     }
+  }
 
-    &:first-of-type {
-      line {
-        stroke-width: 0;
+  .x {
+    &.axis {
+      .tick {
+        &:first-of-type {
+          line {
+            stroke-width: 0;
+          }
+        }
       }
     }
   }
@@ -322,3 +332,4 @@ button {
     }
   }
 }
+
