@@ -224,7 +224,15 @@ const StateDataAvailabilityTable = () => {
       <h5 className="fs-24">
         How are state grades and subgrades calculated?{' '}
         <span className="text-primary">
-          <a>Learn more about our methods.</a>
+          <a
+            onClick={() =>
+              document.getElementById('our-methods').scrollIntoView({
+                behavior: 'smooth',
+              })
+            }
+          >
+            Learn more about our methods.
+          </a>
         </span>
       </h5>
     </div>

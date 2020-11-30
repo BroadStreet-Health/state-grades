@@ -4,7 +4,7 @@ import React from 'react';
 
 const OurMethods = () => {
   return (
-    <div className=" text-center bg-light pt-4">
+    <div id="our-methods" className=" text-center bg-light pt-4">
       <h2 className={'fs-45 font-weight-bold'}>Our Methods</h2>
       <div className="text-left">
         <h5 className="fs-24">
@@ -25,7 +25,9 @@ const OurMethods = () => {
           provided with instructions to follow, links to state websites, and
           variable definitions to standardize the process. This crowdsourced
           approach enabled faster, more efficient data collection.{' '}
-          <span className="text-primary">Download our data.</span>
+          <span className="text-primary">
+            <a>Download our data.</a>
+          </span>
         </h5>
         <h3 className="fs-34 font-weight-bold pt-5">
           {`Calculating & Visualizing State Grades`}
