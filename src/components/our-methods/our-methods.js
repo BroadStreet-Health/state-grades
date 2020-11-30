@@ -1,3 +1,5 @@
+import BarStackChart from './../bar-stack-chart/bar-stack-chart';
+
 import React from 'react';
 
 const OurMethods = () => {
@@ -26,7 +28,7 @@ const OurMethods = () => {
           <span className="text-primary">Download our data.</span>
         </h5>
         <h3 className="fs-34 font-weight-bold pt-5">
-          Calculating & Visualizing State Grades
+          {`Calculating & Visualizing State Grades`}
         </h3>
         <h5 className="fs-24">
           State grades are calculated across 71 variables using a weighted
@@ -37,7 +39,7 @@ const OurMethods = () => {
           and the distribution of total grades and subgrades across 50 U.S.
           states after scores were calculated.
         </h5>
-        <div className="py-5">
+        <div className="py-5 px-md-5 mx-md-5">
           <img
             className="w-100"
             src="./assets/images/visual-formula.svg"
@@ -45,7 +47,117 @@ const OurMethods = () => {
           />
         </div>
         <div className="py-5">
-          <img className="w-100" src="https://dummyimage.com/600x400/000/fff" />
+          <BarStackChart
+            chartDataColumns={['category', 'A', 'B', 'C', 'D', 'F']}
+            chartData={[
+              {
+                category: 'State-Level',
+                A: '30',
+                B: '2',
+                C: '9',
+                D: '6',
+                F: '3',
+              },
+              {
+                category: 'County-Level ',
+                A: '14',
+                B: '3',
+                C: '9',
+                D: '10',
+                F: '14',
+              },
+              {
+                category: 'Demographics ',
+                A: '3',
+                B: '2',
+                C: '23',
+                D: '4',
+                F: '18',
+              },
+              {
+                category: 'Data Quality ',
+                A: '13',
+                B: '1',
+                C: '13',
+                D: '12',
+                F: '11',
+              },
+              {
+                category: 'Outcomes and Preparedness',
+                A: '15',
+                B: '0',
+                C: '1',
+                D: '21',
+                F: '13',
+              },
+              {
+                category: 'Special Populations ',
+                A: '3',
+                B: '2',
+                C: '0',
+                D: '1',
+                F: '44',
+              },
+              {
+                category: 'Exposure and Clinical Indications ',
+                A: '1',
+                B: '6',
+                C: '0',
+                D: '0',
+                F: '43',
+              },
+              {
+                category: 'Total State Grade',
+                A: '3',
+                B: '11',
+                C: '17',
+                D: '12',
+                F: '7',
+              },
+            ]}
+            pieChartData={[
+              {
+                categoryName: 'State-Level',
+                numberOfVariables: '14',
+                categoryWeight: '40',
+              },
+              {
+                categoryName: 'County-Level',
+                numberOfVariables: '12',
+                categoryWeight: '30',
+              },
+              {
+                categoryName: 'Demographics',
+                numberOfVariables: '20',
+                categoryWeight: '13',
+              },
+              {
+                categoryName: 'Special Populations',
+                numberOfVariables: '7',
+                categoryWeight: '1',
+              },
+              {
+                categoryName: 'Exposure and Clinical Indications',
+                numberOfVariables: '3',
+                categoryWeight: '1',
+              },
+              {
+                categoryName: 'Outcomes and Preparedness',
+                numberOfVariables: '8',
+                categoryWeight: '5',
+              },
+              {
+                categoryName: 'Data Quality',
+                numberOfVariables: '7',
+                categoryWeight: '10',
+              },
+              {
+                categoryName: 'TOTALS',
+                numberOfVariables: '71',
+                categoryWeight: '100',
+              },
+            ]}
+          />
         </div>
         <h3 className="fs-34 font-weight-bold pt-5">State-Level</h3>
         <h5 className="fs-24">
