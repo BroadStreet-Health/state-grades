@@ -203,6 +203,7 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
       };
       const textBBox = targetElement.node().getBBox();
       const parentG = pieLinesG.node().getBoundingClientRect();
+      
       const pos = outerArc.centroid(centerObj);
       const lastPointerPosition = [];
       lastPointerPosition[0] =
