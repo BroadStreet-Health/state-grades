@@ -10,6 +10,12 @@ function App() {
   const location = useLocation();
   const pages = [
     {
+      pageLink: '/:code',
+      view: Home,
+      isExact: true,
+      displayName: 'Home',
+    },
+    {
       pageLink: '/',
       view: Home,
       isExact: false,

@@ -2,14 +2,24 @@ import UsMapChart from './../us-map-chart/us-map-chart';
 
 import GradeBadge from '../grade-badge/grade-badge';
 import Tooltip from '../tooltip/tooltip';
+import {selectUSMapData} from '../us-map-chart/us-map-chart.slice';
 
-import React from 'react';
-import {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Row, Col} from 'react-bootstrap';
+import {useSelector} from 'react-redux';
 
-const StateDataAvailabilityChart = () => {
+const StateMapChart = ({selectedState}) => {
+  const data = useSelector(selectUSMapData);
   const [showDetails, setShowDetails] = useState(null);
-
+  useEffect(() => {
+    if (data && selectedState) {
+      setShowDetails(
+        data.find(
+          (d) => d.abbreviation.toLowerCase() === selectedState.toLowerCase()
+        )
+      );
+    }
+  }, [data, setShowDetails, selectedState]);
   return (
     <div className="justify-content-center text-center">
       <h3>
@@ -19,10 +29,7 @@ const StateDataAvailabilityChart = () => {
       <Row noGutters className={'justify-content-center'}>
         <Col lg={8}>
           <div className="p-lg-5 mx-xl-5">
-            <UsMapChart
-              showDetails={showDetails}
-              setShowDetails={setShowDetails}
-            />
+            <UsMapChart showDetails={showDetails} />
           </div>
         </Col>
         {showDetails ? (
@@ -137,4 +144,4 @@ const StateDataAvailabilityChart = () => {
   );
 };
 
-export default StateDataAvailabilityChart;
+export default StateMapChart;
