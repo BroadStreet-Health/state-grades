@@ -34,7 +34,8 @@
     ],
     "src/**/*.+(scss)": [
       "npm run scss-lint:fix",
-      "git add ."
+      "git add .",
+      "npm run scss-lint"
     ]
   },
   "dependencies": {
