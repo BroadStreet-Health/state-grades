@@ -104,13 +104,17 @@ const StateDataAvailabilityTable = () => {
     });
     return `<div>
       <span class="fs-16">
-        Data available across <strong>${variableDefinitions[category].reduce(
-          (a, b) =>
-            dataCollection[b.Variable] == 1 || dataCollection[b.Variable] == 0.5
-              ? a + 1
-              : a,
-          0
-        )} / ${abbre['Number of Variables']}</strong> variables.
+        Data available across <strong>${
+          variableDefinitions &&
+          variableDefinitions[category].reduce(
+            (a, b) =>
+              dataCollection[b.Variable] == 1 ||
+              dataCollection[b.Variable] == 0.5
+                ? a + 1
+                : a,
+            0
+          )
+        } / ${abbre['Number of Variables']}</strong> variables.
       </span>
       <br />
       <span class="fs-16">
@@ -245,6 +249,7 @@ function Grid(props) {
     <div className="table-container-border">
       <div
         className="table-grid"
+        onScroll={() => document.body.click()}
         role="grid"
         style={{
           gridTemplateColumns: `repeat(${columns.length}, auto)`,

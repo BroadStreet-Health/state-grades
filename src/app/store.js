@@ -69,6 +69,23 @@ export const getStateGradesAndFundingImpact = () => (dispatch) => {
         totalScore: val['Total Score'],
         covid19Site: val['COVID-19 site'],
         contactInfo: val['Contact Info'],
+        stateLevelScore: val['State-Level Score'],
+        countyLevelScore: val['County-Level Score'],
+        demographicsScore: val['Demographics Score'],
+        specialPopulationsScore: val['Special Populations Score'],
+        exposureAndClinicalIndicationsScore:
+          val['Exposure and Clinical Indications Score'],
+        outcomesAndPreparednessScore: val['Outcomes and Preparedness Score'],
+        dataQualityScore: val['Data Quality Score'],
+        stateLevelSubgrade: val['State-Level Subgrade'],
+        countyLevelSubgrade: val['County-Level Subgrade'],
+        demographicsSubgrade: val['Demographics Subgrade'],
+        specialPopulationsSubgrade: val['Special Populations Subgrade'],
+        exposureAndClinicalIndicationsSubgrade:
+          val['Exposure and Clinical Indications Subgrade'],
+        outcomesAndPreparednessSubgrade:
+          val['Outcomes and Preparedness Subgrade'],
+        dataQualitySubgrade: val['Data Quality Subgrade'],
       };
     });
     dispatch(
