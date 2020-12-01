@@ -333,3 +333,24 @@ button {
   }
 }
 
+.scatter-plot-source {
+  bottom: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  position: absolute;
+  right: -40px;
+  transform: translate(-100%, -100%);
+
+  a {
+    color: #008faa;
+  }
+}
+
+@media (max-width: 1440px) {
+  .scatter-plot-source {
+    bottom: 0;
+    left: 50%;
+    right: unset;
+    transform: translate(-50%, 0%);
+  }
+} ;
