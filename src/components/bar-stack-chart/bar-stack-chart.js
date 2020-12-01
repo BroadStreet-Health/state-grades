@@ -205,11 +205,6 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
       const parentG = pieLinesG.node().getBoundingClientRect();
       const pos = outerArc.centroid(centerObj);
       const lastPointerPosition = [];
-      // let textXPosition = textBBox.x;
-      // if (textXPosition < 0) {
-      //   textXPosition = textBBox.x * -1;
-      // }
-      // 'translate(' + (width - stackedBarChartWidth) + ',' + margin.top + ')';
       lastPointerPosition[0] =
         pieChartWidth - pieChartWidth / 2 + textBBox.x + margin.left - 5;
       lastPointerPosition[1] =

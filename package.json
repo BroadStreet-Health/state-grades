@@ -25,13 +25,16 @@
   "lint-staged": {
     " *.+(js|jsx)": [
       "npm run eslint:fix",
-      "prettier --write \"**/*.+(js|jsx)\""
+      "prettier --write \"**/*.+(js|jsx)\"",
+      "git add ."
     ],
     "*.+(json|yml|yaml|md)": [
-      "prettier --write \"**/*.+(json|yml|yaml|md)\""
+      "prettier --write \"**/*.+(json|yml|yaml|md)\"",
+      "git add ."
     ],
     "src/**/*.+(scss)": [
-      "npm run scss-lint"
+      "npm run scss-lint:fix",
+      "git add ."
     ]
   },
   "dependencies": {
