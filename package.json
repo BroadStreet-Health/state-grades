@@ -23,8 +23,8 @@
     }
   },
   "lint-staged": {
-    " *.+(js|jsx)": [
-      "npm run eslint",
+    "*.+(js|jsx)": [
+      "npm run eslint:fix",
       "prettier --write \"**/*.+(js|jsx)\"",
       "git add ."
     ],
