@@ -11,15 +11,89 @@ import {useSelector} from 'react-redux';
 const StateMapChart = ({selectedState}) => {
   const data = useSelector(selectUSMapData);
   const [showDetails, setShowDetails] = useState(null);
+
   useEffect(() => {
     if (data && selectedState) {
-      setShowDetails(
+      const selected = Object.assign(
+        {},
         data.find(
           (d) => d.abbreviation.toLowerCase() === selectedState.toLowerCase()
         )
       );
+      const scoreSubgardeArray = [
+        [
+          'State-Level',
+          'State-level case, testing, and death data.',
+          'stateLevelScore',
+          'stateLevelSubgrade',
+        ],
+        [
+          'County-Level',
+          'County-level case, testing, and death data.',
+          'countyLevelScore',
+          'countyLevelSubgrade',
+        ],
+        [
+          'Demographics',
+          'Case, testing, and death data by race, ethnicity, sex, and age.',
+          'demographicsScor',
+          'demographicsSubgrade',
+        ],
+        [
+          'Special Populations',
+          'Data on healthcare workers and on congregate care facilities.',
+          'specialPopulationsScore',
+          'specialPopulationsSubgrade',
+        ],
+        [
+          'Exposures And Clinical Indications',
+          'Data on exposure, symptoms, and underlying health conditions.',
+          'exposureAndClinicalIndicationsScore',
+          'exposureAndClinicalIndicationsSubgrade',
+        ],
+        [
+          'Outcome And Preparedness',
+          'Data on hospitalized patients and hospital capacity and preparedness.',
+          'outcomesAndPreparednessScore',
+          'outcomesAndPreparednessSubgrade',
+        ],
+        [
+          'Data Quality',
+          'Availability, accessibility, and accuracy of published data.',
+          'dataQualityScore',
+          'dataQualitySubgrade',
+        ],
+      ];
+      const scoreArray = scoreSubgardeArray
+        .map((scoreSubgrade) => {
+          return {
+            score: parseFloat(selected[scoreSubgrade[2]]),
+            subgrade: selected[scoreSubgrade[3]],
+            title: scoreSubgrade[0],
+            tooltip: scoreSubgrade[1],
+          };
+        })
+        .sort((a, b) => {
+          return b.score - a.score;
+        });
+      selected['topStrength'] = [];
+      if (scoreArray[0].subgrade == 'A' || scoreArray[0].subgrade == 'B') {
+        selected['topStrength'].push(scoreArray[0]);
+      }
+      if (scoreArray[1].subgrade == 'A' || scoreArray[1].subgrade == 'B') {
+        selected['topStrength'].push(scoreArray[1]);
+      }
+      selected['topImprovement'] = [];
+      if (scoreArray[6].subgrade == 'F' || scoreArray[6].subgrade == 'D') {
+        selected['topImprovement'].push(scoreArray[6]);
+      }
+      if (scoreArray[5].subgrade == 'F' || scoreArray[5].subgrade == 'D') {
+        selected['topImprovement'].push(scoreArray[5]);
+      }
+      setShowDetails(selected);
     }
   }, [data, setShowDetails, selectedState]);
+
   return (
     <div className="justify-content-center text-center">
       <h3>
@@ -62,45 +136,47 @@ const StateMapChart = ({selectedState}) => {
             <Row className="pt-5" noGutters>
               <Col>
                 <div className="fs-24"> Top Areas of Strength </div>
-                <div className="d-flex">
-                  <h3 className="fs-34 font-weight-bold">Data Quality</h3>
-                  <Tooltip
-                    placement="right"
-                    styleName="px-2 fs-14 mt-13px"
-                    text="Availability, accessibility, and accuracy of published data."
-                  />
-                </div>
-                <div className="d-flex">
-                  <h3 className="fs-34 font-weight-bold">County-Level</h3>
-                  <Tooltip
-                    placement="right"
-                    styleName="px-2 fs-14 mt-13px"
-                    text="County-level case, testing, and death data."
-                  />
-                </div>
+                {showDetails?.topStrength.length > 0 ? (
+                  showDetails?.topStrength.map((top, i) => {
+                    return (
+                      <div className="d-flex" key={i}>
+                        <h3 className="fs-34 font-weight-bold">{top.title}</h3>
+                        <Tooltip
+                          placement="bottom"
+                          styleName="px-2 fs-14 mt-13px"
+                          text={top.tooltip}
+                        />
+                      </div>
+                    );
+                  })
+                ) : (
+                  <div className="d-flex">
+                    <h3 className="fs-34 font-weight-bold">None</h3>
+                  </div>
+                )}
               </Col>
             </Row>
             <Row className="pt-5" noGutters>
               <Col>
                 <div className="fs-24"> Top Areas of Improvement</div>
-                <div className="d-flex">
-                  <h3 className="fs-34 font-weight-bold">
-                    Special Populations
-                  </h3>
-                  <Tooltip
-                    placement="right"
-                    styleName="px-2 fs-14 mt-13px"
-                    text="Data on healthcare workers and on congregate care facilities."
-                  />
-                </div>
-                <div className="d-flex">
-                  <h3 className="fs-34 font-weight-bold">Demographics</h3>
-                  <Tooltip
-                    placement="right"
-                    styleName="px-2 fs-14 mt-13px"
-                    text="Case, testing, and death data by race, ethnicity, sex, and age."
-                  />
-                </div>
+                {showDetails?.topImprovement.length > 0 ? (
+                  showDetails?.topImprovement.map((top, i) => {
+                    return (
+                      <div className="d-flex" key={i}>
+                        <h3 className="fs-34 font-weight-bold">{top.title}</h3>
+                        <Tooltip
+                          placement="bottom"
+                          styleName="px-2 fs-14 mt-13px"
+                          text={top.tooltip}
+                        />
+                      </div>
+                    );
+                  })
+                ) : (
+                  <div className="d-flex">
+                    <h3 className="fs-34 font-weight-bold">None</h3>
+                  </div>
+                )}
               </Col>
             </Row>
             <Row className="pt-5" noGutters>

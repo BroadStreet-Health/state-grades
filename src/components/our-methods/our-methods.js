@@ -165,15 +165,15 @@ const OurMethods = () => {
         <h5 className="fs-24">
           State-level COVID-19 data on cases, testing, and deaths enable a
           stronger understanding of the impact of SARS-CoV-2 by providing an
-          overview of incidence, prevalence, and deaths within a state These
-          data can he1p governments and policymakers respond more effectively to
+          overview of incidence, prevalence, and deaths within a state. These
+          data can help governments and policymakers respond more effectively to
           the spread of the virus.
         </h5>
         <h3 className="fs-34 font-weight-bold pt-5">County-Level</h3>
         <h5 className="fs-24">
           County-level COVID-19 data on cases, testing, and deaths offer
           insights into how SARS-CoV-2 spreads within local communities, leading
-          to more efficient response measures and resource allocation Local
+          to more efficient response measures and resource allocation. Local
           governments can leverage these data to respond more effectively and
           inform and empower their communities.
         </h5>
@@ -181,11 +181,11 @@ const OurMethods = () => {
         <h5 className="fs-24">
           Understanding which populations are adversely impacted by COVID-19
           highlights critical disparities in reporting and risk factors between
-          demographic groups Collecting demographic information may also help to
-          identify gaps in data definitions and categorizations in relation to
-          census data standards. These data can inform policy responses on which
-          populations need immediate care, where to provide testing clinics. and
-          the overall scope of a shutdown.{' '}
+          demographic groups. Collecting demographic information may also help
+          to identify gaps in data definitions and categorizations in relation
+          to census data standards. These data can inform policy responses on
+          which populations need immediate care, where to provide testing
+          clinics, and the overall scope of a shutdown.{' '}
           <span className="text-primary">
             <a href="https://covid19dataproject.org/demographic-data-project">
               {' '}
@@ -197,10 +197,10 @@ const OurMethods = () => {
         <h5 className="fs-24">
           COVID-19 experiences ol vulnerable populations such as health care
           workers. incarcerated people. and nursing home residents require
-          special attention These populations experience the COVID-19 impact at
-          the frontlines and face a considerable level of risk Gathering data on
-          special populations enables policy action and prevention strategies in
-          response to the disparities identified within these populations.
+          special attention. These populations experience the COVID-19 impact at
+          the frontlines and face a considerable level of risk. Gathering data
+          on special populations enables policy action and prevention strategies
+          in response to the disparities identified within these populations.
         </h5>
         <h3 className="fs-34 font-weight-bold pt-5">
           Exposure and Clinical Indications
@@ -217,7 +217,7 @@ const OurMethods = () => {
         <h5 className="fs-24">
           Updated hospitalization and ICU data generate real time insights
           regarding the severity of COVID-19 outcomes, including increases in
-          hospital capacity, infection fatality rate, or preventable deaths
+          hospital capacity, infection fatality rate, or preventable deaths.
           These data help officials to properly plan for COVID-19 surges and to
           manage public safety expectations.
         </h5>
