@@ -1,6 +1,9 @@
 import StateMapChart from './../../components/state-map-chart/state-map-chart';
 
-import {getStateGradesAndFundingImpact} from '../../app/store';
+import {
+  getStateGradesAndFundingImpact,
+  getWeightRollups,
+} from '../../app/store';
 import Footer from '../../components/footer/footer';
 import FundingImpactAvailability from '../../components/funding-impact-availability/funding-impact-availability';
 import OurMethods from '../../components/our-methods/our-methods';
@@ -17,6 +20,7 @@ export default function Home() {
   const {code} = useParams();
   useEffect(() => {
     dispatch(getStateGradesAndFundingImpact());
+    dispatch(getWeightRollups());
   }, [dispatch]);
 
   return (

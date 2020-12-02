@@ -11,15 +11,15 @@ import {Provider} from 'react-redux';
 import {BrowserRouter as Router} from 'react-router-dom';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <Suspense fallback={<Spinner animation="border" variant="primary" />}>
-        <Router>
-          <App />
-        </Router>
-      </Suspense>
-    </Provider>
-  </React.StrictMode>,
+  // <React.StrictMode>     disabled due to popover and tooltip error from react-bootstrap
+  <Provider store={store}>
+    <Suspense fallback={<Spinner animation="border" variant="primary" />}>
+      <Router>
+        <App />
+      </Router>
+    </Suspense>
+  </Provider>,
+  // </React.StrictMode>,
   document.getElementById('root')
 );
 

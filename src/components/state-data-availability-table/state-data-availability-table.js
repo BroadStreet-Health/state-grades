@@ -1,9 +1,8 @@
 import GradeBadge from './../grade-badge/grade-badge';
-// import Tooltip from './../tooltip/tooltip';
+import Tooltip from './../tooltip/tooltip';
 import {
   getVariableDefinitions,
   getDataCollectionRound,
-  getWeightRollups,
   selectStateGrades,
   selectVariableDefinitions,
   selectDataCollectionRound,
@@ -11,7 +10,7 @@ import {
 } from './state-data-availability-slice';
 
 import React, {useEffect} from 'react';
-// import {OverlayTrigger, Popover} from 'react-bootstrap';
+import {OverlayTrigger, Popover} from 'react-bootstrap';
 import {useDispatch, useSelector} from 'react-redux';
 
 const StateDataAvailabilityTable = () => {
@@ -180,19 +179,18 @@ const StateDataAvailabilityTable = () => {
   useEffect(() => {
     dispatch(getVariableDefinitions());
     dispatch(getDataCollectionRound());
-    dispatch(getWeightRollups());
   }, [dispatch]);
 
-  // const popover = (
-  //   <Popover className="tooltip mw-460">
-  //     <Popover.Content className="font-weight-bold text-center">
-  //       <span>
-  //         Total grades are calculated using a weighted average based on each
-  //         state’s seven subgrades, one for each defined category.
-  //       </span>
-  //     </Popover.Content>
-  //   </Popover>
-  // );
+  const popover = (
+    <Popover className="tooltip mw-460">
+      <Popover.Content className="font-weight-bold text-center">
+        <span>
+          Total grades are calculated using a weighted average based on each
+          state’s seven subgrades, one for each defined category.
+        </span>
+      </Popover.Content>
+    </Popover>
+  );
 
   return (
     <div className="justify-content-center text-center px-md-4 pt-4">
@@ -203,11 +201,11 @@ const StateDataAvailabilityTable = () => {
         <br />
         <span className="font-weight-bold">
           Click on a{' '}
-          {/* <OverlayTrigger placement="bottom" overlay={popover}>
+          <OverlayTrigger placement="bottom" overlay={popover}>
             <span className="text-primary" role="button">
               subgrade
             </span>
-          </OverlayTrigger>{' '} */}
+          </OverlayTrigger>{' '}
           to explore which data are available — and which are missing — from
           state dashboards.
         </span>
@@ -248,7 +246,7 @@ function Grid(props) {
         {columns.map((column, i) => (
           <div role="columnheader" className="fs-20 font-weight-bold" key={i}>
             {column.name}
-            {/* {column.tooltipText ? <Tooltip text={column.tooltipText} /> : null} */}
+            {column.tooltipText ? <Tooltip text={column.tooltipText} /> : null}
           </div>
         ))}
         {(rows || []).reduce(

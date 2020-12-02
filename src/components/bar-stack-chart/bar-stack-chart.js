@@ -1,4 +1,4 @@
-import {max, range, sum} from 'd3-array';
+import {max, range} from 'd3-array';
 import {interpolate} from 'd3-interpolate';
 import {scaleOrdinal, scaleLinear, scaleBand} from 'd3-scale';
 import {select, selectAll} from 'd3-selection';
@@ -13,8 +13,6 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
     const margin = {top: 10, right: 20, bottom: 20, left: 150};
     const legendHeight = 75;
     const stackBarSpace = 6;
-    const color = scaleOrdinal();
-    const legendScale = scaleBand();
     const innerRadius = 0.54;
     const outerRadius = 0.8;
     const pieData = pieChartData
@@ -22,7 +20,6 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
         return {label: d.categoryName, value: +d.categoryWeight};
       })
       .filter((d) => d.value !== 100);
-    const keys = chartDataColumns.slice(1);
     // legendScale.domain(['A']);
     const width = Math.max(
       parent.current.clientWidth - margin.left - margin.right,
@@ -192,15 +189,24 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
       .attr('class', 'y axis')
       .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
-    color.range(['#101b7e', '#1f9bb3', '#ffba38', '#fd745c', '#a13f68']);
+    const color = scaleOrdinal()
+      .domain(chartDataColumns)
+      .range(['#101b7e', '#1f9bb3', '#ffba38', '#fd745c', '#a13f68']);
 
-    const xScale = scaleLinear().range([15, (width * 60) / 100 - margin.right]);
+    const legendScale = scaleBand()
+      .domain(chartDataColumns)
+      .range([15, (width * 60) / 100 - margin.right]);
+    const xScale = scaleLinear()
+      .range([15, (width * 60) / 100 - margin.right])
+      .domain([0, max(chartData, (d) => d.total)])
+      .nice();
 
     const yScale = scaleBand()
       .range([margin.top, height - margin.bottom])
       .padding(0.1)
       .paddingOuter(0.24)
-      .paddingInner(0.24);
+      .paddingInner(0.24)
+      .domain(chartData.map((d) => d.category));
 
     const d3pie = pie()
       .startAngle(Math.PI / 1.3)
@@ -345,7 +351,7 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
     const enterAndUpdateBarGroup = () => {
       const stackedGroup = barsG
         .selectAll('g.layer')
-        .data(stack().keys(keys)(chartData), (d) => d.key);
+        .data(stack().keys(chartDataColumns)(chartData), (d) => d.key);
 
       stackedGroup.exit().remove();
 
@@ -445,11 +451,6 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
         .enter()
         .append('text')
         .attr('class', 'slice-value')
-        .attr('transform', function (d) {
-          d.innerRadius = innerRadius;
-          d.outerRadius = outerRadius;
-          return 'translate(' + pathArc.centroid(d) + ') rotate(15)';
-        })
         .attr('dy', '.35em')
         .attr('text-anchor', 'middle')
         .attr('font-size', (d) => d.value / 10 + radius / 20)
@@ -459,12 +460,17 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
           return d.value + '%';
         });
       slice.exit().remove();
+      selectAll('.slice-value').attr('transform', function (d) {
+        d.innerRadius = innerRadius;
+        d.outerRadius = outerRadius;
+        return 'translate(' + pathArc.centroid(d) + ') rotate(15)';
+      });
     };
 
     const enterAndUpdateLegend = () => {
       const legendSelection = legendContainer
         .selectAll('g.legend-g')
-        .data(keys, (d) => d);
+        .data(chartDataColumns, (d) => d);
       const legendG = legendSelection
         .enter()
         .append('g')
@@ -537,37 +543,18 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
         .text((d) => rangeObj[d])
         .style('font-weight', 'bold');
     };
-    const updateChart = () => {
-      chartData.forEach((d) => {
-        d.total = sum(keys, (k) => +d[k]);
-        return d;
-      });
-
-      xScale.domain([0, max(chartData, (d) => d.total)]).nice();
-      yScale.domain(chartData.map((d) => d.category));
-      color.domain(keys);
-      legendScale.domain(keys).range([15, (width * 60) / 100 - margin.right]);
-      enterAndUpdateLegend();
-      enterAndUpdateYAxisText();
-      enterAndUpdateBarGroup();
-      enterAndUpdateBarRect();
-      enterAndUpdateBarText();
-
-      enterAndUpdatePieChartPathAndText();
-
-      selectAll('.slice-value').attr('transform', function (d) {
-        d.innerRadius = innerRadius;
-        d.outerRadius = outerRadius;
-        return 'translate(' + pathArc.centroid(d) + ') rotate(15)';
-      });
-
-      enterAndUpdatePieLines();
-    };
     const midAngle = (d) => {
       return d.startAngle + (d.endAngle - d.startAngle) / 2 / (Math.PI / 1.3);
     };
 
-    updateChart();
+    enterAndUpdateLegend();
+    enterAndUpdateYAxisText();
+    enterAndUpdateBarGroup();
+    enterAndUpdateBarRect();
+    enterAndUpdateBarText();
+
+    enterAndUpdatePieChartPathAndText();
+    enterAndUpdatePieLines();
   }, [chartData, chartDataColumns, pieChartData]);
 
   useEffect(() => {

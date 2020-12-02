@@ -6,8 +6,12 @@ import footerReducer from '../components/footer/footer-slice';
 import fundingImpactReducer, {
   setFundingImpact,
 } from '../components/funding-impact-availability/funding-impact-availability-slice';
+import ourMethodsReducer, {
+  setPieChartData,
+} from '../components/our-methods/our-methods-slice';
 import stateGradeReducer, {
   setStateGrades,
+  setWeightRollups,
 } from '../components/state-data-availability-table/state-data-availability-slice';
 
 import {configureStore} from '@reduxjs/toolkit';
@@ -19,6 +23,7 @@ export default configureStore({
     stateGrade: stateGradeReducer,
     fundingImpact: fundingImpactReducer,
     usMapData: usMapDataReducer,
+    ourMethods: ourMethodsReducer,
   },
 });
 
@@ -91,6 +96,24 @@ export const getStateGradesAndFundingImpact = () => (dispatch) => {
     dispatch(
       setUSMapData({
         data: usMapData,
+      })
+    );
+  });
+};
+export const getWeightRollups = () => (dispatch) => {
+  d3.csv('./assets/data/weightRollups.csv').then((weightRollups) => {
+    dispatch(
+      setWeightRollups({
+        weightRollups,
+      })
+    );
+    dispatch(
+      setPieChartData({
+        pieChartData: weightRollups.map((d) => ({
+          categoryName: d['Category Name'],
+          numberOfVariables: d['Number of Variables'],
+          categoryWeight: d['Category Weight'],
+        })),
       })
     );
   });

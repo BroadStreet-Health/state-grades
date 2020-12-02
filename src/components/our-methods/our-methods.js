@@ -1,8 +1,23 @@
 import BarStackChart from './../bar-stack-chart/bar-stack-chart';
+import {
+  getSubGradeDistribution,
+  selectSubGradeColumns,
+  selectSubGradeDistribution,
+  selectPieChartData,
+} from './our-methods-slice';
 
-import React from 'react';
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 
 const OurMethods = () => {
+  const dispatch = useDispatch();
+  const subGradeColumns = useSelector(selectSubGradeColumns);
+  const subGradeData = useSelector(selectSubGradeDistribution);
+  const pieChartData = useSelector(selectPieChartData);
+  useEffect(() => {
+    dispatch(getSubGradeDistribution());
+  }, [dispatch]);
+  console.log(subGradeColumns, 'subGradeColumns');
   return (
     <div id="our-methods" className="text-center bg-light px-md-5">
       <h2 className={'fs-45 font-weight-bold'}>Our Methods</h2>
@@ -49,117 +64,15 @@ const OurMethods = () => {
           />
         </div>
         <div className="py-5">
-          <BarStackChart
-            chartDataColumns={['category', 'A', 'B', 'C', 'D', 'F']}
-            chartData={[
-              {
-                category: 'State-Level',
-                A: '30',
-                B: '2',
-                C: '9',
-                D: '6',
-                F: '3',
-              },
-              {
-                category: 'County-Level ',
-                A: '14',
-                B: '3',
-                C: '9',
-                D: '10',
-                F: '14',
-              },
-              {
-                category: 'Demographics ',
-                A: '3',
-                B: '2',
-                C: '23',
-                D: '4',
-                F: '18',
-              },
-              {
-                category: 'Data Quality ',
-                A: '13',
-                B: '1',
-                C: '13',
-                D: '12',
-                F: '11',
-              },
-              {
-                category: 'Outcomes and Preparedness',
-                A: '15',
-                B: '0',
-                C: '1',
-                D: '21',
-                F: '13',
-              },
-              {
-                category: 'Special Populations ',
-                A: '3',
-                B: '2',
-                C: '0',
-                D: '1',
-                F: '44',
-              },
-              {
-                category: 'Exposure and Clinical Indications ',
-                A: '1',
-                B: '6',
-                C: '0',
-                D: '0',
-                F: '43',
-              },
-              {
-                category: 'Total State Grade',
-                A: '3',
-                B: '11',
-                C: '17',
-                D: '12',
-                F: '7',
-              },
-            ]}
-            pieChartData={[
-              {
-                categoryName: 'State-Level',
-                numberOfVariables: '14',
-                categoryWeight: '40',
-              },
-              {
-                categoryName: 'County-Level',
-                numberOfVariables: '12',
-                categoryWeight: '30',
-              },
-              {
-                categoryName: 'Demographics',
-                numberOfVariables: '20',
-                categoryWeight: '13',
-              },
-              {
-                categoryName: 'Special Populations',
-                numberOfVariables: '7',
-                categoryWeight: '1',
-              },
-              {
-                categoryName: 'Exposure and Clinical Indications',
-                numberOfVariables: '3',
-                categoryWeight: '1',
-              },
-              {
-                categoryName: 'Outcomes and Preparedness',
-                numberOfVariables: '8',
-                categoryWeight: '5',
-              },
-              {
-                categoryName: 'Data Quality',
-                numberOfVariables: '7',
-                categoryWeight: '10',
-              },
-              {
-                categoryName: 'TOTALS',
-                numberOfVariables: '71',
-                categoryWeight: '100',
-              },
-            ]}
-          />
+          {subGradeColumns.length ? (
+            <BarStackChart
+              chartDataColumns={subGradeColumns}
+              chartData={subGradeData}
+              pieChartData={pieChartData}
+            />
+          ) : (
+            ''
+          )}
         </div>
         <h3 className="fs-34 font-weight-bold pt-5">State-Level</h3>
         <h5 className="fs-24">

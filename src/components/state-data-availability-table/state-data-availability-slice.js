@@ -54,16 +54,6 @@ export const getDataCollectionRound = () => (dispatch) => {
   );
 };
 
-export const getWeightRollups = () => (dispatch) => {
-  d3.csv('./assets/data/weightRollups.csv').then((weightRollups) => {
-    dispatch(
-      setWeightRollups({
-        weightRollups,
-      })
-    );
-  });
-};
-
 const groupBy = (array, key) => {
   return array.reduce((result, currentValue) => {
     (result[currentValue[key]] = result[currentValue[key]] || []).push(

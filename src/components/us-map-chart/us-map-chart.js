@@ -64,12 +64,11 @@ const UsMapChart = ({showDetails}) => {
     });
     const createAndUpdateLegends = () => {
       let dataL = 0;
-      const offset = 60;
+      const offset = 55;
       const legends = select('#legends');
-      // const svgBBox = svg.node().getBBox();
       legends.attr(
         'transform',
-        'translate(' + (1007.63 / 2 - 20) + ',' + 577.79 + ')'
+        'translate(' + (1007.63 / 2 - 20) + ',' + 567.79 + ')'
       );
       const appendLegends = legends.selectAll('g.legend').data(colorData);
       const enterLegends = appendLegends.enter().append('g');
@@ -96,7 +95,8 @@ const UsMapChart = ({showDetails}) => {
         })
         .attr('class', 'textselected')
         .style('text-anchor', 'start')
-        .style('font-size', 20)
+        .style('font-size', 24)
+        .style('fill', '#535353')
         .style('font-weight', 'bold');
       const d3Area = area()
         .x(function (d) {
