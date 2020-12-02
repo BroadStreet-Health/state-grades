@@ -11,18 +11,18 @@ const ScatterPlot = ({chartData}) => {
   const parent = useRef(null);
 
   const init = useCallback(() => {
-    const margin = {top: 20, right: 20, bottom: 80, left: 200};
+    const margin = {top: 20, right: 20, bottom: 100, left: 250};
     const leftTickSpace = 40;
     const colorData = ['A', 'B', 'C', 'D', 'F'];
     const color = scaleOrdinal()
       .domain(colorData)
       .range(['#949acd', '#8cccd8', '#ffdfa3', '#ffbaaf', '#cd98ae']);
     const width = Math.max(
-      Math.min(parent.current.clientWidth, 1508) - margin.left - margin.right,
+      Math.min(parent.current.clientWidth, 1608) - margin.left - margin.right,
       50
     );
     const height = Math.max(
-      Math.min(parent.current.clientWidth, 1508) * 0.65 -
+      Math.min(parent.current.clientWidth, 1608) * 0.62 -
         margin.top -
         margin.bottom,
       50
@@ -56,12 +56,12 @@ const ScatterPlot = ({chartData}) => {
       .range([0, width])
       .domain([
         Math.max(0, min(chartData, xValue) - min(chartData, xValue) * 0.1),
-        Math.min(max(chartData, xValue) + max(chartData, xValue) * 0.1, 100),
+        Math.min(max(chartData, xValue) + max(chartData, xValue) * 0.03, 100),
       ]);
     const maxLimit = max(chartData, yValue);
     const yScale = scaleLinear()
       .range([height, 0])
-      .domain([-10, maxLimit + maxLimit * 0.1]);
+      .domain([-8, maxLimit + maxLimit * 0.18]);
 
     const xAxis = axisBottom(xScale).ticks(10).tickSize(-height);
     const yAxis = axisLeft(yScale).ticks(10).tickSize(-width);
@@ -150,7 +150,7 @@ const ScatterPlot = ({chartData}) => {
       .style('fill', '#535353')
       .attr('dx', -5)
       .text((d) => d)
-      .call(wrap, margin.left - leftTickSpace);
+      .call(wrap, margin.left - leftTickSpace - 50);
     yLabelSelection.exit().remove();
     const xLabelSelection = legendG
       .selectAll('text.xLabel')
@@ -294,7 +294,7 @@ const ScatterPlot = ({chartData}) => {
         .style('cursor', 'pointer')
         .style('fill', function (d) {
           return '#' + d.state.replace(/ /gi, '-') + 'tooltip'.empty()
-            ? '#fff'
+            ? 'transparent'
             : cValue(d);
         });
     };
@@ -305,7 +305,7 @@ const ScatterPlot = ({chartData}) => {
         .style('z-index', '-1')
         .style('fill', function (d) {
           return select('#' + d.state.replace(/ /gi, '-') + '-tooltip').empty()
-            ? '#fff'
+            ? 'transparent'
             : cValue(d);
         });
       tooltip
@@ -337,7 +337,7 @@ const ScatterPlot = ({chartData}) => {
       .merge(circleDot)
       .style('fill', function (d) {
         return '#' + d.state.replace(/ /gi, '-') + 'tooltip'.empty()
-          ? '#fff'
+          ? 'transparent'
           : cValue(d);
       })
       .attr('cx', xMap)
@@ -360,7 +360,7 @@ const ScatterPlot = ({chartData}) => {
   return (
     <div
       ref={parent}
-      className="scatter-plot w-100 d-flex justify-content-center"
+      className="scatter-plot position-relative w-100 d-flex justify-content-center"
     >
       <svg ref={svgRef}></svg>
       <span className={'scatter-plot-source'}>

@@ -17,7 +17,7 @@ const FundingImpactAvailability = () => {
         Many states still provide useful COVID-19 data despite low public health
         funding per capita.
       </h5>
-      <div className="fs-24 my-5 font-weight-bold">
+      <div className="fs-24 mt-5 font-weight-bold">
         Hover to reveal state details and click to compare.
       </div>
       <div className="scatter-plot-container">

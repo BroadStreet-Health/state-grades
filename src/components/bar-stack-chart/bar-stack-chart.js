@@ -11,8 +11,10 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
 
   const init = useCallback(() => {
     const margin = {top: 10, right: 20, bottom: 20, left: 150};
+    const legendHeight = 75;
     const stackBarSpace = 6;
     const color = scaleOrdinal();
+    const legendScale = scaleBand();
     const innerRadius = 0.54;
     const outerRadius = 0.8;
     const pieData = pieChartData
@@ -21,11 +23,18 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
       })
       .filter((d) => d.value !== 100);
     const keys = chartDataColumns.slice(1);
+    // legendScale.domain(['A']);
     const width = Math.max(
       parent.current.clientWidth - margin.left - margin.right,
       50
     );
-
+    const rangeObj = {
+      A: '90 - 100',
+      B: '80 - 90',
+      C: '70 - 80',
+      D: '60 - 70',
+      F: '0 - 60',
+    };
     const height = Math.max(600 - margin.top - margin.bottom, 50);
     const pieChartWidth = (width * 40) / 100;
     const stackedBarChartWidth = (width * 60) / 100;
@@ -46,6 +55,7 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
       }
       return parent.select(element + '.' + className);
     };
+
     const wrap = (text, width) => {
       text.each(function () {
         const text = select(this);
@@ -81,9 +91,10 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
         }
       });
     };
+
     const svg = select(svgRef.current)
       .attr('width', width + margin.left + margin.right)
-      .attr('height', height + margin.top + margin.bottom);
+      .attr('height', height + margin.top + margin.bottom + legendHeight);
 
     const stackedBarChartG = createElement(
       svg,
@@ -93,7 +104,25 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
       (d) => d
     ).attr(
       'transform',
-      'translate(' + (width - stackedBarChartWidth) + ',' + margin.top + ')'
+      'translate(' +
+        (width - stackedBarChartWidth) +
+        ',' +
+        (margin.top + legendHeight) +
+        ')'
+    );
+    const legendContainer = createElement(
+      svg,
+      'g',
+      'stack-bar-legend-container',
+      [1],
+      (d) => d
+    ).attr(
+      'transform',
+      'translate(' +
+        (width - stackedBarChartWidth + margin.left) +
+        ',' +
+        margin.top +
+        ')'
     );
 
     const barsG = createElement(
@@ -109,7 +138,7 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
       'translate(' +
         pieChartWidth / 2 +
         ',' +
-        (height / 2 + (margin.top + margin.bottom) / 2) +
+        (height / 2 + legendHeight + (margin.top + margin.bottom) / 2) +
         ')'
     );
 
@@ -329,6 +358,7 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
         .attr('fill-opacity', '0.50');
       stackedGroup.exit().remove();
     };
+
     const enterAndUpdateBarRect = () => {
       const bars = barsG
         .selectAll('g.layer')
@@ -357,6 +387,7 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
             : width;
         });
     };
+
     const enterAndUpdateBarText = () => {
       const texts = barsG
         .selectAll('g.layer')
@@ -385,6 +416,7 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
         .style('font-size', '15px')
         .style('font-weight', '900')
         .style('dominant-baseline', 'central')
+        .style('text-anchor', 'middle')
         .attr('fill', '#000');
     };
 
@@ -428,6 +460,83 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
         });
       slice.exit().remove();
     };
+
+    const enterAndUpdateLegend = () => {
+      const legendSelection = legendContainer
+        .selectAll('g.legend-g')
+        .data(keys, (d) => d);
+      const legendG = legendSelection
+        .enter()
+        .append('g')
+        .merge(legendSelection);
+      legendG.attr('class', 'legend-g').attr('transform', (d) => {
+        return `translate(${
+          legendScale(d) + legendScale.bandwidth() / 2
+        },${22.5})`;
+      });
+      legendSelection.exit().remove();
+      const circleSelection = legendG.selectAll('circle').data(
+        (d) => [d],
+        (d) => d
+      );
+      circleSelection.exit().remove();
+      circleSelection
+        .enter()
+        .append('circle')
+        .merge(circleSelection)
+        .attr('cx', 0)
+        .attr('cy', 0)
+        .attr('r', 20)
+        .style('stroke', (d) => color(d))
+        .style('stroke-width', 4)
+        .style('fill-opacity', 0.3)
+        .style('fill', (d) => color(d));
+
+      const textSelection = legendG.selectAll('text.label').data(
+        (d) => [d],
+        (d) => d
+      );
+      textSelection.exit().remove();
+      textSelection
+        .enter()
+        .append('text')
+        .merge(textSelection)
+        .attr('class', 'label')
+        .attr('x', 0)
+        .attr('y', 0)
+        .style('font-size', '24')
+        .style('font-weight', 'bold')
+        .style('fill', '#535353')
+        .style('text-anchor', 'middle')
+        .style('dominant-baseline', 'central')
+        .text((d) => d);
+
+      const rangeTextSelection = legendG.selectAll('text.range').data(
+        (d) => [d],
+        (d) => d
+      );
+      rangeTextSelection.exit().remove();
+      const rangeText = rangeTextSelection
+        .enter()
+        .append('text')
+        .merge(rangeTextSelection);
+      rangeText
+        .attr('class', 'range')
+        .attr('x', 0)
+        .attr('y', 50)
+        .style('font-size', '18')
+        .style('fill', '#535353')
+        .style('font-weight', 'normal')
+        .style('font-style', 'italic')
+        .style('text-anchor', 'middle')
+        .style('dominant-baseline', 'central')
+        .text(null);
+      rangeText.append('tspan').text('Scores from ');
+      rangeText
+        .append('tspan')
+        .text((d) => rangeObj[d])
+        .style('font-weight', 'bold');
+    };
     const updateChart = () => {
       chartData.forEach((d) => {
         d.total = sum(keys, (k) => +d[k]);
@@ -437,7 +546,8 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
       xScale.domain([0, max(chartData, (d) => d.total)]).nice();
       yScale.domain(chartData.map((d) => d.category));
       color.domain(keys);
-
+      legendScale.domain(keys).range([15, (width * 60) / 100 - margin.right]);
+      enterAndUpdateLegend();
       enterAndUpdateYAxisText();
       enterAndUpdateBarGroup();
       enterAndUpdateBarRect();

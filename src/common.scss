@@ -54,7 +54,7 @@ button {
 }
 
 .fs-34 {
-  font-size: 34px;
+  font: normal normal normal 34px/40px Roboto;
 }
 
 .fs-24 {
@@ -67,6 +67,10 @@ button {
 
 .fs-13 {
   font-size: 13px;
+}
+
+.fs-20 {
+  font: normal normal bold 20px/24px Roboto;
 }
 
 .fs-10 {
@@ -265,8 +269,8 @@ button {
   .tick {
     line {
       stroke: #f0f0f0;
-      stroke-dasharray: 5 7;
-      stroke-width: 2px;
+      stroke-dasharray: 5 5;
+      stroke-width: 3px;
     }
   }
 
@@ -314,7 +318,7 @@ button {
 }
 
 .scatter-plot-container {
-  padding: 0 170px;
+  padding: 0 100px;
 }
 
 @media (max-width: 1400px) {
@@ -334,12 +338,12 @@ button {
 }
 
 .scatter-plot-source {
-  bottom: 12px;
+  bottom: 0;
   font-size: 16px;
   font-weight: bold;
   position: absolute;
-  right: -40px;
-  transform: translate(-100%, -100%);
+  right: 40px;
+  // transform: translate(0%, -100%);
 
   a {
     color: #008faa;
@@ -348,9 +352,9 @@ button {
 
 @media (max-width: 1440px) {
   .scatter-plot-source {
-    bottom: 0;
+    bottom: -30px;
     left: 50%;
     right: unset;
-    transform: translate(-50%, 0%);
+    transform: translate(0, 0%);
   }
 } ;

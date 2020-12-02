@@ -18,7 +18,7 @@ const GradeBadge = ({value, styleName, text}) => {
           role="button"
           onClick={() => document.body.click()}
         >
-          X
+          ✖
         </Badge>
         <span
           dangerouslySetInnerHTML={{

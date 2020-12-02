@@ -73,26 +73,23 @@ const StateDataAvailabilityTable = () => {
     const abbre = dataCollectionRound.find((d) => {
       return d['Abbreviation'] == abbreviation;
     });
-    return (
-      variableDefinitions &&
-      variableDefinitions[category]
-        .map(
-          (val, i) =>
-            `<div class="fs-13">
+    return ((abbre && variableDefinitions[category]) || [])
+      .map(
+        (val, i) =>
+          `<div class="fs-13">
             <span class="${
               abbre[val.Variable] == 1 || abbre[val.Variable] == 0.5
                 ? `font-weight-bold`
                 : ``
             }">${
-              abbre[val.Variable] == 1 || abbre[val.Variable] == 0.5
-                ? `&check;`
-                : `&nbsp;&nbsp;&nbsp;`
-            } ${val.Variable}</span>
+            abbre[val.Variable] == 1 || abbre[val.Variable] == 0.5
+              ? `&check;`
+              : `&nbsp;&nbsp;&nbsp;`
+          } ${val.Variable}</span>
             <br />
           </div>`
-        )
-        .join('')
-    );
+      )
+      .join('');
   };
 
   const tooltipText = (category, abbreviation) => {
@@ -104,22 +101,21 @@ const StateDataAvailabilityTable = () => {
     });
     return `<div>
       <span class="fs-16">
-        Data available across <strong>${
-          variableDefinitions &&
-          variableDefinitions[category].reduce(
-            (a, b) =>
-              dataCollection[b.Variable] == 1 ||
-              dataCollection[b.Variable] == 0.5
-                ? a + 1
-                : a,
-            0
-          )
-        } / ${abbre['Number of Variables']}</strong> variables.
+        Data available across <strong>${(
+          (dataCollection && variableDefinitions[category]) ||
+          []
+        ).reduce(
+          (a, b) =>
+            dataCollection[b.Variable] == 1 || dataCollection[b.Variable] == 0.5
+              ? a + 1
+              : a,
+          0
+        )} / ${abbre && abbre['Number of Variables']}</strong> variables.
       </span>
       <br />
       <span class="fs-16">
         Accounting for <strong>${
-          abbre['Category Weight']
+          abbre && abbre['Category Weight']
         }% </strong>of total grade.
       </span>
       <div class="py-2">
@@ -183,13 +179,7 @@ const StateDataAvailabilityTable = () => {
 
   useEffect(() => {
     dispatch(getVariableDefinitions());
-  }, [dispatch]);
-
-  useEffect(() => {
     dispatch(getDataCollectionRound());
-  }, [dispatch]);
-
-  useEffect(() => {
     dispatch(getWeightRollups());
   }, [dispatch]);
 
@@ -205,7 +195,7 @@ const StateDataAvailabilityTable = () => {
   );
 
   return (
-    <div className="justify-content-center text-center pt-4">
+    <div className="justify-content-center text-center px-md-4 pt-4">
       <h2 className={'fs-45 font-weight-bold'}>State Data Availability</h2>
       <h5 className="fs-24">
         U.S. states are evaluated on 71 variables across seven categories to
@@ -256,12 +246,12 @@ function Grid(props) {
         }}
       >
         {columns.map((column, i) => (
-          <div role="columnheader" className="fs-24 font-weight-bold" key={i}>
+          <div role="columnheader" className="fs-20 font-weight-bold" key={i}>
             {column.name}
             {column.tooltipText ? <Tooltip text={column.tooltipText} /> : null}
           </div>
         ))}
-        {rows.reduce(
+        {(rows || []).reduce(
           (res, row, line) => [
             ...res,
             ...row.map((cell, i) => (

@@ -64,16 +64,12 @@ const UsMapChart = ({showDetails}) => {
     });
     const createAndUpdateLegends = () => {
       let dataL = 0;
-      const offset = 50;
+      const offset = 60;
       const legends = select('#legends');
-      const svgBBox = svg.node().getBBox();
+      // const svgBBox = svg.node().getBBox();
       legends.attr(
         'transform',
-        'translate(' +
-          (svgBBox.width / 2 + 20) +
-          ',' +
-          (svgBBox.height - 40) +
-          ')'
+        'translate(' + (1007.63 / 2 - 20) + ',' + 577.79 + ')'
       );
       const appendLegends = legends.selectAll('g.legend').data(colorData);
       const enterLegends = appendLegends.enter().append('g');
@@ -117,8 +113,8 @@ const UsMapChart = ({showDetails}) => {
         .attr('d', (d, i) => {
           return d3Area([
             {x: 10, y: 10},
-            {x: 50, y: 20},
-            {x: 30, y: 50},
+            {x: 50, y: 40},
+            {x: 10, y: 70},
           ]);
         })
         .style('fill', function (d) {
@@ -165,7 +161,7 @@ const UsMapChart = ({showDetails}) => {
       <svg
         ref={svgRef}
         xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 917.63 577.79"
+        viewBox="-90 0 1007.63 677.79"
       >
         <g id="Layer_2" data-name="Layer 2">
           <g id="Layer_1-2" data-name="Layer 1">

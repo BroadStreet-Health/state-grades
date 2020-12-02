@@ -22,10 +22,10 @@ export default function Home() {
   return (
     <div>
       <Container fluid>
-        <Row className="px-md-4 py-5">
+        <Row className="px-md-5 py-5 mt-2">
           <TopNav />
         </Row>
-        <Row className="px-md-4 py-5">
+        <Row className="px-md-5 py-5">
           <Col>
             <StateMapChart selectedState={code} />
           </Col>
