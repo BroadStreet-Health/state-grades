@@ -1,7 +1,7 @@
 import {max, range} from 'd3-array';
 import {interpolate} from 'd3-interpolate';
 import {scaleOrdinal, scaleLinear, scaleBand} from 'd3-scale';
-import {select, selectAll} from 'd3-selection';
+import {select} from 'd3-selection';
 import {stack, arc, pie} from 'd3-shape';
 import React, {useEffect, useCallback, useRef} from 'react';
 
@@ -33,10 +33,10 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
       F: '0 - 60',
     };
     const height = Math.max(600 - margin.top - margin.bottom, 50);
-    const pieChartWidth = (width * 40) / 100;
-    const stackedBarChartWidth = (width * 60) / 100;
+    const pieChartWidth = Math.min(width * 0.4, height);
+    const stackedBarChartWidth = width - pieChartWidth;
 
-    const radius = Math.min(pieChartWidth, height) / 2;
+    const radius = pieChartWidth / 2;
     const createElement = (parent, element, className, data, dataCheck) => {
       const selection = parent
         .selectAll(element + '.' + className)
@@ -101,11 +101,7 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
       (d) => d
     ).attr(
       'transform',
-      'translate(' +
-        (width - stackedBarChartWidth) +
-        ',' +
-        (margin.top + legendHeight) +
-        ')'
+      'translate(' + pieChartWidth + ',' + (margin.top + legendHeight) + ')'
     );
     const legendContainer = createElement(
       svg,
@@ -195,9 +191,9 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
 
     const legendScale = scaleBand()
       .domain(chartDataColumns)
-      .range([15, (width * 60) / 100 - margin.right]);
+      .range([15, stackedBarChartWidth - margin.right]);
     const xScale = scaleLinear()
-      .range([15, (width * 60) / 100 - margin.right])
+      .range([15, stackedBarChartWidth - margin.right])
       .domain([0, max(chartData, (d) => d.total)])
       .nice();
 
@@ -427,14 +423,15 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
     };
 
     const enterAndUpdatePieChartPathAndText = () => {
-      const slices = pieChartG
+      const pieD = d3pie(pieData);
+      const slicesPath = pieChartG
         .selectAll('path.slice')
-        .data(d3pie(pieData), (d) => d.data.label);
+        .data(pieD, (d) => d.data.label);
 
-      const slice = slices
+      slicesPath
         .enter()
         .append('path')
-        .merge(slices)
+        .merge(slicesPath)
         .style('fill', '#C0C0C0')
         .attr('class', 'slice')
         .attr('stroke', 'white')
@@ -445,26 +442,30 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
           this._current = i(0);
           return pathArc(d);
         });
-      slices.exit().remove();
-
-      slices
+      slicesPath.exit().remove();
+      const slicesText = pieChartG
+        .selectAll('text.slice-value')
+        .data(pieD, (d) => d.data.label);
+      slicesText
         .enter()
         .append('text')
+        .merge(slicesText)
         .attr('class', 'slice-value')
         .attr('dy', '.35em')
         .attr('text-anchor', 'middle')
-        .attr('font-size', (d) => d.value / 10 + radius / 20)
+        .attr('font-size', (d) => d.value / 10 + radius / 20 + 'px')
         .attr('font-weight', 'bold')
         .attr('fill', '#535353')
+        .attr('transform', function (d) {
+          d.innerRadius = innerRadius;
+          d.outerRadius = outerRadius;
+          return 'translate(' + pathArc.centroid(d) + ') rotate(15)';
+        })
         .text(function (d, i) {
           return d.value + '%';
         });
-      slice.exit().remove();
-      selectAll('.slice-value').attr('transform', function (d) {
-        d.innerRadius = innerRadius;
-        d.outerRadius = outerRadius;
-        return 'translate(' + pathArc.centroid(d) + ') rotate(15)';
-      });
+      slicesText.exit().remove();
+      // selectAll('.slice-value');
     };
 
     const enterAndUpdateLegend = () => {
@@ -559,8 +560,12 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
 
   useEffect(() => {
     init();
+    let timeout;
     const handleResize = () => {
-      init();
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        init();
+      }, 200);
     };
     window.addEventListener('resize', handleResize);
     return () => {

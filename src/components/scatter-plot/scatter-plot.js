@@ -11,22 +11,22 @@ const ScatterPlot = ({chartData}) => {
   const parent = useRef(null);
 
   const init = useCallback(() => {
-    const margin = {top: 20, right: 20, bottom: 100, left: 250};
+    const margin = {top: 20, right: 30, bottom: 100, left: 250};
     const leftTickSpace = 40;
     const colorData = ['A', 'B', 'C', 'D', 'F'];
     const color = scaleOrdinal()
       .domain(colorData)
       .range(['#949acd', '#8cccd8', '#ffdfa3', '#ffbaaf', '#cd98ae']);
+    const isMobileScreen = parent.current.clientWidth <= 658;
+    if (isMobileScreen) {
+      margin.left = 100;
+    }
+
     const width = Math.max(
-      Math.min(parent.current.clientWidth, 1608) - margin.left - margin.right,
+      parent.current.clientWidth - margin.left - margin.right,
       50
     );
-    const height = Math.max(
-      Math.min(parent.current.clientWidth, 1608) * 0.62 -
-        margin.top -
-        margin.bottom,
-      50
-    );
+    const height = (isMobileScreen ? 500 : 850) - margin.top - margin.bottom;
     const xValue = (d) => {
       return parseFloat(d['totalScore']);
     };
@@ -51,19 +51,21 @@ const ScatterPlot = ({chartData}) => {
         return color('F');
       }
     };
-
     const xScale = scaleLinear()
       .range([0, width])
       .domain([
         Math.max(0, min(chartData, xValue) - min(chartData, xValue) * 0.1),
         Math.min(max(chartData, xValue) + max(chartData, xValue) * 0.03, 100),
-      ]);
+      ])
+      .nice();
     const maxLimit = max(chartData, yValue);
     const yScale = scaleLinear()
       .range([height, 0])
       .domain([-8, maxLimit + maxLimit * 0.18]);
 
-    const xAxis = axisBottom(xScale).ticks(10).tickSize(-height);
+    const xAxis = axisBottom(xScale)
+      .ticks(Math.max(parent.current.clientWidth / 160, 3))
+      .tickSize(-height);
     const yAxis = axisLeft(yScale).ticks(10).tickSize(-width);
 
     const tooltipAnimation = (duration) =>
@@ -109,6 +111,9 @@ const ScatterPlot = ({chartData}) => {
         if (allText.indexOf('($)') > -1) {
           words = allText.replace('($)', '').split(/\s+/).reverse();
         }
+        if (allText.indexOf('(out of 100)') > -1 && isMobileScreen) {
+          words = allText.replace('(out of 100)', '').split(/\s+/).reverse();
+        }
         while ((word = words.pop())) {
           line.push(word);
           tspan.text(line.join(' '));
@@ -129,48 +134,85 @@ const ScatterPlot = ({chartData}) => {
         if (allText.indexOf('($)') > -1) {
           text.append('tspan').text(' ($)');
         }
+        if (allText.indexOf('(out of 100)') > -1 && isMobileScreen) {
+          text.select('tspan').attr('dy', 0 * lineHeight + dy + 'em');
+          text
+            .append('tspan')
+            .attr('x', 0)
+            .attr('dx', -5)
+            .attr('y', 0)
+            .attr('dy', 1 * lineHeight + dy + 'em')
+            .style('font-weight', 'normal')
+            .text(' (out of 100)');
+        }
       });
     };
     const yLabelSelection = legendG
       .selectAll('text.yLabel')
       .data(['Public Health Funding Per Capita($)'], (d) => d);
-    yLabelSelection
+    const ylabelText = yLabelSelection
       .enter()
       .append('text')
-      .merge(yLabelSelection)
+      .merge(yLabelSelection);
+    ylabelText
       .attr('class', 'yLabel')
-      .attr(
-        'transform',
-        `translate(${(margin.left - leftTickSpace) / 2}, ${height / 2})`
-      )
       .style('font-size', '24px')
       .style('text-anchor', 'middle')
       .attr('dy', '.35em')
       .attr('alignment-baseline', 'center')
       .style('fill', '#535353')
       .attr('dx', -5)
-      .text((d) => d)
-      .call(wrap, margin.left - leftTickSpace - 50);
+      .text((d) => d);
+    if (!isMobileScreen) {
+      ylabelText
+        .attr(
+          'transform',
+          `translate(${(margin.left - leftTickSpace) / 2}, ${height / 2})`
+        )
+        .call(wrap, margin.left - leftTickSpace - 50);
+    } else {
+      ylabelText
+        .style('font-size', '20px')
+        .attr(
+          'transform',
+          `translate(${(margin.left - leftTickSpace) / 2}, ${
+            height / 2
+          })rotate(-90)`
+        )
+        .call(wrap, height);
+    }
     yLabelSelection.exit().remove();
     const xLabelSelection = legendG
       .selectAll('text.xLabel')
       .data(['State Grade Score (out of 100)'], (d) => d);
-    xLabelSelection
+    const xLabelText = xLabelSelection
       .enter()
       .append('text')
       .merge(xLabelSelection)
       .attr('class', 'xLabel')
-      .attr('x', margin.left + width / 2)
-      .attr('y', margin.top + (margin.bottom - 10) + height)
       .style('text-anchor', 'middle')
-      .style('font-size', '24px')
+      .style('font-size', isMobileScreen ? '20px' : '24px')
       .style('fill', '#535353')
       .style('font-weight', 'bold')
-      .style('dominant-baseline', 'middle');
+      .style('dominant-baseline', 'middle')
+      .text('State Grade Score (out of 100)')
+      .attr(
+        'transform',
+        `translate(${margin.left + width / 2}, ${
+          margin.top + margin.bottom - margin.bottom / 3 - 5 + height
+        })`
+      );
     xLabelSelection.exit().remove();
-    const xLabelT = legendG.selectAll('text.xLabel').text(null);
-    xLabelT.append('tspan').text('State Grade Score ');
-    xLabelT.append('tspan').style('font-weight', 'normal').text('(out of 100)');
+    if (isMobileScreen) {
+      xLabelText.call(wrap, width);
+    } else {
+      const xLabelT = legendG.selectAll('text.xLabel').text(null);
+      xLabelT.append('tspan').text('State Grade Score ');
+      xLabelT
+        .append('tspan')
+        .style('font-weight', 'normal')
+        .text('(out of 100)');
+    }
 
     const gSelection = svgContainer.selectAll('g.g-group').data([1], (d) => d);
 
@@ -319,9 +361,7 @@ const ScatterPlot = ({chartData}) => {
       .enter()
       .append('circle')
       .attr('class', 'dot')
-      .attr('r', 8)
       .style('fill-opacity', '0.7')
-      .style('stroke-width', '3px')
       .on('click', function (d) {
         toggleTooltip(this, d);
       })
@@ -335,6 +375,8 @@ const ScatterPlot = ({chartData}) => {
         tipMouseout(this, d);
       })
       .merge(circleDot)
+      .style('stroke-width', isMobileScreen ? '2px' : '3px')
+      .attr('r', isMobileScreen ? 3 : 8)
       .style('fill', function (d) {
         return '#' + d.state.replace(/ /gi, '-') + 'tooltip'.empty()
           ? 'transparent'
