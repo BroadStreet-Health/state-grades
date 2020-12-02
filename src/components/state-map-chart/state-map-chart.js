@@ -106,7 +106,7 @@ const StateMapChart = ({selectedState}) => {
             <UsMapChart showDetails={showDetails} />
           </div>
         </Col>
-        {showDetails ? (
+        {showDetails?.stateRank ? (
           <Col lg={4} className="text-left">
             <Row className="fs-34 font-weight-bold pt-5 pl-3">
               <GradeBadge
@@ -114,10 +114,7 @@ const StateMapChart = ({selectedState}) => {
                 value={showDetails.stateGrade}
               />{' '}
               <h3 className="px-3 fs-34 font-weight-bold">
-                {showDetails?.state}{' '}
-                {showDetails?.abbreviation
-                  ? `(${showDetails?.abbreviation})`
-                  : ''}
+                {showDetails?.state} ({showDetails?.abbreviation})
               </h3>
             </Row>
             <div className="pt-5 d-flex justify-content-start">
