@@ -19,7 +19,7 @@ const OurMethods = () => {
   }, [dispatch]);
   console.log(subGradeColumns, 'subGradeColumns');
   return (
-    <div id="our-methods" className="text-center bg-light px-md-5">
+    <div id="our-methods" className="text-center bg-light px-xl-5">
       <h2 className={'fs-45 font-weight-bold'}>Our Methods</h2>
       <div className="text-left">
         <h5 className="fs-24">

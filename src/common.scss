@@ -364,3 +364,7 @@ button {
     transform: translate(50%, 0%);
   }
 }
+
+text {
+  user-select: none;
+}

@@ -20,6 +20,7 @@ const ScatterPlot = ({chartData}) => {
     const isMobileScreen = parent.current.clientWidth <= 658;
     if (isMobileScreen) {
       margin.left = 100;
+      margin.right = 20;
     }
 
     const width = Math.max(

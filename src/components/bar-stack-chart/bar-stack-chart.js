@@ -10,7 +10,7 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
   const parent = useRef(null);
 
   const init = useCallback(() => {
-    const margin = {top: 10, right: 20, bottom: 20, left: 150};
+    const margin = {top: 10, right: 0, bottom: 40, left: 150};
     const legendHeight = 75;
     const stackBarSpace = 6;
     const innerRadius = 0.54;
@@ -35,7 +35,7 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
     const height = Math.max(600 - margin.top - margin.bottom, 50);
     const pieChartWidth = Math.min(width * 0.4, height);
     const stackedBarChartWidth = width - pieChartWidth;
-
+    const isMobileScreen = width < 1400;
     const radius = pieChartWidth / 2;
     const createElement = (parent, element, className, data, dataCheck) => {
       const selection = parent
@@ -83,6 +83,7 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
               .attr('y', y)
               .attr('dx', -5)
               .attr('dy', ++lineNumber * lineHeight + dy + 'em')
+              .style('font-weight', word === 'Scores from' ? 'normal' : null)
               .text(word);
           }
         }
@@ -146,7 +147,7 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
       .attr('class', 'pie-center-label')
       .attr('text-anchor', 'middle')
       .attr('font-weight', 'bold')
-      .attr('font-size', '34px')
+      .attr('font-size', radius * 0.1 + 'px')
       .attr('fill', (d, i) => (i === 2 ? '#008faa' : '#535353'))
       .attr('dy', (d, i) => range(-1, 2.8, 1.4)[i] + 'em')
       .text((d) => d);
@@ -168,8 +169,13 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
     );
     xAxisLabel
       .attr('class', 'xLabelText')
-      .attr('x', margin.left + stackedBarChartWidth / 2)
-      .attr('y', height)
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('dy', 0)
+      .attr(
+        'transform',
+        `translate(${margin.left + stackedBarChartWidth / 2},${height})`
+      )
       .style('text-anchor', 'middle')
       .style('font-size', '18px')
       .style('font-weight', 'bold')
@@ -178,7 +184,8 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
       .style('fill', '#535353')
       .text(
         'Counts Represent the number of states in each respective subgrade category'
-      );
+      )
+      .call(wrap, stackedBarChartWidth);
 
     const yAxisG = createElement(stackedBarChartG, 'g', 'y', [1], (d) => d);
     yAxisG
@@ -530,19 +537,41 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
       rangeText
         .attr('class', 'range')
         .attr('x', 0)
-        .attr('y', 50)
-        .style('font-size', '18')
+        .attr('y', 0)
+        .attr('dy', 0)
+        .style('font-size', isMobileScreen ? '16px' : '18px')
         .style('fill', '#535353')
-        .style('font-weight', 'normal')
+        // .style('font-weight', 'bold')
         .style('font-style', 'italic')
         .style('text-anchor', 'middle')
         .style('dominant-baseline', 'central')
+        .attr('transform', `translate(${0},${50})`)
         .text(null);
-      rangeText.append('tspan').text('Scores from ');
-      rangeText
-        .append('tspan')
-        .text((d) => rangeObj[d])
-        .style('font-weight', 'bold');
+      if (isMobileScreen) {
+        rangeText
+          .append('tspan')
+          .attr('x', '0')
+          .attr('y', '0')
+          .attr('dy', '0em')
+          .style('font-weight', 'normal')
+          .text('Scores from ');
+        rangeText
+          .append('tspan')
+          .attr('x', '0')
+          .attr('y', '0')
+          .attr('dy', '1em')
+          .text((d) => rangeObj[d])
+          .style('font-weight', 'bold');
+      } else {
+        rangeText
+          .append('tspan')
+          .style('font-weight', 'normal')
+          .text('Scores from ');
+        rangeText
+          .append('tspan')
+          .text((d) => rangeObj[d])
+          .style('font-weight', 'bold');
+      }
     };
     const midAngle = (d) => {
       return d.startAngle + (d.endAngle - d.startAngle) / 2 / (Math.PI / 1.3);
