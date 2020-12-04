@@ -41,7 +41,9 @@ const OurMethods = () => {
           variable definitions to standardize the process. This crowdsourced
           approach enabled faster, more efficient data collection.{' '}
           <span className="text-primary">
-            <a>Download our data.</a>
+            <a href="https://docs.google.com/spreadsheets/d/1Fnz9nGIaZqjK_h6xLERaVuFom2EDhSYI9XbLjPzKFKI/export?format=xlsx">
+              Download our data.
+            </a>
           </span>
         </h5>
         <h3 className="fs-34 font-weight-bold pt-5">
