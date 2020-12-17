@@ -57,7 +57,7 @@ const StateDataAvailabilityTable = () => {
         'Data on exposure, symptoms, and underlying health conditions.',
     },
     {
-      name: 'Outcome And Preparedness',
+      name: 'Outcomes And Preparedness',
       tooltipText:
         'Data on hospitalized patients and hospital capacity and preparedness.',
     },

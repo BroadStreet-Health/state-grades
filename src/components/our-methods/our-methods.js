@@ -110,8 +110,8 @@ const OurMethods = () => {
         </h5>
         <h3 className="fs-34 font-weight-bold pt-5">Special Populations</h3>
         <h5 className="fs-24">
-          COVID-19 experiences ol vulnerable populations such as health care
-          workers. incarcerated people. and nursing home residents require
+          COVID-19 experiences of vulnerable populations such as health care
+          workers, incarcerated people, and nursing home residents require
           special attention. These populations experience the COVID-19 impact at
           the frontlines and face a considerable level of risk. Gathering data
           on special populations enables policy action and prevention strategies
@@ -122,7 +122,7 @@ const OurMethods = () => {
         </h3>
         <h5 className="fs-24">
           Data on cases by exposure, signs and symptoms, and underlying health
-          conditions help epidemiologists, public health professions, and
+          conditions help epidemiologists, public health professionals, and
           healthcare workers to better understand the spread and behavior of the
           virus.
         </h5>
@@ -138,12 +138,12 @@ const OurMethods = () => {
         </h5>
         <h3 className="fs-34 font-weight-bold pt-5">Data Quality</h3>
         <h5 className="fs-24">
-          States must provide accurate, relevant. and consistent data on public
+          States must provide accurate, relevant, and consistent data on public
           COVID-19 dashboards to set high standards for reporting methods and
           reliable comparisons.{' '}
           <span className="text-primary">
             <a href="https://covid19dataproject.org/data-policy-project">
-              Learn more about &quot;good data&quot;
+              Learn more about &quot;good data&quot;.
             </a>
           </span>
         </h5>

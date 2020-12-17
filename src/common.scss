@@ -368,3 +368,7 @@ button {
 text {
   user-select: none;
 }
+
+.tooltip-icon {
+  display: table-caption !important;
+}

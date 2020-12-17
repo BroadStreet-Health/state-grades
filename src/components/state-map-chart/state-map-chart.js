@@ -36,7 +36,7 @@ const StateMapChart = ({selectedState}) => {
         [
           'Demographics',
           'Case, testing, and death data by race, ethnicity, sex, and age.',
-          'demographicsScor',
+          'demographicsScore',
           'demographicsSubgrade',
         ],
         [
@@ -90,6 +90,11 @@ const StateMapChart = ({selectedState}) => {
       if (scoreArray[5].subgrade == 'F' || scoreArray[5].subgrade == 'D') {
         selected['topImprovement'].push(scoreArray[5]);
       }
+      if (
+        ['Maine', 'Nebraska', 'North Dakota'].indexOf(selected['state']) !== -1
+      ) {
+        selected['topImprovement'].reverse();
+      }
       setShowDetails(selected);
     }
   }, [data, setShowDetails, selectedState]);
@@ -140,12 +145,14 @@ const StateMapChart = ({selectedState}) => {
                   showDetails?.topStrength.map((top, i) => {
                     return (
                       <div className="d-flex" key={i}>
-                        <h3 className="fs-34 font-weight-bold">{top.title}</h3>
-                        <Tooltip
-                          placement="bottom"
-                          styleName="px-2 fs-14 mt-13px"
-                          text={top.tooltip}
-                        />
+                        <h3 className="fs-34 font-weight-bold">
+                          {top.title}
+                          <Tooltip
+                            placement="bottom"
+                            styleName="px-2 fs-14 mt-13px"
+                            text={top.tooltip}
+                          />
+                        </h3>
                       </div>
                     );
                   })
@@ -163,12 +170,14 @@ const StateMapChart = ({selectedState}) => {
                   showDetails?.topImprovement.map((top, i) => {
                     return (
                       <div className="d-flex" key={i}>
-                        <h3 className="fs-34 font-weight-bold">{top.title}</h3>
-                        <Tooltip
-                          placement="bottom"
-                          styleName="px-2 fs-14 mt-13px"
-                          text={top.tooltip}
-                        />
+                        <h3 className="fs-34 font-weight-bold">
+                          {top.title}
+                          <Tooltip
+                            placement="bottom"
+                            styleName="px-2 fs-14 mt-13px"
+                            text={top.tooltip}
+                          />
+                        </h3>
                       </div>
                     );
                   })
@@ -200,17 +209,6 @@ const StateMapChart = ({selectedState}) => {
                     </a>
                   </div>
                 ) : null}
-              </Col>
-              <Col>
-                <div className="pink-container p-3 text-center">
-                  Click to reveal annotations for
-                  <br />
-                  <br />
-                  <strong className="fs-34 font-weight-bold ">
-                    {' '}
-                    1.08-1.16
-                  </strong>
-                </div>
               </Col>
             </Row>
           </Col>

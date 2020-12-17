@@ -87,7 +87,7 @@ const UsMapChart = ({showDetails}) => {
         });
       enterLegends
         .append('text')
-        .attr('x', 20)
+        .attr('x', 15)
         .attr('y', 10)
         // .attr("dy", ".35em")
         .text(function (d, i) {

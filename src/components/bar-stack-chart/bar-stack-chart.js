@@ -174,7 +174,7 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
       .attr('dy', 0)
       .attr(
         'transform',
-        `translate(${margin.left + stackedBarChartWidth / 2},${height})`
+        `translate(${margin.left + stackedBarChartWidth / 2},${height - 20})`
       )
       .style('text-anchor', 'middle')
       .style('font-size', '18px')
@@ -183,7 +183,7 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
       .style('dominant-baseline', 'middle')
       .style('fill', '#535353')
       .text(
-        'Counts Represent the number of states in each respective subgrade category'
+        'Counts represent the number of states in each respective subgrade category.'
       )
       .call(wrap, stackedBarChartWidth);
 

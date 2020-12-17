@@ -23,13 +23,18 @@ const Tooltip = (props) => {
   );
 
   return (
-    <div className={styleName}>
+    <span className={styleName}>
       <OverlayTrigger placement={placement} overlay={popover}>
-        <Badge pill variant="info" className="text-white" role="button">
+        <Badge
+          pill
+          variant="info"
+          className="tooltip-icon px-1 text-white"
+          role="button"
+        >
           i
         </Badge>
       </OverlayTrigger>
-    </div>
+    </span>
   );
 };
 

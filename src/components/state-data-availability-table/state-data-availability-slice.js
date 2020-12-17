@@ -60,7 +60,7 @@ const groupBy = (array, key) => {
       currentValue
     );
     return result;
-  });
+  }, []);
 };
 
 export const selectStateGrades = (state) => state.stateGrade.stateGrades;

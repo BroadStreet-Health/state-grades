@@ -34,6 +34,15 @@ export const getAuthorsLinks = () => (dispatch) => {
 
 export const getStateDashboardLinks = () => (dispatch) => {
   d3.csv('./assets/data/stateDashboard.csv').then((data) => {
+    const State = [
+      'America Samoa',
+      'District of Columbia',
+      'Guam',
+      'Northern Mariana Islands',
+      'Puerto Rico',
+      'Virgin Islands',
+    ];
+    data = data.filter((d) => State.indexOf(d['State']) === -1);
     const stateDashboard = data.map((val) => {
       return {name: val['State'], link: val['COVID-19 site (primary)']};
     });

@@ -7,7 +7,9 @@ export default function TopNav() {
   return (
     <>
       <Col lg={4}>
-        <img src="./logo.svg" className={style.logo} alt="Logo" />
+        <a href="https://covid19dataproject.org/">
+          <img src="./logo.svg" className={style.logo} alt="Logo" />
+        </a>
       </Col>
       <Col lg={8}>
         <h1 className={'fs-60 text-right font-weight-bold text-primary mb-0'}>

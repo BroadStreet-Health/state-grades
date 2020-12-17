@@ -29,6 +29,9 @@ export default configureStore({
 
 export const getStateGradesAndFundingImpact = () => (dispatch) => {
   d3.csv('./assets/data/stateGrades.csv').then((data) => {
+    data = data.filter((d) => {
+      return d['State Rank'] !== '';
+    });
     const stateGrades = data.map((val) => {
       return {
         state: val['State'],

@@ -10,21 +10,21 @@ function App() {
   const location = useLocation();
   const pages = [
     {
-      pageLink: '/:code',
+      pageLink: ['/:code', '/'],
       view: Home,
       isExact: true,
       displayName: 'Home',
     },
-    {
-      pageLink: '/',
-      view: Home,
-      isExact: false,
-      displayName: 'Home',
-    },
   ];
   return (
-    <div className="App">
-      <Suspense fallback={<Spinner animation="border" variant="primary" />}>
+    <div className="App h-100">
+      <Suspense
+        fallback={
+          <div className="h-100 d-flex justify-content-center align-items-center">
+            <Spinner animation="border" variant="primary" />
+          </div>
+        }
+      >
         <Switch location={location}>
           {pages.map((page, index) => {
             return (
