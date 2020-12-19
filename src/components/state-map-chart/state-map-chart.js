@@ -8,9 +8,10 @@ import React, {useEffect, useState} from 'react';
 import {Row, Col} from 'react-bootstrap';
 import {useSelector} from 'react-redux';
 
-const StateMapChart = ({selectedState}) => {
+const StateMapChart = () => {
   const data = useSelector(selectUSMapData);
   const [showDetails, setShowDetails] = useState(null);
+  const [selectedState, setSelectedState] = useState(null);
 
   useEffect(() => {
     if (data && selectedState) {
@@ -96,8 +97,14 @@ const StateMapChart = ({selectedState}) => {
         selected['topImprovement'].reverse();
       }
       setShowDetails(selected);
+    } else {
+      setShowDetails(null);
     }
   }, [data, setShowDetails, selectedState]);
+
+  const changeSelectedState = (abbreviation) => {
+    setSelectedState(abbreviation);
+  };
 
   return (
     <div className="justify-content-center text-center">
@@ -105,10 +112,13 @@ const StateMapChart = ({selectedState}) => {
         How available is your state’s data?{' '}
         <span className="font-weight-bold">Click a state to learn more.</span>
       </h3>
-      <Row noGutters className={'justify-content-center'}>
+      <Row noGutters className={'justify-content-center align-items-center'}>
         <Col lg={8}>
-          <div className="pt-lg-5 px-lg-5 mx-xl-5">
-            <UsMapChart showDetails={showDetails} />
+          <div className="pt-lg-5 px-lg-2 px-xl-5 mx-xl-5">
+            <UsMapChart
+              showDetails={showDetails}
+              changeSelectedState={changeSelectedState}
+            />
           </div>
         </Col>
         {showDetails?.stateRank ? (

@@ -13,11 +13,9 @@ import TopNav from '../../components/top-nav/top-nav';
 import React, {useEffect} from 'react';
 import {Col, Container, Row} from 'react-bootstrap';
 import {useDispatch} from 'react-redux';
-import {useParams} from 'react-router-dom';
 
 export default function Home() {
   const dispatch = useDispatch();
-  const {code} = useParams();
   useEffect(() => {
     dispatch(getStateGradesAndFundingImpact());
     dispatch(getWeightRollups());
@@ -31,7 +29,7 @@ export default function Home() {
         </Row>
         <Row className="px-md-5 py-5">
           <Col>
-            <StateMapChart selectedState={code} />
+            <StateMapChart />
           </Col>
         </Row>
         <Row className="bg-light px-md-4 py-5">

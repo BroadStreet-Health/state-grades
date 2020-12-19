@@ -6,12 +6,10 @@ import {select} from 'd3-selection';
 import {area, curveBasisClosed} from 'd3-shape';
 import React, {useEffect, useCallback, useRef} from 'react';
 import {useSelector} from 'react-redux';
-import {useHistory} from 'react-router-dom';
 
-const UsMapChart = ({showDetails}) => {
+const UsMapChart = ({showDetails, changeSelectedState}) => {
   const svgRef = useRef(null);
   const data = useSelector(selectUSMapData);
-  const history = useHistory();
   const fillStateColorAndEvent = useCallback(() => {
     const colorData = ['A', 'B', 'C', 'D', 'F'];
     const tSelection = select('body')
@@ -38,10 +36,10 @@ const UsMapChart = ({showDetails}) => {
         .select('#Layer_1-2')
         .select('#' + e.abbreviation)
         .on('click', () =>
-          history.push(
+          changeSelectedState(
             e.abbreviation !== showDetails?.abbreviation
-              ? `/${e.abbreviation.toLowerCase()}`
-              : '/'
+              ? e.abbreviation.toLowerCase()
+              : ''
           )
         )
         .on('mouseover', function (event) {
@@ -150,7 +148,7 @@ const UsMapChart = ({showDetails}) => {
       tooltip.style('visibility', 'hidden'); // don't care about position!
     };
     createAndUpdateLegends();
-  }, [data, history, showDetails]);
+  }, [data, showDetails, changeSelectedState]);
 
   useEffect(() => {
     fillStateColorAndEvent();

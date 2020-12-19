@@ -243,9 +243,10 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
       const pos = outerArc.centroid(centerObj);
       const lastPointerPosition = [];
       lastPointerPosition[0] =
-        pieChartWidth - pieChartWidth / 2 + textBBox.x + margin.left - 5;
-      lastPointerPosition[1] =
-        -(height / 2) + margin.top + textBBox.y + textBBox.height / 2;
+        pieChartWidth - pieChartWidth / 2 + textBBox.x + margin.left;
+      const textBoxX =
+        textBBox.height > 25 ? textBBox.height / 2 : textBBox.height / 2 - 5;
+      lastPointerPosition[1] = -(height / 2) + textBBox.y + textBoxX;
 
       const x = d.startAngle + (d.endAngle - d.startAngle) / 2 - Math.PI / 2;
       if (d.startAngle < centerAngle || d.endAngle < centerAngle) {
