@@ -372,3 +372,20 @@ text {
 .tooltip-icon {
   display: table-caption !important;
 }
+
+.mr-33 {
+  margin-right: -33% !important;
+}
+
+.mr-0 {
+  margin-right: 0 !important;
+}
+
+.transition-animation {
+  display: flex;
+  margin-right: 0;
+  transition: all 500ms ease-in-out;
+  transition-property: justify-content, margin-right, width, min-width,
+  background-color, color;
+  width: 33.33333%;
+}

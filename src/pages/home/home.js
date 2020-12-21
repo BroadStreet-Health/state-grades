@@ -27,8 +27,8 @@ export default function Home() {
         <Row className="px-md-5 py-5 mt-2">
           <TopNav />
         </Row>
-        <Row className="px-md-5 py-5">
-          <Col>
+        <Row className="px-md-5 px-lg-3 py-5">
+          <Col className="p-0">
             <StateMapChart />
           </Col>
         </Row>

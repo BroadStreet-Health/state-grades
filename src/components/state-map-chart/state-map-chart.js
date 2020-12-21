@@ -53,7 +53,7 @@ const StateMapChart = () => {
           'exposureAndClinicalIndicationsSubgrade',
         ],
         [
-          'Outcome And Preparedness',
+          'Outcomes And Preparedness',
           'Data on hospitalized patients and hospital capacity and preparedness.',
           'outcomesAndPreparednessScore',
           'outcomesAndPreparednessSubgrade',
@@ -107,7 +107,7 @@ const StateMapChart = () => {
   };
 
   return (
-    <div className="justify-content-center text-center">
+    <div className="justify-content-center text-center overflow-hidden">
       <h3 className="fs-34">
         How available is your state’s data?{' '}
         <span className="font-weight-bold">Click a state to learn more.</span>
@@ -121,108 +121,115 @@ const StateMapChart = () => {
             />
           </div>
         </Col>
-        {showDetails?.stateRank ? (
-          <Col lg={4} className="text-left">
-            <Row className="fs-34 font-weight-bold pt-5 pl-3">
-              <GradeBadge
-                styleName="text-center"
-                value={showDetails.stateGrade}
-              />{' '}
-              <h3 className="px-3 fs-34 font-weight-bold">
-                {showDetails?.state} ({showDetails?.abbreviation})
-              </h3>
-            </Row>
-            <div className="pt-5 d-flex justify-content-start">
-              <div className="mr-4">
-                <div className="fs-24"> Rank </div>
-                <div className="fs-34 font-weight-bold">
-                  {' '}
-                  #{showDetails?.stateRank}{' '}
+        <div
+          className={
+            'transition-animation ' +
+            (showDetails && showDetails?.stateRank ? 'mr-0' : 'mr-33')
+          }
+        >
+          {showDetails?.stateRank ? (
+            <Col lg={12} className="text-left p-0">
+              <Row className="fs-34 font-weight-bold pt-5 pl-3">
+                <GradeBadge
+                  styleName="text-center"
+                  value={showDetails.stateGrade}
+                />{' '}
+                <h3 className="px-3 fs-34 font-weight-bold">
+                  {showDetails?.state} ({showDetails?.abbreviation})
+                </h3>
+              </Row>
+              <div className="pt-5 d-flex justify-content-start">
+                <div className="mr-4">
+                  <div className="fs-24"> Rank </div>
+                  <div className="fs-34 font-weight-bold">
+                    {' '}
+                    #{showDetails?.stateRank}{' '}
+                  </div>
+                </div>
+                <div className="ml-5">
+                  <div className="fs-24"> Score </div>
+                  <div className="fs-34 font-weight-bold">
+                    {' '}
+                    {Math.round(showDetails?.totalScore)} / 100{' '}
+                  </div>
                 </div>
               </div>
-              <div className="ml-5">
-                <div className="fs-24"> Score </div>
-                <div className="fs-34 font-weight-bold">
-                  {' '}
-                  {Math.round(showDetails?.totalScore)} / 100{' '}
-                </div>
-              </div>
-            </div>
-            <Row className="pt-5" noGutters>
-              <Col>
-                <div className="fs-24"> Top Areas of Strength </div>
-                {showDetails?.topStrength.length > 0 ? (
-                  showDetails?.topStrength.map((top, i) => {
-                    return (
-                      <div className="d-flex" key={i}>
-                        <h3 className="fs-34 font-weight-bold">
-                          {top.title}
-                          <Tooltip
-                            placement="bottom"
-                            styleName="px-2 fs-14 mt-13px"
-                            text={top.tooltip}
-                          />
-                        </h3>
-                      </div>
-                    );
-                  })
-                ) : (
-                  <div className="d-flex">
-                    <h3 className="fs-34 font-weight-bold">None</h3>
-                  </div>
-                )}
-              </Col>
-            </Row>
-            <Row className="pt-5" noGutters>
-              <Col>
-                <div className="fs-24"> Top Areas of Improvement</div>
-                {showDetails?.topImprovement.length > 0 ? (
-                  showDetails?.topImprovement.map((top, i) => {
-                    return (
-                      <div className="d-flex" key={i}>
-                        <h3 className="fs-34 font-weight-bold">
-                          {top.title}
-                          <Tooltip
-                            placement="bottom"
-                            styleName="px-2 fs-14 mt-13px"
-                            text={top.tooltip}
-                          />
-                        </h3>
-                      </div>
-                    );
-                  })
-                ) : (
-                  <div className="d-flex">
-                    <h3 className="fs-34 font-weight-bold">None</h3>
-                  </div>
-                )}
-              </Col>
-            </Row>
-            <Row className="pt-5" noGutters>
-              <Col className="fs-24">
-                <div> Contact State DOH </div>
-                <div>
-                  <a
-                    className="font-weight-bold text-primary"
-                    href={showDetails?.covid19Site}
-                  >
-                    Website
-                  </a>
-                </div>
-                {showDetails?.contactInfo ? (
+              <Row className="pt-5" noGutters>
+                <Col>
+                  <div className="fs-24"> Top Areas of Strength </div>
+                  {showDetails?.topStrength.length > 0 ? (
+                    showDetails?.topStrength.map((top, i) => {
+                      return (
+                        <div className="d-flex" key={i}>
+                          <h3 className="fs-34 font-weight-bold">
+                            {top.title}
+                            <Tooltip
+                              placement="bottom"
+                              styleName="px-2 fs-14 mt-13px"
+                              text={top.tooltip}
+                            />
+                          </h3>
+                        </div>
+                      );
+                    })
+                  ) : (
+                    <div className="d-flex">
+                      <h3 className="fs-34 font-weight-bold">None</h3>
+                    </div>
+                  )}
+                </Col>
+              </Row>
+              <Row className="pt-5" noGutters>
+                <Col>
+                  <div className="fs-24"> Top Areas of Improvement</div>
+                  {showDetails?.topImprovement.length > 0 ? (
+                    showDetails?.topImprovement.map((top, i) => {
+                      return (
+                        <div className="d-flex" key={i}>
+                          <h3 className="fs-34 font-weight-bold">
+                            {top.title}
+                            <Tooltip
+                              placement="bottom"
+                              styleName="px-2 fs-14 mt-13px"
+                              text={top.tooltip}
+                            />
+                          </h3>
+                        </div>
+                      );
+                    })
+                  ) : (
+                    <div className="d-flex">
+                      <h3 className="fs-34 font-weight-bold">None</h3>
+                    </div>
+                  )}
+                </Col>
+              </Row>
+              <Row className="pt-5" noGutters>
+                <Col className="fs-24">
+                  <div> Contact State DOH </div>
                   <div>
                     <a
                       className="font-weight-bold text-primary"
-                      href={'mailto:' + showDetails?.contactInfo}
+                      href={showDetails?.covid19Site}
                     >
-                      Email
+                      Website
                     </a>
                   </div>
-                ) : null}
-              </Col>
-            </Row>
-          </Col>
-        ) : null}
+                  {showDetails?.contactInfo ? (
+                    <div>
+                      <a
+                        className="font-weight-bold text-primary"
+                        href={'mailto:' + showDetails?.contactInfo}
+                      >
+                        Email
+                      </a>
+                    </div>
+                  ) : null}
+                </Col>
+              </Row>
+            </Col>
+          ) : null}
+        </div>
       </Row>{' '}
     </div>
   );
