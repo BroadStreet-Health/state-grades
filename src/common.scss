@@ -332,6 +332,12 @@ button {
   }
 }
 
+@media (max-width: 768px) {
+  .transition-animation {
+    width: 100% !important;
+  }
+}
+
 .text-primary {
   a {
     &:hover {
@@ -388,4 +394,36 @@ text {
   transition-property: justify-content, margin-right, width, min-width,
   background-color, color;
   width: 33.33333%;
+}
+
+#footerLink {
+  display: inline;
+  margin: 0;
+  padding: 0;
+
+  li {
+    display: inline;
+    white-space: nowrap;
+
+    ::before {
+      content: ' ';
+    }
+
+    ::after {
+      background-image: linear-gradient(
+        90deg,
+        #fff 0,
+        #535353 1px,
+        #535353 4px,
+        #fff 0
+      );
+      background-position: center center;
+      background-repeat: no-repeat;
+      content: ' ';
+      margin-left: 10px;
+      margin-right: 10px;
+      white-space: normal;
+      word-spacing: -3px;
+    }
+  }
 }

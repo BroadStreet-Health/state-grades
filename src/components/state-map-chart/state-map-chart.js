@@ -165,7 +165,7 @@ const StateMapChart = () => {
                             {top.title}
                             <Tooltip
                               placement="bottom"
-                              styleName="px-2 fs-14 mt-13px"
+                              styleName="px-1 fs-14 mt-13px"
                               text={top.tooltip}
                             />
                           </h3>
@@ -190,7 +190,7 @@ const StateMapChart = () => {
                             {top.title}
                             <Tooltip
                               placement="bottom"
-                              styleName="px-2 fs-14 mt-13px"
+                              styleName="px-1 fs-14 mt-13px"
                               text={top.tooltip}
                             />
                           </h3>
