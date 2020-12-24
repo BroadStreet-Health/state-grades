@@ -255,7 +255,7 @@ function Grid(props) {
             ...row.map((cell, i) => (
               <div
                 key={`${line}-${i}`}
-                className="fs-34 font-weight-bold"
+                className="fs-34 fs-lg-28 font-weight-bold"
                 role="gridcell"
               >
                 {cell()}

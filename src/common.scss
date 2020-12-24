@@ -338,6 +338,12 @@ button {
   }
 }
 
+@media (max-width: 1280px) {
+  .fs-lg-28 {
+    font-size: 28px !important;
+  }
+}
+
 .text-primary {
   a {
     &:hover {

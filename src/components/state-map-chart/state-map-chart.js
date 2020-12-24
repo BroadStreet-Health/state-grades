@@ -108,7 +108,7 @@ const StateMapChart = () => {
 
   return (
     <div className="justify-content-center text-center overflow-hidden">
-      <h3 className="fs-34">
+      <h3 className="fs-34 fs-lg-28">
         How available is your state’s data?{' '}
         <span className="font-weight-bold">Click a state to learn more.</span>
       </h3>
@@ -129,39 +129,39 @@ const StateMapChart = () => {
         >
           {showDetails?.stateRank ? (
             <Col lg={12} className="text-left p-0">
-              <Row className="fs-34 font-weight-bold pt-5 pl-3">
+              <Row className="fs-34 fs-lg-28 font-weight-bold pt-xl-5 pt-lg-4 pl-3">
                 <GradeBadge
                   styleName="text-center"
                   value={showDetails.stateGrade}
                 />{' '}
-                <h3 className="px-3 fs-34 font-weight-bold">
+                <h3 className="px-3 fs-34 fs-lg-28 font-weight-bold">
                   {showDetails?.state} ({showDetails?.abbreviation})
                 </h3>
               </Row>
               <div className="pt-5 d-flex justify-content-start">
                 <div className="mr-4">
                   <div className="fs-24"> Rank </div>
-                  <div className="fs-34 font-weight-bold">
+                  <div className="fs-34 fs-lg-28 font-weight-bold">
                     {' '}
                     #{showDetails?.stateRank}{' '}
                   </div>
                 </div>
                 <div className="ml-5">
                   <div className="fs-24"> Score </div>
-                  <div className="fs-34 font-weight-bold">
+                  <div className="fs-34 fs-lg-28 font-weight-bold">
                     {' '}
                     {Math.round(showDetails?.totalScore)} / 100{' '}
                   </div>
                 </div>
               </div>
-              <Row className="pt-5" noGutters>
+              <Row className="pt-xl-5 pt-lg-4" noGutters>
                 <Col>
                   <div className="fs-24"> Top Areas of Strength </div>
                   {showDetails?.topStrength.length > 0 ? (
                     showDetails?.topStrength.map((top, i) => {
                       return (
                         <div className="d-flex" key={i}>
-                          <h3 className="fs-34 font-weight-bold">
+                          <h3 className="fs-34 fs-lg-28 font-weight-bold">
                             {top.title}
                             <Tooltip
                               placement="bottom"
@@ -174,19 +174,19 @@ const StateMapChart = () => {
                     })
                   ) : (
                     <div className="d-flex">
-                      <h3 className="fs-34 font-weight-bold">None</h3>
+                      <h3 className="fs-34 fs-lg-28 font-weight-bold">None</h3>
                     </div>
                   )}
                 </Col>
               </Row>
-              <Row className="pt-5" noGutters>
+              <Row className="pt-xl-5 pt-lg-4" noGutters>
                 <Col>
                   <div className="fs-24"> Top Areas of Improvement</div>
                   {showDetails?.topImprovement.length > 0 ? (
                     showDetails?.topImprovement.map((top, i) => {
                       return (
                         <div className="d-flex" key={i}>
-                          <h3 className="fs-34 font-weight-bold">
+                          <h3 className="fs-34 fs-lg-28 font-weight-bold">
                             {top.title}
                             <Tooltip
                               placement="bottom"
@@ -199,12 +199,12 @@ const StateMapChart = () => {
                     })
                   ) : (
                     <div className="d-flex">
-                      <h3 className="fs-34 font-weight-bold">None</h3>
+                      <h3 className="fs-34 fs-lg-28 font-weight-bold">None</h3>
                     </div>
                   )}
                 </Col>
               </Row>
-              <Row className="pt-5" noGutters>
+              <Row className="pt-xl-5 pt-lg-4" noGutters>
                 <Col className="fs-24">
                   <div> Contact State DOH </div>
                   <div>

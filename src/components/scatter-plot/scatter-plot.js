@@ -336,7 +336,7 @@ const ScatterPlot = ({chartData}) => {
         .style('z-index', '200')
         .style('cursor', 'pointer')
         .style('fill', function (d) {
-          return '#' + d.state.replace(/ /gi, '-') + 'tooltip'.empty()
+          return select('#' + d.state.replace(/ /gi, '-') + '-tooltip').empty()
             ? 'transparent'
             : cValue(d);
         });
