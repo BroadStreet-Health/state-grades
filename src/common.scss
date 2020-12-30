@@ -332,6 +332,12 @@ button {
   }
 }
 
+@media (max-width: 1866px) {
+  [role='gridcell'] > div {
+    min-width: 75px !important;
+  }
+}
+
 @media (max-width: 768px) {
   .transition-animation {
     width: 100% !important;
