@@ -112,7 +112,7 @@ const StateMapChart = () => {
         How available is your state’s data?{' '}
         <span className="font-weight-bold">Click a state to learn more.</span>
       </h3>
-      <Row noGutters className={'justify-content-center align-items-center'}>
+      <Row noGutters className={'justify-content-center'}>
         <Col lg={8}>
           <div className="pt-lg-5 px-lg-2 px-xl-5 mx-xl-5">
             <UsMapChart
@@ -165,7 +165,7 @@ const StateMapChart = () => {
                             {top.title}
                             <Tooltip
                               placement="bottom"
-                              styleName="px-1 fs-14 mt-13px"
+                              styleName="d-inline-block px-1 fs-14"
                               text={top.tooltip}
                             />
                           </h3>
@@ -190,7 +190,7 @@ const StateMapChart = () => {
                             {top.title}
                             <Tooltip
                               placement="bottom"
-                              styleName="px-1 fs-14 mt-13px"
+                              styleName="d-inline-block  px-1 fs-14"
                               text={top.tooltip}
                             />
                           </h3>
