@@ -161,7 +161,7 @@ const StateMapChart = () => {
                     showDetails?.topStrength.map((top, i) => {
                       return (
                         <div className="d-flex" key={i}>
-                          <h3 className="fs-34 fs-lg-28 font-weight-bold">
+                          <h3 className="fs-34 fs-lg-28 font-weight-bold mb-0">
                             {top.title}
                             <Tooltip
                               placement="bottom"
@@ -174,7 +174,9 @@ const StateMapChart = () => {
                     })
                   ) : (
                     <div className="d-flex">
-                      <h3 className="fs-34 fs-lg-28 font-weight-bold">None</h3>
+                      <h3 className="fs-34 fs-lg-28 font-weight-bold mb-0">
+                        None
+                      </h3>
                     </div>
                   )}
                 </Col>
@@ -186,7 +188,7 @@ const StateMapChart = () => {
                     showDetails?.topImprovement.map((top, i) => {
                       return (
                         <div className="d-flex" key={i}>
-                          <h3 className="fs-34 fs-lg-28 font-weight-bold">
+                          <h3 className="fs-34 fs-lg-28 font-weight-bold mb-0">
                             {top.title}
                             <Tooltip
                               placement="bottom"
@@ -199,7 +201,9 @@ const StateMapChart = () => {
                     })
                   ) : (
                     <div className="d-flex">
-                      <h3 className="fs-34 fs-lg-28 font-weight-bold">None</h3>
+                      <h3 className="fs-34 fs-lg-28 font-weight-bold mb-0">
+                        None
+                      </h3>
                     </div>
                   )}
                 </Col>
