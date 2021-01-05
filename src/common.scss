@@ -344,9 +344,17 @@ button {
   }
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 1400px) {
   .fs-lg-28 {
     font-size: 28px !important;
+  }
+
+  [role='columnheader'],
+  [role='gridcell'] {
+    &:first-child,
+    &:nth-child(10n + 1) {
+      min-width: 250px;
+    }
   }
 
   .pt-xl-5 {
