@@ -344,19 +344,28 @@ button {
   }
 }
 
-@media (max-width: 1280px) {
-  .fs-lg-28 {
-    font-size: 28px !important;
+@media (max-width: 1366px) {
+  [role='columnheader'] {
+    max-width: 135px;
+    min-width: fit-content;
+    padding: 3px;
   }
 
   [role='columnheader'],
   [role='gridcell'] {
     &:first-child,
     &:nth-child(10n + 1) {
-      min-width: 250px;
+      min-width: 220px;
+      padding-right: 10px;
     }
   }
 
+  .fs-lg-28 {
+    font-size: 28px !important;
+  }
+}
+
+@media (max-width: 1280px) {
   .pt-xl-5 {
     padding-top: 2rem !important;
   }
