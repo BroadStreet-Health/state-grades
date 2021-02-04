@@ -164,8 +164,8 @@ button {
   border: 1px solid #f0f0f0;
   display: grid;
   font-size: 1em;
-  height: 800px;
-  overflow-y: auto;
+  max-height: 800px;
+  min-height: 100px;
   width: 100%;
   // border-bottom-left-radius: 30px;
   // border-bottom-right-radius: 40px;

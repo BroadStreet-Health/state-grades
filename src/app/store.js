@@ -28,6 +28,7 @@ export default configureStore({
 });
 
 export const getStateGradesAndFundingImpact = () => (dispatch) => {
+  let stateGradeLoader = true;
   d3.csv('./assets/data/stateGrades.csv').then((data) => {
     data = data.filter((d) => {
       return d['State Rank'] !== '';
@@ -49,9 +50,11 @@ export const getStateGradesAndFundingImpact = () => (dispatch) => {
         dataQualitySubgrade: val['Data Quality Subgrade'],
       };
     });
+    stateGradeLoader = false;
     dispatch(
       setStateGrades({
         stateGrades,
+        stateGradeLoader,
       })
     );
     const fundingImpacts = data.map((val) => {

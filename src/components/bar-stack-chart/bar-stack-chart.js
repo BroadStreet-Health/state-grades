@@ -21,10 +21,11 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
       })
       .filter((d) => d.value !== 100);
     // legendScale.domain(['A']);
-    const width = Math.max(
+    const maxW = Math.max(
       parent.current.clientWidth - margin.left - margin.right,
       50
     );
+    const width = maxW < 768 ? 768 : maxW;
     const rangeObj = {
       A: '90 - 100',
       B: '80 - 90',
@@ -604,10 +605,7 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
   }, [init]);
 
   return (
-    <div
-      ref={parent}
-      className="bar-stack-chart w-100 d-flex justify-content-center"
-    >
+    <div ref={parent} className="bar-stack-chart w-100 overflow-auto">
       <svg ref={svgRef}></svg>
     </div>
   );

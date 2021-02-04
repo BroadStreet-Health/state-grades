@@ -8,10 +8,12 @@ export const stateGradeSlice = createSlice({
     variableDefinitions: [],
     dataCollectionRound: [],
     weightRollups: [],
+    stateGradeLoader: true,
   },
   reducers: {
     setStateGrades: (state, action) => {
       state.stateGrades = action.payload.stateGrades;
+      state.stateGradeLoader = action.payload.stateGradeLoader;
     },
     setVariableDefinitions: (state, action) => {
       state.variableDefinitions = action.payload.variableDefinitions;
@@ -64,6 +66,8 @@ const groupBy = (array, key) => {
 };
 
 export const selectStateGrades = (state) => state.stateGrade.stateGrades;
+export const selectStateGradeLoader = (state) =>
+  state.stateGrade.stateGradeLoader;
 export const selectVariableDefinitions = (state) =>
   state.stateGrade.variableDefinitions;
 export const selectDataCollectionRound = (state) =>

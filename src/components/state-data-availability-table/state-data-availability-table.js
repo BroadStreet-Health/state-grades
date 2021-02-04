@@ -7,14 +7,17 @@ import {
   selectVariableDefinitions,
   selectDataCollectionRound,
   selectWeightRollups,
+  selectStateGradeLoader,
 } from './state-data-availability-slice';
 
 import React, {useEffect} from 'react';
+import {Spinner} from 'react-bootstrap';
 import {OverlayTrigger, Popover} from 'react-bootstrap';
 import {useDispatch, useSelector} from 'react-redux';
 
 const StateDataAvailabilityTable = () => {
   const stateGrades = useSelector(selectStateGrades);
+  const stateGradeLoader = useSelector(selectStateGradeLoader);
   const variableDefinitions = useSelector(selectVariableDefinitions);
   const dataCollectionRound = useSelector(selectDataCollectionRound);
   const weightRollups = useSelector(selectWeightRollups);
@@ -211,7 +214,15 @@ const StateDataAvailabilityTable = () => {
         </span>
       </h5>
       <div className="my-5 table-container">
-        <Grid columns={columnData} rows={tableData} />
+        <>
+          {stateGradeLoader ? (
+            <div className="h-100 d-flex justify-content-center align-items-center">
+              <Spinner animation="border" variant="primary" />
+            </div>
+          ) : (
+            <Grid columns={columnData} rows={tableData} />
+          )}
+        </>
       </div>
       <h5 className="fs-24">
         How are state grades and subgrades calculated?{' '}
@@ -234,7 +245,7 @@ const StateDataAvailabilityTable = () => {
 function Grid(props) {
   const {columns, rows} = props;
   return (
-    <div className="table-container-border">
+    <div className="table-container-border overflow-auto">
       <div
         className="table-grid"
         onScroll={() => document.body.click()}
@@ -244,25 +255,31 @@ function Grid(props) {
         }}
       >
         {columns.map((column, i) => (
-          <div role="columnheader" className="fs-20 font-weight-bold" key={i}>
+          <div role="columnheader" className={'fs-20 font-weight-bold'} key={i}>
             {column.name}
             {column.tooltipText ? <Tooltip text={column.tooltipText} /> : null}
           </div>
         ))}
-        {(rows || []).reduce(
-          (res, row, line) => [
-            ...res,
-            ...row.map((cell, i) => (
-              <div
-                key={`${line}-${i}`}
-                className="fs-34 fs-lg-28 font-weight-bold"
-                role="gridcell"
-              >
-                {cell()}
-              </div>
-            )),
-          ],
-          []
+        {rows && rows.length ? (
+          (rows || []).reduce(
+            (res, row, line) => [
+              ...res,
+              ...row.map((cell, i) => (
+                <div
+                  key={`${line}-${i}`}
+                  className="fs-34 fs-lg-28 font-weight-bold"
+                  role="gridcell"
+                >
+                  {cell()}
+                </div>
+              )),
+            ],
+            []
+          )
+        ) : (
+          <div className="fs-34 fs-lg-28 font-weight-bold my-3" role="cell">
+            Not data found...
+          </div>
         )}
       </div>
     </div>
