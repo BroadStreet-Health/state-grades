@@ -40,13 +40,13 @@ const ScatterPlot = ({chartData}) => {
 
     const cValue = (d) => {
       const totalScore = parseFloat(d.totalScore);
-      if (100 >= totalScore && totalScore >= 90) {
+      if (100 >= totalScore && totalScore >= 89.5) {
         return color('A');
-      } else if (90 >= totalScore && totalScore >= 80) {
+      } else if (89.5 >= totalScore && totalScore >= 79.5) {
         return color('B');
-      } else if (80 >= totalScore && totalScore >= 70) {
+      } else if (79.5 >= totalScore && totalScore >= 69.5) {
         return color('C');
-      } else if (70 >= totalScore && totalScore >= 60) {
+      } else if (69.5 >= totalScore && totalScore >= 59.5) {
         return color('D');
       } else {
         return color('F');
