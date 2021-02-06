@@ -21,11 +21,10 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
       })
       .filter((d) => d.value !== 100);
     // legendScale.domain(['A']);
-    const maxW = Math.max(
+    let width = Math.max(
       parent.current.clientWidth - margin.left - margin.right,
       50
     );
-    const width = maxW < 768 ? 768 : maxW;
     const rangeObj = {
       A: '90 - 100',
       B: '80 - 90',
@@ -33,11 +32,138 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
       D: '60 - 70',
       F: '0 - 60',
     };
-    const height = Math.max(600 - margin.top - margin.bottom, 50);
-    const pieChartWidth = Math.min(width * 0.4, height);
-    const stackedBarChartWidth = width - pieChartWidth;
-    const isMobileScreen = width < 1400;
-    const radius = pieChartWidth / 2;
+    let height = Math.max(600 - margin.top - margin.bottom, 50);
+    let pieChartWidth = Math.min(width * 0.4, height);
+    let radius = pieChartWidth / 2;
+    let stackedBarChartWidth = width - pieChartWidth;
+    let fontSize = '18px';
+    let stackedBarChartT = '';
+    let isMobileScreen = false;
+    let pieChartGT = '';
+    let legendContainerT = '';
+    let xAxisLabelT = '';
+    let yScaleH = 0;
+
+    const resetVarForResponsive = () => {
+      if (width < 425) {
+        margin.left = 70;
+        margin.right = 0;
+        width = Math.max(
+          parent.current.clientWidth - margin.left - margin.right,
+          50
+        );
+        pieChartWidth = Math.min(parent.current.clientWidth, height);
+        radius = pieChartWidth / 2;
+        height = Math.max(800 - margin.top - margin.bottom, 50);
+        yScaleH = height - pieChartWidth - margin.bottom;
+        fontSize = 10;
+        stackedBarChartWidth = width;
+        pieChartGT = `translate(${pieChartWidth / 2},${radius})`;
+        stackedBarChartT = `translate(
+          0,
+          ${margin.top + legendHeight + pieChartWidth}
+        )`;
+        legendContainerT = `translate(
+          ${width - stackedBarChartWidth},
+          ${margin.top + pieChartWidth}
+        )`;
+        xAxisLabelT = `translate(
+          ${margin.left + stackedBarChartWidth / 2},
+          ${height - pieChartWidth}
+        )`;
+        isMobileScreen = true;
+      } else if (width < 768) {
+        margin.left = 100;
+        margin.right = 0;
+        width = Math.max(
+          parent.current.clientWidth - margin.left - margin.right,
+          50
+        );
+        pieChartWidth = Math.min(width * 0.6, height);
+        radius = pieChartWidth / 2;
+        height = Math.max(800 - margin.top - margin.bottom, 50);
+        yScaleH = height - pieChartWidth - margin.bottom;
+        fontSize = 14;
+        stackedBarChartWidth = width;
+        pieChartGT = `translate(${width / 2 + radius / 3},${radius})`;
+        stackedBarChartT = `translate(
+          0,
+          ${margin.top + legendHeight + pieChartWidth}
+        )`;
+        legendContainerT = `translate(
+          ${width - stackedBarChartWidth + margin.left},
+          ${margin.top + pieChartWidth}
+        )`;
+        xAxisLabelT = `translate(
+          ${margin.left + stackedBarChartWidth / 2},
+          ${height - pieChartWidth}
+        )`;
+        isMobileScreen = true;
+      } else if (width < 1024) {
+        margin.left = 150;
+        margin.right = 0;
+        width = Math.max(
+          parent.current.clientWidth - margin.left - margin.right,
+          50
+        );
+        pieChartWidth = Math.min(width * 0.4, height);
+        radius = pieChartWidth / 2;
+        height = Math.max(600 - margin.top - margin.bottom, 50);
+        yScaleH = height - margin.bottom;
+        fontSize = 16;
+        stackedBarChartWidth = width - pieChartWidth;
+        stackedBarChartT = `translate(
+          ${pieChartWidth},
+          ${margin.top + legendHeight}
+        )`;
+        pieChartGT = `translate(
+          ${pieChartWidth / 2},
+          ${height / 2 + legendHeight + (margin.top + margin.bottom) / 2}
+        )`;
+        legendContainerT = `translate(
+          ${width - stackedBarChartWidth + margin.left},
+          ${margin.top}
+        )`;
+        xAxisLabelT = `translate(
+          ${margin.left + stackedBarChartWidth / 2},
+          ${height - 20}
+        )`;
+        isMobileScreen = true;
+      } else {
+        margin.left = 150;
+        margin.right = 0;
+        width = Math.max(
+          parent.current.clientWidth - margin.left - margin.right,
+          50
+        );
+        pieChartWidth = Math.min(width * 0.4, height);
+        radius = pieChartWidth / 2;
+        height = Math.max(600 - margin.top - margin.bottom, 50);
+        yScaleH = height - margin.bottom;
+        fontSize = 18;
+        stackedBarChartWidth = width - pieChartWidth;
+        stackedBarChartT = `translate(
+          ${pieChartWidth},
+          ${margin.top + legendHeight}
+        )`;
+        pieChartGT = `translate(
+          ${pieChartWidth / 2},
+          ${height / 2 + legendHeight + (margin.top + margin.bottom) / 2}
+        )`;
+        legendContainerT = `translate(
+          ${width - stackedBarChartWidth + margin.left},
+          ${margin.top}
+        )`;
+        xAxisLabelT = `translate(
+          ${margin.left + stackedBarChartWidth / 2},
+          ${height - 20}
+        )`;
+        isMobileScreen = false;
+      }
+    };
+
+    resetVarForResponsive();
+
     const createElement = (parent, element, className, data, dataCheck) => {
       const selection = parent
         .selectAll(element + '.' + className)
@@ -101,24 +227,14 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
       'stack-bar-chart-group',
       [1],
       (d) => d
-    ).attr(
-      'transform',
-      'translate(' + pieChartWidth + ',' + (margin.top + legendHeight) + ')'
-    );
+    ).attr('transform', stackedBarChartT);
     const legendContainer = createElement(
       svg,
       'g',
       'stack-bar-legend-container',
       [1],
       (d) => d
-    ).attr(
-      'transform',
-      'translate(' +
-        (width - stackedBarChartWidth + margin.left) +
-        ',' +
-        margin.top +
-        ')'
-    );
+    ).attr('transform', legendContainerT);
 
     const barsG = createElement(
       stackedBarChartG,
@@ -130,14 +246,16 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
 
     const pieChartG = createElement(svg, 'g', 'pie-group', [1], (d) => d).attr(
       'transform',
-      'translate(' +
-        pieChartWidth / 2 +
-        ',' +
-        (height / 2 + legendHeight + (margin.top + margin.bottom) / 2) +
-        ')'
+      pieChartGT
     );
 
-    const pieLinesG = createElement(pieChartG, 'g', 'pieLines', [1], (d) => d);
+    const pieLinesG = createElement(
+      pieChartG,
+      'g',
+      'pieLines',
+      [1],
+      (d) => d
+    ).attr('style', `display: ${width < 768 ? 'none' : 'block'}`);
     createElement(
       pieChartG,
       'text',
@@ -148,7 +266,7 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
       .attr('class', 'pie-center-label')
       .attr('text-anchor', 'middle')
       .attr('font-weight', 'bold')
-      .attr('font-size', radius * 0.1 + 'px')
+      .attr('font-size', fontSize + 4)
       .attr('fill', (d, i) => (i === 2 ? '#008faa' : '#535353'))
       .attr('dy', (d, i) => range(-1, 2.8, 1.4)[i] + 'em')
       .text((d) => d);
@@ -173,12 +291,9 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
       .attr('x', 0)
       .attr('y', 0)
       .attr('dy', 0)
-      .attr(
-        'transform',
-        `translate(${margin.left + stackedBarChartWidth / 2},${height - 20})`
-      )
+      .attr('transform', xAxisLabelT)
       .style('text-anchor', 'middle')
-      .style('font-size', '18px')
+      .style('font-size', fontSize)
       .style('font-weight', 'bold')
       .style('font-style', 'italic')
       .style('dominant-baseline', 'middle')
@@ -199,14 +314,17 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
 
     const legendScale = scaleBand()
       .domain(chartDataColumns)
-      .range([15, stackedBarChartWidth - margin.right]);
+      .range([
+        15,
+        (width < 425 ? pieChartWidth : stackedBarChartWidth) - margin.right,
+      ]);
     const xScale = scaleLinear()
       .range([15, stackedBarChartWidth - margin.right])
       .domain([0, max(chartData, (d) => d.total)])
       .nice();
 
     const yScale = scaleBand()
-      .range([margin.top, height - margin.bottom])
+      .range([margin.top, yScaleH])
       .padding(0.1)
       .paddingOuter(0.24)
       .paddingInner(0.24)
@@ -336,7 +454,7 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
         .attr('x', 0)
         .attr('text-anchor', 'end')
         .attr('dy', '.35em')
-        .attr('font-size', '18px')
+        .attr('font-size', fontSize)
         .attr('font-weight', 'bold')
         .attr('fill', '#535353')
         .attr('dx', -5)
@@ -424,7 +542,7 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
           );
         })
         .text((d, i) => (d[1] - d[0] ? d[1] - d[0] : ''))
-        .style('font-size', '15px')
+        .style('font-size', fontSize)
         .style('font-weight', '900')
         .style('dominant-baseline', 'central')
         .style('text-anchor', 'middle')
@@ -541,7 +659,7 @@ const BarStackChart = ({chartData, chartDataColumns, pieChartData}) => {
         .attr('x', 0)
         .attr('y', 0)
         .attr('dy', 0)
-        .style('font-size', isMobileScreen ? '16px' : '18px')
+        .style('font-size', fontSize)
         .style('fill', '#535353')
         // .style('font-weight', 'bold')
         .style('font-style', 'italic')
